@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "0.0.0",
+    "version": "1.0.0",
     "title": "Trial Container API",
     "description": "This is api specs for trial container endpoints",
     "contact": {
@@ -11,8 +11,8 @@
   },
   "tags": [
     {
-      "name": "Example",
-      "description": "Example endpoints"
+      "name": "Forms",
+      "description": "Forms endpoints"
     }
   ],
   "servers": [
@@ -26,9 +26,9 @@
     }
   ],
   "paths": {
-    "/example": {
-      "get": {
-        "summary": "Example endpoint",
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms": {
+      "post": {
+        "summary": "Post trial container forms",
         "security": [
           {
             "userSessionKey": []
@@ -37,27 +37,85 @@
             "chillipharmSession": []
           }
         ],
-        "operationId": "getExample",
-        "description": "This is an example endpoint",
+        "operationId": "postTrialContainerForms",
+        "description": "Create a new form for a trial container",
         "parameters": [
           {
-            "name": "example",
-            "in": "query",
-            "description": "Example parameter",
+            "name": "account_id",
+            "in": "path",
             "required": true,
             "schema": {
-              "type": "string"
-            }
+              "type": "string",
+              "example": "1"
+            },
+            "description": "The account id"
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            },
+            "description": "The trial container id"
           }
         ],
-        "tags": ["Example"],
+        "tags": ["Forms"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "form_container_id": {
+                    "type": "integer",
+                    "description": "The form container id",
+                    "example": 5
+                  },
+                  "form_container_type": {
+                    "type": "string",
+                    "description": "The form container type",
+                    "example": "Study::Procedure"
+                  },
+                  "form_template_id": {
+                    "type": "integer",
+                    "description": "The form template id",
+                    "example": 1
+                  },
+                  "authenticity_token": {
+                    "type": "string",
+                    "description": "The authenticity token",
+                    "example": "dsaasdasfdafs+zPCkJzYaKE2yVvHolbyrc2rVRt2tbunFKE7132TGIt1CBvVlOCkRSPc2ZkOQ=="
+                  }
+                },
+                "required": [
+                  "form_container_id",
+                  "form_container_type",
+                  "form_template_id",
+                  "authenticity_token"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ExampleResponse"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "The form id",
+                      "example": 1
+                    }
+                  },
+                  "required": ["id"],
+                  "additionalProperties": false
                 }
               }
             }
@@ -66,7 +124,13 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "401": {
-            "$ref": "#/components/responses/Unauthorized"
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
           },
           "409": {
             "$ref": "#/components/responses/Conflict"
@@ -94,39 +158,23 @@
       }
     },
     "schemas": {
-      "ExampleResponse": {
-        "type": "object",
-        "properties": {
-          "example": {
-            "type": "string"
-          }
-        }
-      },
       "Error": {
-        "description": "An error",
+        "description": "A legacy error",
         "type": "object",
         "properties": {
-          "message": {
+          "error": {
             "type": "string",
             "description": "The error message",
             "example": "Bad request. Missing or invalid input parameters."
           }
-        }
+        },
+        "additionalProperties": false,
+        "required": ["error"]
       }
     },
     "responses": {
       "BadRequest": {
         "description": "Bad request. Missing or invalid input parameters.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Error"
-            }
-          }
-        }
-      },
-      "Unauthorized": {
-        "description": "Unauthorized. Missing or invalid authentication credentials.",
         "content": {
           "application/json": {
             "schema": {
@@ -145,12 +193,76 @@
           }
         }
       },
+      "Forbidden": {
+        "description": "Forbidden. The request was valid, but the server is refusing action.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "The error message",
+                  "example": "You do not have sufficient permission to perform this action",
+                  "enum": [
+                    "You do not have sufficient permission to perform this action",
+                    "Forbidden",
+                    "Study Procedure is locked, therefore you cannot perform this action"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
       "InternalServerError": {
         "description": "Internal server error. Please contact support.",
         "content": {
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Unauthorised": {
+        "description": "Unauthorised. Missing or invalid authentication credentials.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "An error",
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "The error message",
+                  "example": "Unauthorised",
+                  "enum": ["Unauthorised"]
+                }
+              },
+              "required": ["error"],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "Not found. The requested resource was not found.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "An error",
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "The error message",
+                  "example": "Not found",
+                  "enum": ["Not found"]
+                }
+              },
+              "required": ["error"],
+              "additionalProperties": false
             }
           }
         }
