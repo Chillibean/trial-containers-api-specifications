@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "0.0.0",
+    "version": "1.0.0",
     "title": "Trial Container API",
     "description": "This is api specs for trial container endpoints",
     "contact": {
@@ -61,7 +61,9 @@
             "description": "The trial container id"
           }
         ],
-        "tags": ["Forms"],
+        "tags": [
+          "Forms"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
