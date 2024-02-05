@@ -61,9 +61,7 @@
             "description": "The trial container id"
           }
         ],
-        "tags": [
-          "Forms"
-        ],
+        "tags": ["Forms"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -90,7 +88,14 @@
                     "description": "The authenticity token",
                     "example": "dsaasdasfdafs+zPCkJzYaKE2yVvHolbyrc2rVRt2tbunFKE7132TGIt1CBvVlOCkRSPc2ZkOQ=="
                   }
-                }
+                },
+                "required": [
+                  "form_container_id",
+                  "form_container_type",
+                  "form_template_id",
+                  "authenticity_token"
+                ],
+                "additionalProperties": false
               }
             }
           }
@@ -108,7 +113,9 @@
                       "description": "The form id",
                       "example": 1
                     }
-                  }
+                  },
+                  "required": ["id"],
+                  "additionalProperties": false
                 }
               }
             }
@@ -154,7 +161,9 @@
             "description": "The error message",
             "example": "Bad request. Missing or invalid input parameters."
           }
-        }
+        },
+        "required": ["message"],
+        "additionalProperties": false
       }
     },
     "responses": {
