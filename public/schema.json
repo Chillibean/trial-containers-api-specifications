@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "1.0.0",
+    "version": "1.0.1",
     "title": "Trial Container API",
     "description": "This is api specs for trial container endpoints",
     "contact": {
@@ -61,7 +61,9 @@
             "description": "The trial container id"
           }
         ],
-        "tags": ["Forms"],
+        "tags": [
+          "Forms"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -108,7 +110,9 @@
                       "example": 1
                     }
                   },
-                  "required": ["id"],
+                  "required": [
+                    "id"
+                  ],
                   "additionalProperties": false
                 }
               }
@@ -163,7 +167,9 @@
           }
         },
         "additionalProperties": false,
-        "required": ["error"]
+        "required": [
+          "error"
+        ]
       }
     },
     "responses": {
@@ -231,10 +237,14 @@
                   "type": "string",
                   "description": "The error message",
                   "example": "Unauthorised",
-                  "enum": ["Unauthorised"]
+                  "enum": [
+                    "Unauthorised"
+                  ]
                 }
               },
-              "required": ["error"],
+              "required": [
+                "error"
+              ],
               "additionalProperties": false
             }
           }
@@ -252,10 +262,14 @@
                   "type": "string",
                   "description": "The error message",
                   "example": "Not found",
-                  "enum": ["Not found"]
+                  "enum": [
+                    "Not found"
+                  ]
                 }
               },
-              "required": ["error"],
+              "required": [
+                "error"
+              ],
               "additionalProperties": false
             }
           }
