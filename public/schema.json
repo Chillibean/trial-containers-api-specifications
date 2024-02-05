@@ -82,18 +82,12 @@
                     "type": "integer",
                     "description": "The form template id",
                     "example": 1
-                  },
-                  "authenticity_token": {
-                    "type": "string",
-                    "description": "The authenticity token",
-                    "example": "dsaasdasfdafs+zPCkJzYaKE2yVvHolbyrc2rVRt2tbunFKE7132TGIt1CBvVlOCkRSPc2ZkOQ=="
                   }
                 },
                 "required": [
                   "form_container_id",
                   "form_container_type",
-                  "form_template_id",
-                  "authenticity_token"
+                  "form_template_id"
                 ],
                 "additionalProperties": false
               }
