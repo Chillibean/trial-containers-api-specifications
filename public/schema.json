@@ -153,17 +153,17 @@
     },
     "schemas": {
       "Error": {
-        "description": "An error",
+        "description": "A legacy error",
         "type": "object",
         "properties": {
-          "message": {
+          "error": {
             "type": "string",
             "description": "The error message",
             "example": "Bad request. Missing or invalid input parameters."
           }
         },
-        "required": ["message"],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "required": ["error"]
       }
     },
     "responses": {
