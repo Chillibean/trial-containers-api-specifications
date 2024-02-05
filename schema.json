@@ -1,0 +1,160 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "0.0.0",
+    "title": "Trial Container API",
+    "description": "This is api specs for trial container endpoints",
+    "contact": {
+      "name": "ChilliPharm",
+      "url": "https://www.chillipharm.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "Example",
+      "description": "Example endpoints"
+    }
+  ],
+  "servers": [
+    {
+      "url": "http://chillipharm.test:3000/api/v1",
+      "description": "Local development"
+    },
+    {
+      "url": "https://www.chillipharm.com/api/v1",
+      "description": "Production"
+    }
+  ],
+  "paths": {
+    "/example": {
+      "get": {
+        "summary": "Example endpoint",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "operationId": "getExample",
+        "description": "This is an example endpoint",
+        "parameters": [
+          {
+            "name": "example",
+            "in": "query",
+            "description": "Example parameter",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": ["Example"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExampleResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "userSessionKey": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "user_session_key",
+        "description": "User session key cookie"
+      },
+      "chillipharmSession": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "_chillipharm_session",
+        "description": "ChilliPharm session cookie"
+      }
+    },
+    "schemas": {
+      "ExampleResponse": {
+        "type": "object",
+        "properties": {
+          "example": {
+            "type": "string"
+          }
+        }
+      },
+      "Error": {
+        "description": "An error",
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "The error message",
+            "example": "Bad request. Missing or invalid input parameters."
+          }
+        }
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "Bad request. Missing or invalid input parameters.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Unauthorized. Missing or invalid authentication credentials.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Conflict": {
+        "description": "Conflict. The request could not be completed due to a conflict with the current state of the resource.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "InternalServerError": {
+        "description": "Internal server error. Please contact support.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    }
+  }
+}
