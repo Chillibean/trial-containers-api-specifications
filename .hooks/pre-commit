@@ -1,0 +1,15 @@
+#!/bin/bash
+# This hook checks that the version in package.json and schema.json are the same.
+package_version=$(node -e "console.log(require('./package.json').version)")
+openapi_version=$(node -e "console.log(require('./public/schema.json').info.version)")
+if [ "$package_version" != "$openapi_version" ]; then
+    echo "Error: Version mismatch between package.json ($package_version) and schema.json ($openapi_version)."
+    exit 1
+fi
+# This hook checks that the schema.json is formatted correctly
+npm run verify
+if [ $? -ne 0 ]; then
+  echo "Pre-commit hook failed: 'npm run verify' script did not pass."
+  echo "Please fix the issues and try again."
+  exit 1
+fi

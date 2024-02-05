@@ -1,0 +1,27 @@
+name: Enforce Semantic Versioning for Main Branch
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+jobs:
+  enforce_versioning:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if targeting main branch
+        id: check_branch
+        run: |
+          target_branch="${{ github.event.pull_request.base.ref }}"
+          if [ "$target_branch" == "main" ]; then
+            echo "Skipping branch check as the target branch is not 'main'."
+            echo "target_branch=main" >> $GITHUB_OUTPUT
+          fi
+      - name: Check branch name format
+        if: always() && steps.check_branch.outputs.target_branch == 'main'
+        run: |
+          branch_name="${{ github.head_ref }}"
+          if [[ ! $branch_name =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Branch name does not follow semantic versioning format (major.minor.patch)."
+            echo "Please rename your branch accordingly."
+            exit 1
+          fi
