@@ -26,7 +26,7 @@
     }
   ],
   "paths": {
-    "/api/v1/accounts/{account_id}/trial_containers/{trial_container_id}/forms": {
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms": {
       "post": {
         "summary": "Post trial container forms",
         "security": [
