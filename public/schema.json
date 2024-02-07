@@ -207,7 +207,7 @@
                   "enum": [
                     "You do not have sufficient permission to perform this action",
                     "Forbidden",
-                    "Study Procedure is locked, therefore you cannot perform this action"
+                    "You cannot perform this action because the study procedure is locked"
                   ]
                 }
               }
