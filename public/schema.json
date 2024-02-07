@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "1.0.1",
+    "version": "1.0.2",
     "title": "Trial Container API",
     "description": "This is api specs for trial container endpoints",
     "contact": {
@@ -207,7 +207,7 @@
                   "enum": [
                     "You do not have sufficient permission to perform this action",
                     "Forbidden",
-                    "Study Procedure is locked, therefore you cannot perform this action"
+                    "You cannot perform this action because the study procedure is locked"
                   ]
                 }
               }
