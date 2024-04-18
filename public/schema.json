@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "1.0.2",
+    "version": "1.0.3",
     "title": "Trial Container API",
     "description": "This is api specs for trial container endpoints",
     "contact": {
@@ -65,7 +65,9 @@
             "description": "The trial container id"
           }
         ],
-        "tags": ["Forms"],
+        "tags": [
+          "Forms"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -112,7 +114,9 @@
                       "example": 1
                     }
                   },
-                  "required": ["id"],
+                  "required": [
+                    "id"
+                  ],
                   "additionalProperties": false
                 }
               }
@@ -184,7 +188,9 @@
             "description": "The form template id"
           }
         ],
-        "tags": ["Form Templates"],
+        "tags": [
+          "Form Templates"
+        ],
         "requestBody": {
           "content": {}
         },
@@ -214,7 +220,11 @@
                       }
                     }
                   },
-                  "required": ["id", "title", "fields"],
+                  "required": [
+                    "id",
+                    "title",
+                    "fields"
+                  ],
                   "additionalProperties": false
                 }
               }
@@ -329,7 +339,9 @@
                 "example": "letters_and_numbers"
               }
             },
-            "required": ["required"],
+            "required": [
+              "required"
+            ],
             "additionalProperties": false
           },
           "options": {
@@ -371,7 +383,9 @@
           }
         },
         "additionalProperties": false,
-        "required": ["error"]
+        "required": [
+          "error"
+        ]
       }
     },
     "responses": {
@@ -439,10 +453,14 @@
                   "type": "string",
                   "description": "The error message",
                   "example": "Unauthorised",
-                  "enum": ["Unauthorised"]
+                  "enum": [
+                    "Unauthorised"
+                  ]
                 }
               },
-              "required": ["error"],
+              "required": [
+                "error"
+              ],
               "additionalProperties": false
             }
           }
@@ -460,10 +478,14 @@
                   "type": "string",
                   "description": "The error message",
                   "example": "Not found",
-                  "enum": ["Not found"]
+                  "enum": [
+                    "Not found"
+                  ]
                 }
               },
-              "required": ["error"],
+              "required": [
+                "error"
+              ],
               "additionalProperties": false
             }
           }
