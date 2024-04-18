@@ -13,6 +13,10 @@
     {
       "name": "Forms",
       "description": "Forms endpoints"
+    },
+    {
+      "name": "Form Templates",
+      "description": "Form templates endpoints"
     }
   ],
   "servers": [
@@ -61,9 +65,7 @@
             "description": "The trial container id"
           }
         ],
-        "tags": [
-          "Forms"
-        ],
+        "tags": ["Forms"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -110,9 +112,109 @@
                       "example": 1
                     }
                   },
-                  "required": [
-                    "id"
-                  ],
+                  "required": ["id"],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/v1/accounts/:account_id/trial_containers/:trial_container_id/form_templates/:form_template_id/show_with_fields": {
+      "get": {
+        "summary": "Get a form template with fields",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "operationId": "getFromTemplateWithFields",
+        "description": "Get a form template with fields",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            },
+            "description": "The account id"
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            },
+            "description": "The trial container id"
+          },
+          {
+            "name": "form_template_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            },
+            "description": "The form template id"
+          }
+        ],
+        "tags": ["Form Templates"],
+        "requestBody": {
+          "content": {}
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "The form template id",
+                      "example": 1
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "The form template title",
+                      "example": "Form template title"
+                    },
+                    "fields": {
+                      "type": "array",
+                      "description": "The form template fields",
+                      "items": {
+                        "$ref": "#/components/schemas/FormTemplateField"
+                      }
+                    }
+                  },
+                  "required": ["id", "title", "fields"],
                   "additionalProperties": false
                 }
               }
@@ -156,6 +258,108 @@
       }
     },
     "schemas": {
+      "FormTemplateField": {
+        "description": "Form template field",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The field id",
+            "example": 1
+          },
+          "title": {
+            "type": "string",
+            "description": "The field title",
+            "example": "Field title"
+          },
+          "type": {
+            "type": "string",
+            "description": "The field type",
+            "example": "text"
+          },
+          "input_guidance": {
+            "type": "string",
+            "description": "The field input guidance",
+            "example": "guidance"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the field is enabled",
+            "example": true
+          },
+          "other_enabled": {
+            "type": "boolean",
+            "description": "Whether other types are enabled",
+            "example": false
+          },
+          "value": {
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "Field value"
+              },
+              {
+                "type": "array",
+                "description": "The field value",
+                "example": "[]"
+              }
+            ]
+          },
+          "validations": {
+            "type": "object",
+            "properties": {
+              "required": {
+                "type": "boolean",
+                "description": "Whether the field is required",
+                "example": true
+              },
+              "input_format": {
+                "type": "string",
+                "description": "regex format for input",
+                "example": "[a-zA-Z]{1}[a-zA-Z]{1}-\\d{1}\\d{1}\\d{1}\\d{1}\\d{1}"
+              },
+              "character_limit": {
+                "type": "integer",
+                "description": "The maximum characters",
+                "example": 10
+              },
+              "character_restrictions": {
+                "type": "string",
+                "description": "restricted character type",
+                "example": "letters_and_numbers"
+              }
+            },
+            "required": ["required"],
+            "additionalProperties": false
+          },
+          "options": {
+            "type": "array",
+            "description": "The field options",
+            "items": {
+              "type": "string"
+            }
+          },
+          "comments": {
+            "type": "array",
+            "description": "The field comments",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "type",
+          "enabled",
+          "other_enabled",
+          "value",
+          "validations",
+          "options"
+        ],
+        "additionalProperties": false
+      },
       "Error": {
         "description": "A legacy error",
         "type": "object",
@@ -167,9 +371,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "error"
-        ]
+        "required": ["error"]
       }
     },
     "responses": {
@@ -237,14 +439,10 @@
                   "type": "string",
                   "description": "The error message",
                   "example": "Unauthorised",
-                  "enum": [
-                    "Unauthorised"
-                  ]
+                  "enum": ["Unauthorised"]
                 }
               },
-              "required": [
-                "error"
-              ],
+              "required": ["error"],
               "additionalProperties": false
             }
           }
@@ -262,14 +460,10 @@
                   "type": "string",
                   "description": "The error message",
                   "example": "Not found",
-                  "enum": [
-                    "Not found"
-                  ]
+                  "enum": ["Not found"]
                 }
               },
-              "required": [
-                "error"
-              ],
+              "required": ["error"],
               "additionalProperties": false
             }
           }
