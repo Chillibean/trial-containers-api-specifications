@@ -275,12 +275,13 @@
           "type": {
             "type": "string",
             "description": "The field type",
-            "example": "text"
+            "example": "single_line"
           },
           "input_guidance": {
             "type": "string",
             "description": "The field input guidance",
-            "example": "guidance"
+            "example": "guidance",
+            "nullable": true
           },
           "enabled": {
             "type": "boolean",
@@ -296,7 +297,7 @@
             "oneOf": [
               {
                 "type": "string",
-                "example": "Field value"
+                "example": ""
               },
               {
                 "type": "array",
@@ -316,7 +317,8 @@
               "input_format": {
                 "type": "string",
                 "description": "regex format for input",
-                "example": "[a-zA-Z]{1}[a-zA-Z]{1}-\\d{1}\\d{1}\\d{1}\\d{1}\\d{1}"
+                "example": "[a-zA-Z]{1}[a-zA-Z]{1}-\\d{1}\\d{1}\\d{1}\\d{1}\\d{1}",
+                "nullable": true
               },
               "character_limit": {
                 "type": "integer",
