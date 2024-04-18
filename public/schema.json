@@ -139,7 +139,7 @@
         }
       }
     },
-    "/accounts/:account_id/trial_containers/:trial_container_id/form_templates/:form_template_id/show_with_fields": {
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/form_templates/{form_template_id}/show_with_fields": {
       "get": {
         "summary": "Get a form template with fields",
         "security": [
