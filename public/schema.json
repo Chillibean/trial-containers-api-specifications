@@ -323,7 +323,8 @@
               "character_limit": {
                 "type": "integer",
                 "description": "The maximum characters",
-                "example": 10
+                "example": 10,
+                "nullable": true
               },
               "character_restrictions": {
                 "type": "string",
