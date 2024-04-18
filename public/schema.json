@@ -197,9 +197,9 @@
                   "type": "object",
                   "properties": {
                     "id": {
-                      "type": "string",
+                      "type": "integer",
                       "description": "The form template id",
-                      "example": "1"
+                      "example": 1
                     },
                     "title": {
                       "type": "string",
