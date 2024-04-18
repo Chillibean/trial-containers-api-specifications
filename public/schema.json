@@ -326,13 +326,19 @@
                 "example": 10,
                 "nullable": true
               },
-              "character_restrictions": {
+              "character_restriction": {
                 "type": "string",
                 "description": "restricted character type",
-                "example": "letters_and_numbers"
+                "example": "letters_and_numbers",
+                "nullable": true
               }
             },
-            "required": ["required"],
+            "required": [
+              "required",
+              "input_format",
+              "character_limit",
+              "character_restriction"
+            ],
             "additionalProperties": false
           },
           "options": {
