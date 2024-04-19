@@ -310,7 +310,7 @@
             "chillipharmSession": []
           }
         ],
-        "operationId": "getFromTemplateWithFields",
+        "operationId": "getFormTemplateWithFields",
         "description": "Get a form template with fields",
         "parameters": [
           {
