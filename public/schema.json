@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "1.1.0",
+    "version": "1.2.0",
     "title": "Trial Container API",
     "description": "This is api specs for trial container endpoints",
     "contact": {
@@ -11,12 +11,12 @@
   },
   "tags": [
     {
-      "name": "Forms",
-      "description": "Forms endpoints"
-    },
-    {
       "name": "Form Templates",
       "description": "Form templates endpoints"
+    },
+    {
+      "name": "Forms",
+      "description": "Forms endpoints"
     }
   ],
   "servers": [
@@ -302,7 +302,7 @@
               {
                 "type": "array",
                 "description": "The field value",
-                "example": "[]"
+                "example": []
               }
             ]
           },
@@ -345,14 +345,16 @@
             "type": "array",
             "description": "The field options",
             "items": {
-              "type": "string"
+              "type": "string",
+              "example": "option1"
             }
           },
           "comments": {
             "type": "array",
             "description": "The field comments",
             "items": {
-              "type": "string"
+              "type": "string",
+              "example": "comment1"
             },
             "nullable": true
           }
