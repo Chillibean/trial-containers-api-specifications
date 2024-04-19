@@ -303,7 +303,19 @@
                       "additionalProperties": false
                     }
                   },
-                  "required": ["id", "form_template_id", "fields"],
+                  "required": [
+                    "signatures",
+                    "version_number",
+                    "description",
+                    "audience",
+                    "has_history",
+                    "current_transitions",
+                    "created_at",
+                    "id",
+                    "fields",
+                    "title",
+                    "current_state"
+                  ],
                   "additionalProperties": false
                 }
               }
