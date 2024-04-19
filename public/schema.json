@@ -266,9 +266,40 @@
                           "type": "string",
                           "description": "The state name",
                           "example": "In Draft"
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "The state type",
+                          "example": "draft"
+                        },
+                        "options": {
+                          "type": "object",
+                          "properties": {
+                            "editable": {
+                              "type": "boolean",
+                              "description": "Whether the state is editable",
+                              "example": false
+                            },
+                            "deletable": {
+                              "type": "boolean",
+                              "description": "Whether the state is deletable",
+                              "example": false
+                            },
+                            "can_add_comments": {
+                              "type": "boolean",
+                              "description": "Whether the state can add comments",
+                              "example": false
+                            }
+                          },
+                          "required": [
+                            "editable",
+                            "deletable",
+                            "can_add_comments"
+                          ],
+                          "additionalProperties": false
                         }
                       },
-                      "required": ["id", "name"],
+                      "required": ["id", "name", "type", "options"],
                       "additionalProperties": false
                     }
                   },
