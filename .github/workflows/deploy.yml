@@ -105,3 +105,9 @@ jobs:
           -H "Authorization: ${{ secrets.SWAGGER_API_KEY }}" \
           -H "Content-Type: application/json" \
           -d '{"published": true}'
+      - name: Set Version Default
+        run: |
+          curl -X PUT "https://api.swaggerhub.com/apis/chillibean/trial-container-api/settings/default" \
+          -H "Authorization: ${{ secrets.SWAGGER_API_KEY }}" \
+          -H "Content-Type: application/json" \
+          -d '{"version": "${{ steps.vars.outputs.npm_version }}" }'
