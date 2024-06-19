@@ -84,9 +84,24 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+      - name: Get NPM version
+        id: vars
+        run: echo "npm_version=$(node -pe 'require("./package.json").version')" >> $GITHUB_OUTPUT
       - name: Publish to Swagger Hub
         run: |
           curl -X POST "https://api.swaggerhub.com/apis/chillibean/trial-container-api" \
           -H "Authorization: ${{ secrets.SWAGGER_API_KEY }}" \
           -H "Content-Type: application/json" \
           --data-binary "@./public/schema.json"
+      - name: Make API Private
+        run: |
+          curl -X PUT "https://api.swaggerhub.com/apis/chillibean/trial-container-api/${{ steps.vars.outputs.npm_version }}/settings/private" \
+          -H "Authorization: ${{ secrets.SWAGGER_API_KEY }}" \
+          -H "Content-Type: application/json" \
+          -d '{"private": true}'
+      - name: Publish the API
+        run: |
+          curl -X PUT "https://api.swaggerhub.com/apis/chillibean/trial-container-api/${{ steps.vars.outputs.npm_version }}/settings/lifecycle" \
+          -H "Authorization: ${{ secrets.SWAGGER_API_KEY }}" \
+          -H "Content-Type: application/json" \
+          -d '{"published": true}'
