@@ -11,12 +11,12 @@
   },
   "tags": [
     {
-      "name": "Form Templates",
-      "description": "Form templates endpoints"
-    },
-    {
       "name": "Forms",
       "description": "Forms endpoints"
+    },
+    {
+      "name": "Trial Containers",
+      "description": "Trial Container endpoints"
     }
   ],
   "servers": [
@@ -65,9 +65,7 @@
             "description": "The trial container id"
           }
         ],
-        "tags": [
-          "Forms"
-        ],
+        "tags": ["Forms"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -114,9 +112,7 @@
                       "example": 1
                     }
                   },
-                  "required": [
-                    "id"
-                  ],
+                  "required": ["id"],
                   "additionalProperties": false
                 }
               }
@@ -188,9 +184,7 @@
             "description": "The form id"
           }
         ],
-        "tags": [
-          "Forms"
-        ],
+        "tags": ["Forms"],
         "requestBody": {
           "content": {}
         },
@@ -305,12 +299,7 @@
                           "additionalProperties": false
                         }
                       },
-                      "required": [
-                        "id",
-                        "name",
-                        "type",
-                        "options"
-                      ],
+                      "required": ["id", "name", "type", "options"],
                       "additionalProperties": false
                     }
                   },
@@ -328,6 +317,77 @@
                     "current_state"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/trial_containers/{id}": {
+      "get": {
+        "summary": "Get a trial container",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "operationId": "getTrialContainer",
+        "description": "Get a trial container",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            },
+            "description": "The account id"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            },
+            "description": "The trial container id"
+          }
+        ],
+        "tags": ["Trial Containers"],
+        "requestBody": {
+          "content": {}
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrialContainer"
                 }
               }
             }
@@ -370,6 +430,110 @@
       }
     },
     "schemas": {
+      "TrialContainer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The trial container id",
+            "example": 1
+          },
+          "identifier": {
+            "type": "string",
+            "description": "The trial container identifier",
+            "example": "VITALITY"
+          },
+          "name": {
+            "type": "string",
+            "description": "The trial container name",
+            "example": "Vitality Medical Center with subject"
+          },
+          "country": {
+            "type": "string",
+            "description": "The trial container country",
+            "example": "United Kingdom"
+          },
+          "type": {
+            "type": "string",
+            "description": "The trial container type",
+            "example": "Site"
+          },
+          "permissions": {
+            "type": "array",
+            "description": "The trial container permissions",
+            "items": {
+              "type": "string",
+              "example": "read"
+            }
+          },
+          "study_protocol": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "description": "The study protocol id",
+                "example": 1
+              },
+              "name": {
+                "type": "string",
+                "description": "The study protocol name",
+                "example": "Ghost Protocol"
+              },
+              "study_event_display_name": {
+                "type": "object",
+                "properties": {
+                  "plural": {
+                    "type": "string",
+                    "description": "The study event display name plural",
+                    "example": "visits"
+                  },
+                  "singular": {
+                    "type": "string",
+                    "description": "The study event display name singular",
+                    "example": "visit"
+                  }
+                },
+                "required": ["plural", "singular"],
+                "additionalProperties": false
+              },
+              "study_procedure_display_name": {
+                "type": "object",
+                "properties": {
+                  "plural": {
+                    "type": "string",
+                    "description": "The study procedure display name plural",
+                    "example": "assessments"
+                  },
+                  "singular": {
+                    "type": "string",
+                    "description": "The study procedure display name singular",
+                    "example": "assessment"
+                  }
+                },
+                "required": ["plural", "singular"],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "study_event_display_name",
+              "study_procedure_display_name"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "id",
+          "identifier",
+          "name",
+          "country",
+          "type",
+          "permissions",
+          "study_protocol"
+        ],
+        "additionalProperties": false
+      },
       "AudienceMember": {
         "type": "object",
         "properties": {
@@ -400,13 +564,7 @@
             "example": "Last"
           }
         },
-        "required": [
-          "id",
-          "email",
-          "uuid",
-          "first_name",
-          "last_name"
-        ]
+        "required": ["id", "email", "uuid", "first_name", "last_name"]
       },
       "Transition": {
         "type": "object",
@@ -446,9 +604,7 @@
                 "example": true
               }
             },
-            "required": [
-              "skip_validation"
-            ],
+            "required": ["skip_validation"],
             "additionalProperties": false
           },
           "activity_text": {
@@ -679,9 +835,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "error"
-        ]
+        "required": ["error"]
       }
     },
     "responses": {
@@ -749,14 +903,10 @@
                   "type": "string",
                   "description": "The error message",
                   "example": "Unauthorised",
-                  "enum": [
-                    "Unauthorised"
-                  ]
+                  "enum": ["Unauthorised"]
                 }
               },
-              "required": [
-                "error"
-              ],
+              "required": ["error"],
               "additionalProperties": false
             }
           }
@@ -774,14 +924,10 @@
                   "type": "string",
                   "description": "The error message",
                   "example": "Not found",
-                  "enum": [
-                    "Not found"
-                  ]
+                  "enum": ["Not found"]
                 }
               },
-              "required": [
-                "error"
-              ],
+              "required": ["error"],
               "additionalProperties": false
             }
           }
