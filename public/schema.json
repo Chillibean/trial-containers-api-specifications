@@ -523,15 +523,7 @@
             "additionalProperties": false
           }
         },
-        "required": [
-          "id",
-          "identifier",
-          "name",
-          "country",
-          "type",
-          "permissions",
-          "study_protocol"
-        ],
+        "required": ["id", "name", "country", "type", "permissions"],
         "additionalProperties": false
       },
       "AudienceMember": {
