@@ -1,0 +1,25 @@
+{
+  "description": "Not found. The requested resource was not found.",
+  "content": {
+    "application/json": {
+      "schema": {
+        "description": "An error",
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "The error message",
+            "example": "Not found",
+            "enum": [
+              "Not found"
+            ]
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+}

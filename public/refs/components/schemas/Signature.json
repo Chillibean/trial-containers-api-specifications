@@ -1,0 +1,67 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The signature id",
+      "example": 1
+    },
+    "email": {
+      "type": "string",
+      "description": "The signature email",
+      "example": "example@gmail.com"
+    },
+    "first_name": {
+      "type": "string",
+      "description": "The signature first name",
+      "example": "First"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "The signature last name",
+      "example": "Last"
+    },
+    "meaning": {
+      "type": "string",
+      "description": "The signature meaning",
+      "example": "Submit"
+    },
+    "reason": {
+      "type": "string",
+      "description": "The signature reason",
+      "example": "Reason"
+    },
+    "created_at": {
+      "type": "string",
+      "description": "The signature created at",
+      "example": "2024-04-16T16:35:52.875Z"
+    },
+    "object_uuid": {
+      "type": "string",
+      "description": "The signature object uuid",
+      "example": "uuid"
+    },
+    "user_uuid": {
+      "type": "string",
+      "description": "The signature user uuid",
+      "example": "uuid"
+    },
+    "verification_status": {
+      "type": "string",
+      "description": "The signature verification status",
+      "example": "verified"
+    }
+  },
+  "required": [
+    "id",
+    "email",
+    "first_name",
+    "last_name",
+    "meaning",
+    "reason",
+    "created_at",
+    "object_uuid",
+    "user_uuid",
+    "verification_status"
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "description": "Form template field",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The field id",
+      "example": "1"
+    },
+    "title": {
+      "type": "string",
+      "description": "The field title",
+      "example": "Field title"
+    },
+    "type": {
+      "type": "string",
+      "description": "The field type",
+      "example": "single_line"
+    },
+    "input_guidance": {
+      "type": "string",
+      "description": "The field input guidance",
+      "example": "guidance",
+      "nullable": true
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the field is enabled",
+      "example": true
+    },
+    "other_enabled": {
+      "type": "boolean",
+      "description": "Whether other types are enabled",
+      "example": false
+    },
+    "value": {
+      "oneOf": [
+        {
+          "type": "string",
+          "example": ""
+        },
+        {
+          "type": "array",
+          "description": "The field value",
+          "example": []
+        }
+      ]
+    },
+    "validations": {
+      "type": "object",
+      "properties": {
+        "required": {
+          "type": "boolean",
+          "description": "Whether the field is required",
+          "example": true
+        },
+        "input_format": {
+          "type": "string",
+          "description": "regex format for input",
+          "example": "[a-zA-Z]{1}[a-zA-Z]{1}-\\d{1}\\d{1}\\d{1}\\d{1}\\d{1}",
+          "nullable": true
+        },
+        "character_limit": {
+          "type": "integer",
+          "description": "The maximum characters",
+          "example": 10,
+          "nullable": true
+        },
+        "character_restriction": {
+          "type": "string",
+          "description": "restricted character type",
+          "example": "letters_and_numbers",
+          "nullable": true
+        }
+      },
+      "required": [
+        "required",
+        "input_format",
+        "character_limit",
+        "character_restriction"
+      ],
+      "additionalProperties": false
+    },
+    "options": {
+      "type": "array",
+      "description": "The field options",
+      "items": {
+        "type": "string",
+        "example": "option1"
+      }
+    },
+    "comments": {
+      "type": "array",
+      "description": "The field comments",
+      "items": {
+        "type": "string",
+        "example": "comment1"
+      },
+      "nullable": true
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "type",
+    "enabled",
+    "other_enabled",
+    "value",
+    "validations",
+    "options"
+  ],
+  "additionalProperties": false
+}

@@ -64,7 +64,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./public/schema.json
+          asset_path: ./public/fullSchema.json
           asset_name: schema.json
           asset_content_type: application/json
       - name: Publish Alpha Release

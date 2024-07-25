@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The audience id",
+      "example": 1
+    },
+    "email": {
+      "type": "string",
+      "description": "The audience email",
+      "example": "example@gmail.com",
+      "nullable": true
+    },
+    "uuid": {
+      "type": "string",
+      "description": "The audience uuid",
+      "example": "uuid"
+    },
+    "first_name": {
+      "type": "string",
+      "description": "The audience first name",
+      "example": "First"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "The audience last name",
+      "example": "Last"
+    }
+  },
+  "required": [
+    "id",
+    "email",
+    "uuid",
+    "first_name",
+    "last_name"
+  ]
+}
