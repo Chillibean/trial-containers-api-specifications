@@ -1,0 +1,210 @@
+{
+  "get": {
+    "summary": "Get a form",
+    "security": [
+      {
+        "userSessionKey": []
+      },
+      {
+        "chillipharmSession": []
+      }
+    ],
+    "operationId": "getForm",
+    "description": "Get a form",
+    "parameters": [
+      {
+        "name": "account_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        },
+        "description": "The account id"
+      },
+      {
+        "name": "trial_container_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        },
+        "description": "The trial container id"
+      },
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        },
+        "description": "The form id"
+      }
+    ],
+    "tags": [
+      "Forms"
+    ],
+    "requestBody": {
+      "content": {}
+    },
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "signatures": {
+                  "type": "array",
+                  "description": "The form signatures",
+                  "items": {
+                    "$ref": "../components/schemas/Signature.json"
+                  }
+                },
+                "version_number": {
+                  "type": "integer",
+                  "description": "The form version number",
+                  "example": 0
+                },
+                "description": {
+                  "type": "string",
+                  "description": "The form description",
+                  "example": "Form description"
+                },
+                "audience": {
+                  "type": "array",
+                  "description": "The form audience",
+                  "items": {
+                    "$ref": "../components/schemas/AudienceMember.json"
+                  }
+                },
+                "has_history": {
+                  "type": "boolean",
+                  "description": "Whether the form has history",
+                  "example": true
+                },
+                "current_transitions": {
+                  "type": "array",
+                  "description": "The form current transitions",
+                  "items": {
+                    "$ref": "../components/schemas/Transition.json"
+                  }
+                },
+                "created_at": {
+                  "type": "string",
+                  "description": "The form created at",
+                  "example": "2024-04-16T16:35:52.875Z"
+                },
+                "id": {
+                  "type": "integer",
+                  "description": "The form id",
+                  "example": 1
+                },
+                "fields": {
+                  "type": "array",
+                  "description": "The form fields",
+                  "items": {
+                    "$ref": "../components/schemas/FormTemplateField.json"
+                  }
+                },
+                "title": {
+                  "type": "string",
+                  "description": "The form title",
+                  "example": "Form title"
+                },
+                "current_state": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "The state id",
+                      "example": 1
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "The state name",
+                      "example": "In Draft"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "The state type",
+                      "example": "draft"
+                    },
+                    "options": {
+                      "type": "object",
+                      "properties": {
+                        "editable": {
+                          "type": "boolean",
+                          "description": "Whether the state is editable",
+                          "example": false
+                        },
+                        "deletable": {
+                          "type": "boolean",
+                          "description": "Whether the state is deletable",
+                          "example": false
+                        },
+                        "can_add_comments": {
+                          "type": "boolean",
+                          "description": "Whether the state can add comments",
+                          "example": false
+                        }
+                      },
+                      "required": [
+                        "editable",
+                        "deletable",
+                        "can_add_comments"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "type",
+                    "options"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "signatures",
+                "version_number",
+                "description",
+                "audience",
+                "has_history",
+                "current_transitions",
+                "created_at",
+                "id",
+                "fields",
+                "title",
+                "current_state"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "400": {
+        "$ref": "../components/responses/BadRequest.json"
+      },
+      "401": {
+        "$ref": "../components/responses/Unauthorised.json"
+      },
+      "403": {
+        "$ref": "../components/responses/Forbidden.json"
+      },
+      "404": {
+        "$ref": "../components/responses/NotFound.json"
+      },
+      "409": {
+        "$ref": "../components/responses/Conflict.json"
+      },
+      "500": {
+        "$ref": "../components/responses/InternalServerError.json"
+      }
+    }
+  }
+}

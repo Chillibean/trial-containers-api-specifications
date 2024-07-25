@@ -1,0 +1,17 @@
+extends:
+  - recommended
+
+apis:
+  core:
+    root: ../public/schema.json
+    rules:
+      no-ambiguous-paths: error
+  full:
+    root: ../public/fullSchema.json
+    rules:
+      no-ambiguous-paths: error
+
+rules:
+  no-unused-components: error
+  operation-singular-tag: warn
+  info-license: warn

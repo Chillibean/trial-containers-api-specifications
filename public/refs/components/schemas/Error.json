@@ -1,0 +1,15 @@
+{
+  "description": "A legacy error",
+  "type": "object",
+  "properties": {
+    "error": {
+      "type": "string",
+      "description": "The error message",
+      "example": "Bad request. Missing or invalid input parameters."
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "error"
+  ]
+}

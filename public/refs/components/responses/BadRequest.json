@@ -1,0 +1,10 @@
+{
+  "description": "Bad request. Missing or invalid input parameters.",
+  "content": {
+    "application/json": {
+      "schema": {
+        "$ref": "../schemas/Error.json"
+      }
+    }
+  }
+}

@@ -1,0 +1,973 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "3.0.0",
+    "title": "Trial Container API",
+    "description": "This is api specs for trial container endpoints",
+    "contact": {
+      "name": "ChilliPharm",
+      "url": "https://www.chillipharm.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://chillipharm.test:3000/api/v1",
+      "description": "Local development"
+    },
+    {
+      "url": "https://www.chillipharm.com/api/v1",
+      "description": "Production"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Forms",
+      "description": "Forms endpoints"
+    },
+    {
+      "name": "Trial Containers",
+      "description": "Trial Container endpoints"
+    }
+  ],
+  "paths": {
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms": {
+      "post": {
+        "summary": "Post trial container forms",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "operationId": "postTrialContainerForms",
+        "description": "Create a new form for a trial container",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            },
+            "description": "The account id"
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            },
+            "description": "The trial container id"
+          }
+        ],
+        "tags": [
+          "Forms"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "form_container_id": {
+                    "type": "integer",
+                    "description": "The form container id",
+                    "example": 5
+                  },
+                  "form_container_type": {
+                    "type": "string",
+                    "description": "The form container type",
+                    "example": "Study::Procedure"
+                  },
+                  "form_template_id": {
+                    "type": "integer",
+                    "description": "The form template id",
+                    "example": 1
+                  }
+                },
+                "required": [
+                  "form_container_id",
+                  "form_container_type",
+                  "form_template_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "The form id",
+                      "example": 1
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms/{id}": {
+      "get": {
+        "summary": "Get a form",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "operationId": "getForm",
+        "description": "Get a form",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            },
+            "description": "The account id"
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            },
+            "description": "The trial container id"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            },
+            "description": "The form id"
+          }
+        ],
+        "tags": [
+          "Forms"
+        ],
+        "requestBody": {
+          "content": {}
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "signatures": {
+                      "type": "array",
+                      "description": "The form signatures",
+                      "items": {
+                        "$ref": "#/components/schemas/Signature"
+                      }
+                    },
+                    "version_number": {
+                      "type": "integer",
+                      "description": "The form version number",
+                      "example": 0
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "The form description",
+                      "example": "Form description"
+                    },
+                    "audience": {
+                      "type": "array",
+                      "description": "The form audience",
+                      "items": {
+                        "$ref": "#/components/schemas/AudienceMember"
+                      }
+                    },
+                    "has_history": {
+                      "type": "boolean",
+                      "description": "Whether the form has history",
+                      "example": true
+                    },
+                    "current_transitions": {
+                      "type": "array",
+                      "description": "The form current transitions",
+                      "items": {
+                        "$ref": "#/components/schemas/Transition"
+                      }
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "description": "The form created at",
+                      "example": "2024-04-16T16:35:52.875Z"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "The form id",
+                      "example": 1
+                    },
+                    "fields": {
+                      "type": "array",
+                      "description": "The form fields",
+                      "items": {
+                        "$ref": "#/components/schemas/FormTemplateField"
+                      }
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "The form title",
+                      "example": "Form title"
+                    },
+                    "current_state": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "description": "The state id",
+                          "example": 1
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "The state name",
+                          "example": "In Draft"
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "The state type",
+                          "example": "draft"
+                        },
+                        "options": {
+                          "type": "object",
+                          "properties": {
+                            "editable": {
+                              "type": "boolean",
+                              "description": "Whether the state is editable",
+                              "example": false
+                            },
+                            "deletable": {
+                              "type": "boolean",
+                              "description": "Whether the state is deletable",
+                              "example": false
+                            },
+                            "can_add_comments": {
+                              "type": "boolean",
+                              "description": "Whether the state can add comments",
+                              "example": false
+                            }
+                          },
+                          "required": [
+                            "editable",
+                            "deletable",
+                            "can_add_comments"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "type",
+                        "options"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "signatures",
+                    "version_number",
+                    "description",
+                    "audience",
+                    "has_history",
+                    "current_transitions",
+                    "created_at",
+                    "id",
+                    "fields",
+                    "title",
+                    "current_state"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/trial_containers/{id}": {
+      "get": {
+        "summary": "Get a trial container",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "operationId": "getTrialContainer",
+        "description": "Get a trial container",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            },
+            "description": "The account id"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            },
+            "description": "The trial container id"
+          }
+        ],
+        "tags": [
+          "Trial Containers"
+        ],
+        "requestBody": {
+          "content": {}
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrialContainer"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "userSessionKey": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "user_session_key",
+        "description": "User session key cookie"
+      },
+      "chillipharmSession": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "_chillipharm_session",
+        "description": "ChilliPharm session cookie"
+      }
+    },
+    "schemas": {
+      "AudienceMember": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The audience id",
+            "example": 1
+          },
+          "email": {
+            "type": "string",
+            "description": "The audience email",
+            "example": "example@gmail.com",
+            "nullable": true
+          },
+          "uuid": {
+            "type": "string",
+            "description": "The audience uuid",
+            "example": "uuid"
+          },
+          "first_name": {
+            "type": "string",
+            "description": "The audience first name",
+            "example": "First"
+          },
+          "last_name": {
+            "type": "string",
+            "description": "The audience last name",
+            "example": "Last"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "uuid",
+          "first_name",
+          "last_name"
+        ]
+      },
+      "Error": {
+        "description": "A legacy error",
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "The error message",
+            "example": "Bad request. Missing or invalid input parameters."
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "error"
+        ]
+      },
+      "FormTemplateField": {
+        "description": "Form template field",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The field id",
+            "example": "1"
+          },
+          "title": {
+            "type": "string",
+            "description": "The field title",
+            "example": "Field title"
+          },
+          "type": {
+            "type": "string",
+            "description": "The field type",
+            "example": "single_line"
+          },
+          "input_guidance": {
+            "type": "string",
+            "description": "The field input guidance",
+            "example": "guidance",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the field is enabled",
+            "example": true
+          },
+          "other_enabled": {
+            "type": "boolean",
+            "description": "Whether other types are enabled",
+            "example": false
+          },
+          "value": {
+            "oneOf": [
+              {
+                "type": "string",
+                "example": ""
+              },
+              {
+                "type": "array",
+                "description": "The field value",
+                "example": []
+              }
+            ]
+          },
+          "validations": {
+            "type": "object",
+            "properties": {
+              "required": {
+                "type": "boolean",
+                "description": "Whether the field is required",
+                "example": true
+              },
+              "input_format": {
+                "type": "string",
+                "description": "regex format for input",
+                "example": "[a-zA-Z]{1}[a-zA-Z]{1}-\\d{1}\\d{1}\\d{1}\\d{1}\\d{1}",
+                "nullable": true
+              },
+              "character_limit": {
+                "type": "integer",
+                "description": "The maximum characters",
+                "example": 10,
+                "nullable": true
+              },
+              "character_restriction": {
+                "type": "string",
+                "description": "restricted character type",
+                "example": "letters_and_numbers",
+                "nullable": true
+              }
+            },
+            "required": [
+              "required",
+              "input_format",
+              "character_limit",
+              "character_restriction"
+            ],
+            "additionalProperties": false
+          },
+          "options": {
+            "type": "array",
+            "description": "The field options",
+            "items": {
+              "type": "string",
+              "example": "option1"
+            }
+          },
+          "comments": {
+            "type": "array",
+            "description": "The field comments",
+            "items": {
+              "type": "string",
+              "example": "comment1"
+            },
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "type",
+          "enabled",
+          "other_enabled",
+          "value",
+          "validations",
+          "options"
+        ],
+        "additionalProperties": false
+      },
+      "Signature": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The signature id",
+            "example": 1
+          },
+          "email": {
+            "type": "string",
+            "description": "The signature email",
+            "example": "example@gmail.com"
+          },
+          "first_name": {
+            "type": "string",
+            "description": "The signature first name",
+            "example": "First"
+          },
+          "last_name": {
+            "type": "string",
+            "description": "The signature last name",
+            "example": "Last"
+          },
+          "meaning": {
+            "type": "string",
+            "description": "The signature meaning",
+            "example": "Submit"
+          },
+          "reason": {
+            "type": "string",
+            "description": "The signature reason",
+            "example": "Reason"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "The signature created at",
+            "example": "2024-04-16T16:35:52.875Z"
+          },
+          "object_uuid": {
+            "type": "string",
+            "description": "The signature object uuid",
+            "example": "uuid"
+          },
+          "user_uuid": {
+            "type": "string",
+            "description": "The signature user uuid",
+            "example": "uuid"
+          },
+          "verification_status": {
+            "type": "string",
+            "description": "The signature verification status",
+            "example": "verified"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "first_name",
+          "last_name",
+          "meaning",
+          "reason",
+          "created_at",
+          "object_uuid",
+          "user_uuid",
+          "verification_status"
+        ]
+      },
+      "Transition": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The transition id",
+            "example": "1"
+          },
+          "name": {
+            "type": "string",
+            "description": "The transition name",
+            "example": "Submit"
+          },
+          "requires_signatures": {
+            "type": "array",
+            "description": "The transition requires signatures",
+            "items": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          "audience": {
+            "type": "array",
+            "description": "The transition audience",
+            "items": {
+              "type": "string",
+              "example": "can_review_forms"
+            }
+          },
+          "options": {
+            "type": "object",
+            "properties": {
+              "skip_validation": {
+                "type": "boolean",
+                "description": "Whether to skip validation",
+                "example": true
+              }
+            },
+            "required": [
+              "skip_validation"
+            ],
+            "additionalProperties": false
+          },
+          "activity_text": {
+            "type": "string",
+            "description": "The transition activity text",
+            "example": "Submitted"
+          },
+          "signature_definitions": {
+            "type": "array",
+            "description": "The transition signature definitions",
+            "items": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          "requires_reason_for_change": {
+            "type": "boolean",
+            "description": "Whether the transition requires reason for change",
+            "example": true
+          },
+          "requires_review_comments": {
+            "type": "boolean",
+            "description": "Whether the transition requires review comments",
+            "example": true
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "requires_signatures",
+          "audience",
+          "options",
+          "activity_text",
+          "signature_definitions",
+          "requires_reason_for_change",
+          "requires_review_comments"
+        ],
+        "additionalProperties": false
+      },
+      "TrialContainer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The trial container id",
+            "example": 1
+          },
+          "identifier": {
+            "type": "string",
+            "description": "The trial container identifier",
+            "example": "VITALITY"
+          },
+          "name": {
+            "type": "string",
+            "description": "The trial container name",
+            "example": "Vitality Medical Center with subject"
+          },
+          "country": {
+            "type": "string",
+            "description": "The trial container country",
+            "example": "United Kingdom"
+          },
+          "type": {
+            "type": "string",
+            "description": "The trial container type",
+            "example": "Site"
+          },
+          "permissions": {
+            "type": "array",
+            "description": "The trial container permissions",
+            "items": {
+              "type": "string",
+              "example": "read"
+            }
+          },
+          "study_protocol": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "description": "The study protocol id",
+                "example": 1
+              },
+              "name": {
+                "type": "string",
+                "description": "The study protocol name",
+                "example": "Ghost Protocol"
+              },
+              "study_event_display_name": {
+                "type": "object",
+                "properties": {
+                  "plural": {
+                    "type": "string",
+                    "description": "The study event display name plural",
+                    "example": "visits"
+                  },
+                  "singular": {
+                    "type": "string",
+                    "description": "The study event display name singular",
+                    "example": "visit"
+                  }
+                },
+                "required": [
+                  "plural",
+                  "singular"
+                ],
+                "additionalProperties": false
+              },
+              "study_procedure_display_name": {
+                "type": "object",
+                "properties": {
+                  "plural": {
+                    "type": "string",
+                    "description": "The study procedure display name plural",
+                    "example": "assessments"
+                  },
+                  "singular": {
+                    "type": "string",
+                    "description": "The study procedure display name singular",
+                    "example": "assessment"
+                  }
+                },
+                "required": [
+                  "plural",
+                  "singular"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "study_event_display_name",
+              "study_procedure_display_name"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "country",
+          "type",
+          "permissions"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "Bad request. Missing or invalid input parameters.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Unauthorised": {
+        "description": "Unauthorised. Missing or invalid authentication credentials.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "An error",
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "The error message",
+                  "example": "Unauthorised",
+                  "enum": [
+                    "Unauthorised"
+                  ]
+                }
+              },
+              "required": [
+                "error"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "Forbidden. The request was valid, but the server is refusing action.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "The error message",
+                  "example": "You do not have sufficient permission to perform this action",
+                  "enum": [
+                    "You do not have sufficient permission to perform this action",
+                    "Forbidden",
+                    "You cannot perform this action because the study procedure is locked"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "Not found. The requested resource was not found.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "An error",
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "The error message",
+                  "example": "Not found",
+                  "enum": [
+                    "Not found"
+                  ]
+                }
+              },
+              "required": [
+                "error"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "Conflict": {
+        "description": "Conflict. The request could not be completed due to a conflict with the current state of the resource.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "InternalServerError": {
+        "description": "Internal server error. Please contact support.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    }
+  }
+}

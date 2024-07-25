@@ -7,9 +7,18 @@ if [ "$package_version" != "$openapi_version" ]; then
     exit 1
 fi
 # This hook checks that the schema.json is formatted correctly
-npm run verify
+npm run lint
 if [ $? -ne 0 ]; then
-  echo "Pre-commit hook failed: 'npm run verify' script did not pass."
+  echo "Pre-commit hook failed: 'npm run lint' script did not pass."
   echo "Please fix the issues and try again."
   exit 1
 fi
+
+npm run bundle
+if [ $? -ne 0 ]; then
+  echo "Pre-commit hook failed: 'npm run bundle' script did not pass."
+  echo "Please fix the issues and try again."
+  exit 1
+fi
+
+git add .

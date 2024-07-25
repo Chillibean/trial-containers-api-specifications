@@ -1,0 +1,113 @@
+{
+  "post": {
+    "summary": "Post trial container forms",
+    "security": [
+      {
+        "userSessionKey": []
+      },
+      {
+        "chillipharmSession": []
+      }
+    ],
+    "operationId": "postTrialContainerForms",
+    "description": "Create a new form for a trial container",
+    "parameters": [
+      {
+        "name": "account_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        },
+        "description": "The account id"
+      },
+      {
+        "name": "trial_container_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        },
+        "description": "The trial container id"
+      }
+    ],
+    "tags": [
+      "Forms"
+    ],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "form_container_id": {
+                "type": "integer",
+                "description": "The form container id",
+                "example": 5
+              },
+              "form_container_type": {
+                "type": "string",
+                "description": "The form container type",
+                "example": "Study::Procedure"
+              },
+              "form_template_id": {
+                "type": "integer",
+                "description": "The form template id",
+                "example": 1
+              }
+            },
+            "required": [
+              "form_container_id",
+              "form_container_type",
+              "form_template_id"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "description": "The form id",
+                  "example": 1
+                }
+              },
+              "required": [
+                "id"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "400": {
+        "$ref": "../components/responses/BadRequest.json"
+      },
+      "401": {
+        "$ref": "../components/responses/Unauthorised.json"
+      },
+      "403": {
+        "$ref": "../components/responses/Forbidden.json"
+      },
+      "404": {
+        "$ref": "../components/responses/NotFound.json"
+      },
+      "409": {
+        "$ref": "../components/responses/Conflict.json"
+      },
+      "500": {
+        "$ref": "../components/responses/InternalServerError.json"
+      }
+    }
+  }
+}

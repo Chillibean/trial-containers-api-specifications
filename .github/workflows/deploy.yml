@@ -51,7 +51,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./public/schema.json
+          asset_path: ./public/fullSchema.json
           asset_name: schema.json
           asset_content_type: application/json
       - name: Publish Release
@@ -92,7 +92,7 @@ jobs:
           curl -X POST "https://api.swaggerhub.com/apis/chillibean/trial-container-api" \
           -H "Authorization: ${{ secrets.SWAGGER_API_KEY }}" \
           -H "Content-Type: application/json" \
-          --data-binary "@./public/schema.json"
+          --data-binary "@./public/fullSchema.json"
       - name: Make API Private
         run: |
           curl -X PUT "https://api.swaggerhub.com/apis/chillibean/trial-container-api/${{ steps.vars.outputs.npm_version }}/settings/private" \
