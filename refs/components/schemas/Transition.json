@@ -1,0 +1,80 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The transition id",
+      "example": "1"
+    },
+    "name": {
+      "type": "string",
+      "description": "The transition name",
+      "example": "Submit"
+    },
+    "requires_signatures": {
+      "type": "array",
+      "description": "The transition requires signatures",
+      "items": {
+        "type": "string",
+        "example": "1"
+      }
+    },
+    "audience": {
+      "type": "array",
+      "description": "The transition audience",
+      "items": {
+        "type": "string",
+        "example": "can_review_forms"
+      }
+    },
+    "options": {
+      "type": "object",
+      "properties": {
+        "skip_validation": {
+          "type": "boolean",
+          "description": "Whether to skip validation",
+          "example": true
+        }
+      },
+      "required": [
+        "skip_validation"
+      ],
+      "additionalProperties": false
+    },
+    "activity_text": {
+      "type": "string",
+      "description": "The transition activity text",
+      "example": "Submitted"
+    },
+    "signature_definitions": {
+      "type": "array",
+      "description": "The transition signature definitions",
+      "items": {
+        "type": "string",
+        "example": "1"
+      }
+    },
+    "requires_reason_for_change": {
+      "type": "boolean",
+      "description": "Whether the transition requires reason for change",
+      "example": true
+    },
+    "requires_review_comments": {
+      "type": "boolean",
+      "description": "Whether the transition requires review comments",
+      "example": true
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "requires_signatures",
+    "audience",
+    "options",
+    "activity_text",
+    "signature_definitions",
+    "requires_reason_for_change",
+    "requires_review_comments"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,108 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The trial container id",
+      "example": 1
+    },
+    "identifier": {
+      "type": "string",
+      "description": "The trial container identifier",
+      "example": "VITALITY"
+    },
+    "name": {
+      "type": "string",
+      "description": "The trial container name",
+      "example": "Vitality Medical Center with subject"
+    },
+    "country": {
+      "type": "string",
+      "description": "The trial container country",
+      "example": "United Kingdom"
+    },
+    "type": {
+      "type": "string",
+      "description": "The trial container type",
+      "example": "Site"
+    },
+    "permissions": {
+      "type": "array",
+      "description": "The trial container permissions",
+      "items": {
+        "type": "string",
+        "example": "read"
+      }
+    },
+    "study_protocol": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "The study protocol id",
+          "example": 1
+        },
+        "name": {
+          "type": "string",
+          "description": "The study protocol name",
+          "example": "Ghost Protocol"
+        },
+        "study_event_display_name": {
+          "type": "object",
+          "properties": {
+            "plural": {
+              "type": "string",
+              "description": "The study event display name plural",
+              "example": "visits"
+            },
+            "singular": {
+              "type": "string",
+              "description": "The study event display name singular",
+              "example": "visit"
+            }
+          },
+          "required": [
+            "plural",
+            "singular"
+          ],
+          "additionalProperties": false
+        },
+        "study_procedure_display_name": {
+          "type": "object",
+          "properties": {
+            "plural": {
+              "type": "string",
+              "description": "The study procedure display name plural",
+              "example": "assessments"
+            },
+            "singular": {
+              "type": "string",
+              "description": "The study procedure display name singular",
+              "example": "assessment"
+            }
+          },
+          "required": [
+            "plural",
+            "singular"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "study_event_display_name",
+        "study_procedure_display_name"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "country",
+    "type",
+    "permissions"
+  ],
+  "additionalProperties": false
+}

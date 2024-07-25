@@ -1,0 +1,22 @@
+{
+  "description": "Forbidden. The request was valid, but the server is refusing action.",
+  "content": {
+    "application/json": {
+      "schema": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "The error message",
+            "example": "You do not have sufficient permission to perform this action",
+            "enum": [
+              "You do not have sufficient permission to perform this action",
+              "Forbidden",
+              "You cannot perform this action because the study procedure is locked"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
