@@ -1,13 +1,13 @@
 {
   "name": "trial-container-api-specifications",
   "private": true,
-  "version": "3.0.0",
+  "version": "3.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "npx redocly lint --config config/redocly-config.yml",
-    "bundle": "npx openapi bundle public/schema.json -o public/fullSchema.json",   
+    "bundle": "npx openapi bundle public/schema.json -o public/fullSchema.json",
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",

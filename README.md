@@ -15,22 +15,21 @@ The most critical file here is **`/public/schema.json`**. This file serves as th
 **If the repo already exists, follow these steps:**
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/Chillibean/trial-container-api-specifications.git
-
-   ```
+    
+    ```bash
+    git clone https://github.com/Chillibean/trial-container-api-specifications.git
+    ```
+    
 2. Install all dependencies by running:
     
     ```bash
     npm install
-    
     ```
     
 3. Start the development environment:
     
     ```bash
     npm run dev
-    
     ```
     
     This will initiate a development server running on port 5173. Follow the instructions in the terminal. Our setup uses Swagger UI to provide a user-friendly interface for your development needs.
@@ -50,6 +49,7 @@ npm version [<newversion> | major | minor | patch]
 ```
 
 The version works as follows:
+
 - **`major`**: A major release, which includes breaking changes. (example: removing an endpoint)
 - **`minor`**: A minor release, which includes new features. (example: adding an endpoint)
 - **`patch`**: A patch release, which includes bug fixes. (example: fixing an endpoint)
@@ -92,7 +92,7 @@ Key elements within the JSON file:
 
 - **`openapi`**: The version of the OpenAPI specification we are using.
 - **`info`**: Information about the API, including its version, title, description, and contact details.
-- **`tags`**: Groupings of API endpoints. More details can be found **[here](https://swagger.io/docs/specification/grouping-operations-with-tags/)**.
+- **`tags`**: Groupings of API endpoints. More details can be found [**here**](https://swagger.io/docs/specification/grouping-operations-with-tags/).
 - **`servers`**: Defines where the API endpoints can be tested, which is handy for integration with tools like Postman.
 - **`paths`**: Each path should include:
     - **`summary`**: A brief description of the endpoint.
@@ -104,9 +104,9 @@ Key elements within the JSON file:
 
 ## **GitHub Pages**
 
-You can access the documentation at **[https://chillibean.github.io/trial-container-api/](https://chillibean.github.io/%7B%7BapiPackageName%7D%7D-specifications/)**.
+You can access the documentation at [**https://chillibean.github.io/trial-container-api](https://chillibean.github.io/%7B%7BapiPackageName%7D)}/**.
 
-The OpenAPI JSON file is available at **[https://chillibean.github.io/trial-container-api/schema.json](https://chillibean.github.io/%7B%7BapiPackageName%7D%7D-specifications/schema.json)**.
+The OpenAPI JSON file is available at [**https://chillibean.github.io/trial-container-api](https://chillibean.github.io/%7B%7BapiPackageName%7D)}/schema.json**.
 
 ## **GitHub Workflows**
 
@@ -127,30 +127,45 @@ The **`pre-commit`** file validates changes before committing. It checks:
 
 ## **Linting**
 
-You can run **`npm run verify`** to check the contents of **`/public/schema.json`** for correctness.
+You can run **`npm run lint`** to check the contents of **`/public/schema.json`** for correctness.
+
+## **Bundling**
+
+You can run **`npm run bunlde`** to bundle the **`/public/schema.json`** file into the full schema that outputs to **`/public/fullSchema.json`**.
 
 *Note: This check is automatically performed before each commit.*
 
 ## **File Contents**
+- 📄 [README.md](plop-templates/api-specs/README.md)
+- 📄 [bump\-alpha\-version.sh](plop-templates/api-specs/bump-alpha-version.sh)
+- 📂 __config__
+ - 📄 [redocly\-config.yml](plop-templates/api-specs/config/redocly-config.yml)
+- 📄 [index.html](plop-templates/api-specs/index.html)
+- 📄 [package.json](plop-templates/api-specs/package.json)
+- 📂 __public__
+ - 📄 [fullSchema.json](plop-templates/api-specs/public/fullSchema.json)
+ - 📂 __refs__
+   - 📂 __components__
+     - 📂 __responses__
+       - 📄 [BadRequest.json](plop-templates/api-specs/public/refs/components/responses/BadRequest.json)
+       - 📄 [Conflict.json](plop-templates/api-specs/public/refs/components/responses/Conflict.json)
+       - 📄 [InternalServerError.json](plop-templates/api-specs/public/refs/components/responses/InternalServerError.json)
+       - 📄 [Unauthorized.json](plop-templates/api-specs/public/refs/components/responses/Unauthorized.json)
+     - 📂 __schemas__
+       - 📄 [Error.json](plop-templates/api-specs/public/refs/components/schemas/Error.json)
+       - 📄 [ExampleResponse.json](plop-templates/api-specs/public/refs/components/schemas/ExampleResponse.json)
+   - 📂 __paths__
+     - 📄 [example.json](plop-templates/api-specs/public/refs/paths/example.json)
+ - 📄 [schema.json](plop-templates/api-specs/public/schema.json)
+- 📂 __src__
+ - 📄 [App.jsx](plop-templates/api-specs/src/App.jsx)
+ - 📄 [main.jsx](plop-templates/api-specs/src/main.jsx)
+- 📄 [update\-openapi\-version.js](plop-templates/api-specs/update-openapi-version.js)
+- 📄 [update\-version.sh](plop-templates/api-specs/update-version.sh)
+- 📄 [vite.config.js](plop-templates/api-specs/vite.config.js)
+     
 
-1. **`.eslintrc.cjs`**: This file contains ESLint configuration settings for your project, which helps enforce code quality and style.
-2. **`.github/pull_request_template.md`**: This Markdown file serves as a template for creating pull requests in your GitHub repository. It helps standardise the information and checklist needed when creating a PR.
-3. **`.github/workflows/deploy.yml`**: This YAML file defines a GitHub Actions workflow named **`deploy.yml`** It likely contains instructions for deploying your project automatically.
-4. **`.github/workflows/push-to-branch.yml`**: Another GitHub Actions workflow defined in YAML format. It may handle actions when code is pushed to specific branches with an alpha version.
-5. **`.gitignore`**: This file lists files and directories that Git should ignore when tracking changes in your project. Commonly, it includes build artifacts and sensitive information.
-6. **`.hooks/pre-commit`**: A pre-commit hook script that runs before each commit, typically used for automated checks, such as linting and testing.
-7. **`README.md`**: The main README file for your project, which provides an overview and documentation.
-8. **`bump-alpha-version.sh`**: A shell script that likely automates the process of bumping the alpha version of your project.
-9. **`index.html`**: The main HTML file for your web application, which serves as the entry point for your front-end.
-10. **`package.json`**: The package.json file contains metadata and dependencies for your project, often used in Node.js projects.
-11. **`public/schema.json`**: A JSON file that holds the OpenAPI specification for your API, which may be used for documentation or code generation.
-12. **`src/App.jsx`**: A JSX file, likely the entry point for your React application, where you define the main component of your app.
-13. **`src/main.jsx`**: Another JSX file that might be part of your React project, potentially the entry point for your application.
-14. **`update-openapi-version.js`**: A JavaScript file used for updating the version of your OpenAPI specification programmatically.
-15. **`update-version.sh`**: A shell script that handles updating the project's version, typically used for versioning your project.
-16. **`vite.config.js`**: The configuration file for Vite, a build tool for modern web development, used to customise the build process for your project.
-
-You can include these file names and descriptions in your README.md section to provide an overview of the files in your repository.
+You can include these file names and descriptions in your [README.md](http://readme.md/) section to provide an overview of the files in your repository.
 
 ## **GitHub Settings**
 
