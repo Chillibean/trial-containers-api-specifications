@@ -1,16 +1,17 @@
 {
   "get": {
     "summary": "Get a form",
+    "description": "Get a form",
+    "operationId": "getForm",
+    "tags": [
+      "Trial Container Forms"
+    ],
     "security": [
       {
-        "userSessionKey": []
-      },
-      {
+        "userSessionKey": [],
         "chillipharmSession": []
       }
     ],
-    "operationId": "getForm",
-    "description": "Get a form",
     "parameters": [
       {
         "name": "account_id",
@@ -43,12 +44,6 @@
         "description": "The form id"
       }
     ],
-    "tags": [
-      "Forms"
-    ],
-    "requestBody": {
-      "content": {}
-    },
     "responses": {
       "200": {
         "description": "OK",
@@ -78,7 +73,7 @@
                   "type": "array",
                   "description": "The form audience",
                   "items": {
-                    "$ref": "../components/schemas/AudienceMember.json"
+                    "$ref": "../components/schemas/User.json"
                   }
                 },
                 "has_history": {
@@ -191,7 +186,7 @@
         "$ref": "../components/responses/BadRequest.json"
       },
       "401": {
-        "$ref": "../components/responses/Unauthorised.json"
+        "$ref": "../components/responses/Unauthorized.json"
       },
       "403": {
         "$ref": "../components/responses/Forbidden.json"

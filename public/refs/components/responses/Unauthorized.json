@@ -1,9 +1,8 @@
 {
-  "description": "Unauthorised. Missing or invalid authentication credentials.",
+  "description": "Unauthorized. Missing or invalid authentication credentials.",
   "content": {
     "application/json": {
       "schema": {
-        "description": "An error",
         "type": "object",
         "properties": {
           "error": {
@@ -15,10 +14,10 @@
             ]
           }
         },
+        "additionalProperties": false,
         "required": [
           "error"
-        ],
-        "additionalProperties": false
+        ]
       }
     }
   }

@@ -1,16 +1,17 @@
 {
   "post": {
-    "summary": "Post trial container forms",
+    "summary": "Create trial container form",
+    "description": "Create a new form for a trial container",
+    "operationId": "createForm",
+    "tags": [
+      "Trial Container Forms"
+    ],
     "security": [
       {
-        "userSessionKey": []
-      },
-      {
+        "userSessionKey": [],
         "chillipharmSession": []
       }
     ],
-    "operationId": "postTrialContainerForms",
-    "description": "Create a new form for a trial container",
     "parameters": [
       {
         "name": "account_id",
@@ -32,9 +33,6 @@
         },
         "description": "The trial container id"
       }
-    ],
-    "tags": [
-      "Forms"
     ],
     "requestBody": {
       "content": {
@@ -94,7 +92,7 @@
         "$ref": "../components/responses/BadRequest.json"
       },
       "401": {
-        "$ref": "../components/responses/Unauthorised.json"
+        "$ref": "../components/responses/Unauthorized.json"
       },
       "403": {
         "$ref": "../components/responses/Forbidden.json"
