@@ -40,6 +40,9 @@
           "schema": {
             "type": "object",
             "properties": {
+              "authenticity_token": {
+                "$ref": "../components/schemas/AuthenticityToken.json"
+              },
               "form_container_id": {
                 "type": "integer",
                 "description": "The form container id",
@@ -57,6 +60,7 @@
               }
             },
             "required": [
+              "authenticity_token",
               "form_container_id",
               "form_container_type",
               "form_template_id"

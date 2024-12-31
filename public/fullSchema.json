@@ -260,13 +260,21 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "authenticity_token": {
+                    "$ref": "#/components/schemas/AuthenticityToken"
+                  },
                   "chapters": {
                     "type": "array",
                     "items": {
                       "$ref": "#/components/schemas/Chapter"
                     }
                   }
-                }
+                },
+                "required": [
+                  "authenticity_token",
+                  "chapters"
+                ],
+                "additionalProperties": false
               }
             }
           }
@@ -348,6 +356,9 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "authenticity_token": {
+                    "$ref": "#/components/schemas/AuthenticityToken"
+                  },
                   "form_container_id": {
                     "type": "integer",
                     "description": "The form container id",
@@ -365,6 +376,7 @@
                   }
                 },
                 "required": [
+                  "authenticity_token",
                   "form_container_id",
                   "form_container_type",
                   "form_template_id"
@@ -832,6 +844,11 @@
           "thumbnails",
           "processed"
         ]
+      },
+      "AuthenticityToken": {
+        "description": "The authenticity token",
+        "type": "string",
+        "example": "valid_token"
       },
       "Chapter": {
         "type": "object",

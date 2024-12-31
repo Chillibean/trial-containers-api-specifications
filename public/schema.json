@@ -85,6 +85,9 @@
       "AssetWithInfoFields": {
         "$ref": "refs/components/schemas/AssetWithInfoFields.json"
       },
+      "AuthenticityToken": {
+        "$ref": "refs/components/schemas/AuthenticityToken.json"
+      },
       "Chapter": {
         "$ref": "refs/components/schemas/Chapter.json"
       },
