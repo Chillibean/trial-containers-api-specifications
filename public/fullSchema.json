@@ -15,6 +15,18 @@
       "description": "Local development"
     },
     {
+      "url": "https://qa.chillipharm.dev/api/v1",
+      "description": "QA"
+    },
+    {
+      "url": "https://chillipharm-staging.com/api/v1",
+      "description": "Staging"
+    },
+    {
+      "url": "https://chillipharm-uat.com/api/v1",
+      "description": "UAT"
+    },
+    {
       "url": "https://www.chillipharm.com/api/v1",
       "description": "Production"
     }
