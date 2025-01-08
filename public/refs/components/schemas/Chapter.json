@@ -1,0 +1,44 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The id of chapter",
+      "example": "c192a32d-c5cf-483d-8a30-2a0def1290d3"
+    },
+    "chapter_definition_id": {
+      "type": "integer",
+      "description": "The chapter definition id",
+      "example": 1,
+      "nullable": true
+    },
+    "name": {
+      "type": "string",
+      "description": "The chapter name",
+      "example": "Chapter 1"
+    },
+    "color": {
+      "type": "string",
+      "description": "The chapter color",
+      "example": "#000000"
+    },
+    "start_time": {
+      "type": "integer",
+      "description": "The chapter start time",
+      "example": 0
+    },
+    "end_time": {
+      "type": "integer",
+      "description": "The chapter end time",
+      "example": 100
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "color",
+    "start_time",
+    "end_time"
+  ]
+}
