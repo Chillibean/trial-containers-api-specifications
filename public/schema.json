@@ -7,6 +7,10 @@
     "contact": {
       "name": "ChilliPharm",
       "url": "https://www.chillipharm.com"
+    },
+    "license": {
+      "name": "UNLICENSED",
+      "url": "https://www.chillipharm.com"
     }
   },
   "tags": [
@@ -59,10 +63,10 @@
     "/accounts/{account_id}/trial_containers/{trial_container_id}/forms": {
       "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_forms.json"
     },
-    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms/{id}": {
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms/{form_id}": {
       "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_forms_{form_id}.json"
     },
-    "/accounts/{account_id}/trial_containers/{id}": {
+    "/accounts/{account_id}/trial_containers/{trial_container_id}": {
       "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}.json"
     }
   },
