@@ -7,6 +7,10 @@
     "contact": {
       "name": "ChilliPharm",
       "url": "https://www.chillipharm.com"
+    },
+    "license": {
+      "name": "UNLICENSED",
+      "url": "https://www.chillipharm.com"
     }
   },
   "servers": [
@@ -429,7 +433,7 @@
         }
       }
     },
-    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms/{id}": {
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms/{form_id}": {
       "get": {
         "summary": "Get a form",
         "description": "Get a form",
@@ -465,7 +469,7 @@
             "description": "The trial container id"
           },
           {
-            "name": "id",
+            "name": "form_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -634,7 +638,7 @@
         }
       }
     },
-    "/accounts/{account_id}/trial_containers/{id}": {
+    "/accounts/{account_id}/trial_containers/{trial_container_id}": {
       "get": {
         "summary": "Get a trial container",
         "description": "Get a trial container",
