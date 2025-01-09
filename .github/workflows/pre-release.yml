@@ -76,10 +76,12 @@ jobs:
     steps:
       - name: Trigger Workflow
         run: |
+          set -e
           curl -X POST https://api.github.com/repos/Chillibean/trial-containers-api-client-sdk/dispatches \
           -H 'Accept: application/vnd.github.everest-preview+json' \
           -u ${{ secrets.API_SPEC_PAT_TOKEN }} \
-          --data '{"event_type": "trigger-pre-release", "client_payload": { "version": "${{ needs.create-pre-release.outputs.version }}" }}'
+          --data '{"event_type": "trigger-pre-release", "client_payload": { "version": "${{ needs.create-pre-release.outputs.version }}" }}' \
+          --fail
       - name: Pull Request Comment
         uses: actions/github-script@v7
         with:

@@ -84,7 +84,7 @@ jobs:
               });
               const preReleases = releases.data.filter((release) => release.name && release.name.includes('${{ needs.create-release.outputs.version }}' && release.prerelease));
 
-              console.log('Found:', preReleases.map((release) => release.name));
+              console.log('Releases found:', preReleases.map((release) => release.name));
 
               for (const release of preReleases) {
                 await github.rest.repos.deleteRelease({
@@ -105,10 +105,12 @@ jobs:
     steps:
       - name: Trigger Workflow
         run: |
+          set -e
           curl -X POST https://api.github.com/repos/Chillibean/trial-containers-api-client-sdk/dispatches \
           -H 'Accept: application/vnd.github.everest-preview+json' \
           -u ${{ secrets.API_SPEC_PAT_TOKEN }} \
-          --data '{"event_type": "trigger-release", "client_payload": { "version": "${{ needs.create-release.outputs.version }}" }}'
+          --data '{"event_type": "trigger-release", "client_payload": { "version": "${{ needs.create-release.outputs.version }}" }}' \
+          --fail
       - name: Get Pull Request Number
         id: pr
         env:
