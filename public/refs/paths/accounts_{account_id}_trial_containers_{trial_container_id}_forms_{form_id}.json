@@ -34,7 +34,7 @@
         "description": "The trial container id"
       },
       {
-        "name": "id",
+        "name": "form_id",
         "in": "path",
         "required": true,
         "schema": {
