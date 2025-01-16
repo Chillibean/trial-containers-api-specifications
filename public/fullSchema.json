@@ -1417,43 +1417,17 @@
         "content": {
           "application/json": {
             "schema": {
-              "type": "object",
-              "properties": {
-                "error": {
-                  "type": "string",
-                  "description": "The error message",
-                  "example": "Unauthorised",
-                  "enum": [
-                    "Unauthorised"
-                  ]
-                }
-              },
-              "additionalProperties": false,
-              "required": [
-                "error"
-              ]
+              "$ref": "#/components/schemas/Error"
             }
           }
         }
       },
       "Forbidden": {
-        "description": "Forbidden. The request was valid, but the server is refusing action.",
+        "description": "Forbidden. Insufficient permissions to perform the operation.",
         "content": {
           "application/json": {
             "schema": {
-              "type": "object",
-              "properties": {
-                "error": {
-                  "type": "string",
-                  "description": "The error message",
-                  "example": "You do not have sufficient permission to perform this action",
-                  "enum": [
-                    "You do not have sufficient permission to perform this action",
-                    "Forbidden",
-                    "You cannot perform this action because the study procedure is locked"
-                  ]
-                }
-              }
+              "$ref": "#/components/schemas/Error"
             }
           }
         }
@@ -1463,22 +1437,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "description": "An error",
-              "type": "object",
-              "properties": {
-                "error": {
-                  "type": "string",
-                  "description": "The error message",
-                  "example": "Not found",
-                  "enum": [
-                    "Not found"
-                  ]
-                }
-              },
-              "required": [
-                "error"
-              ],
-              "additionalProperties": false
+              "$ref": "#/components/schemas/Error"
             }
           }
         }

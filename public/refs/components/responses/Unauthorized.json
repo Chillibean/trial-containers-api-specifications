@@ -3,21 +3,7 @@
   "content": {
     "application/json": {
       "schema": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "string",
-            "description": "The error message",
-            "example": "Unauthorised",
-            "enum": [
-              "Unauthorised"
-            ]
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "error"
-        ]
+        "$ref": "../schemas/Error.json"
       }
     }
   }
