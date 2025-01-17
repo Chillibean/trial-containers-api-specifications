@@ -1,18 +1,30 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "3.0.2",
+    "version": "4.0.0",
     "title": "Trial Container API",
     "description": "This is api specs for trial container endpoints",
     "contact": {
       "name": "ChilliPharm",
       "url": "https://www.chillipharm.com"
+    },
+    "license": {
+      "name": "UNLICENSED",
+      "url": "https://www.chillipharm.com"
     }
   },
   "tags": [
     {
-      "name": "Forms",
-      "description": "Forms endpoints"
+      "name": "Trial Container Asset Chapters",
+      "description": "Endpoints for Asset chapters"
+    },
+    {
+      "name": "Trial Container Assets",
+      "description": "Endpoints for Trial Container Assets"
+    },
+    {
+      "name": "Trial Container Forms",
+      "description": "Endpoints for Trial Container Forms"
     },
     {
       "name": "Trial Containers",
@@ -25,19 +37,37 @@
       "description": "Local development"
     },
     {
+      "url": "https://qa.chillipharm.dev/api/v1",
+      "description": "QA"
+    },
+    {
+      "url": "https://chillipharm-staging.com/api/v1",
+      "description": "Staging"
+    },
+    {
+      "url": "https://chillipharm-uat.com/api/v1",
+      "description": "UAT"
+    },
+    {
       "url": "https://www.chillipharm.com/api/v1",
       "description": "Production"
     }
   ],
   "paths": {
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}": {
+      "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_assets_{asset_id}.json"
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}/chapters": {
+      "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_assets_{asset_id}_chapters.json"
+    },
     "/accounts/{account_id}/trial_containers/{trial_container_id}/forms": {
       "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_forms.json"
     },
-    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms/{id}": {
-      "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_forms_{id}.json"
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms/{form_id}": {
+      "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_forms_{form_id}.json"
     },
-    "/accounts/{account_id}/trial_containers/{id}": {
-      "$ref": "refs/paths/accounts_{account_id}_trial_containers_{id}.json"
+    "/accounts/{account_id}/trial_containers/{trial_container_id}": {
+      "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}.json"
     }
   },
   "components": {
@@ -56,8 +86,14 @@
       }
     },
     "schemas": {
-      "AudienceMember": {
-        "$ref": "refs/components/schemas/AudienceMember.json"
+      "AssetWithInfoFields": {
+        "$ref": "refs/components/schemas/AssetWithInfoFields.json"
+      },
+      "AuthenticityToken": {
+        "$ref": "refs/components/schemas/AuthenticityToken.json"
+      },
+      "Chapter": {
+        "$ref": "refs/components/schemas/Chapter.json"
       },
       "Error": {
         "$ref": "refs/components/schemas/Error.json"
@@ -65,14 +101,26 @@
       "FormTemplateField": {
         "$ref": "refs/components/schemas/FormTemplateField.json"
       },
+      "InfoFields": {
+        "$ref": "refs/components/schemas/InfoFields.json"
+      },
       "Signature": {
         "$ref": "refs/components/schemas/Signature.json"
+      },
+      "Thumbnails": {
+        "$ref": "refs/components/schemas/Thumbnails.json"
       },
       "Transition": {
         "$ref": "refs/components/schemas/Transition.json"
       },
       "TrialContainer": {
         "$ref": "refs/components/schemas/TrialContainer.json"
+      },
+      "User": {
+        "$ref": "refs/components/schemas/User.json"
+      },
+      "Video": {
+        "$ref": "refs/components/schemas/Video.json"
       }
     }
   }

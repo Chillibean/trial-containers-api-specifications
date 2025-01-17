@@ -1,11 +1,15 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "3.0.2",
+    "version": "4.0.0",
     "title": "Trial Container API",
     "description": "This is api specs for trial container endpoints",
     "contact": {
       "name": "ChilliPharm",
+      "url": "https://www.chillipharm.com"
+    },
+    "license": {
+      "name": "UNLICENSED",
       "url": "https://www.chillipharm.com"
     }
   },
@@ -15,14 +19,34 @@
       "description": "Local development"
     },
     {
+      "url": "https://qa.chillipharm.dev/api/v1",
+      "description": "QA"
+    },
+    {
+      "url": "https://chillipharm-staging.com/api/v1",
+      "description": "Staging"
+    },
+    {
+      "url": "https://chillipharm-uat.com/api/v1",
+      "description": "UAT"
+    },
+    {
       "url": "https://www.chillipharm.com/api/v1",
       "description": "Production"
     }
   ],
   "tags": [
     {
-      "name": "Forms",
-      "description": "Forms endpoints"
+      "name": "Trial Container Asset Chapters",
+      "description": "Endpoints for Asset chapters"
+    },
+    {
+      "name": "Trial Container Assets",
+      "description": "Endpoints for Trial Container Assets"
+    },
+    {
+      "name": "Trial Container Forms",
+      "description": "Endpoints for Trial Container Forms"
     },
     {
       "name": "Trial Containers",
@@ -30,19 +54,284 @@
     }
   ],
   "paths": {
-    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms": {
-      "post": {
-        "summary": "Post trial container forms",
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}": {
+      "get": {
+        "summary": "Get an asset in a trial container",
+        "description": "Get an asset in a trial container",
+        "operationId": "getAsset",
+        "tags": [
+          "Trial Container Assets"
+        ],
         "security": [
           {
-            "userSessionKey": []
-          },
-          {
+            "userSessionKey": [],
             "chillipharmSession": []
           }
         ],
-        "operationId": "postTrialContainerForms",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "description": "The trial container id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "asset_id",
+            "in": "path",
+            "description": "The asset id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssetWithInfoFields"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}/chapters": {
+      "get": {
+        "summary": "Get chapters for an asset",
+        "description": "Get chapters for an asset",
+        "operationId": "getAssetChapters",
+        "tags": [
+          "Trial Container Asset Chapters"
+        ],
+        "security": [
+          {
+            "userSessionKey": [],
+            "chillipharmSession": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "description": "The trial container id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "asset_id",
+            "in": "path",
+            "description": "The asset id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Chapter"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "post": {
+        "summary": "Update chapters for an asset",
+        "description": "Update chapters for an asset",
+        "operationId": "updateAssetChapters",
+        "tags": [
+          "Trial Container Asset Chapters"
+        ],
+        "security": [
+          {
+            "userSessionKey": [],
+            "chillipharmSession": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "description": "The trial container id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "asset_id",
+            "in": "path",
+            "description": "The asset id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "authenticity_token": {
+                    "$ref": "#/components/schemas/AuthenticityToken"
+                  },
+                  "chapters": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Chapter"
+                    }
+                  }
+                },
+                "required": [
+                  "authenticity_token",
+                  "chapters"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Chapter"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms": {
+      "post": {
+        "summary": "Create trial container form",
         "description": "Create a new form for a trial container",
+        "operationId": "createForm",
+        "tags": [
+          "Trial Container Forms"
+        ],
+        "security": [
+          {
+            "userSessionKey": [],
+            "chillipharmSession": []
+          }
+        ],
         "parameters": [
           {
             "name": "account_id",
@@ -65,15 +354,15 @@
             "description": "The trial container id"
           }
         ],
-        "tags": [
-          "Forms"
-        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
+                  "authenticity_token": {
+                    "$ref": "#/components/schemas/AuthenticityToken"
+                  },
                   "form_container_id": {
                     "type": "integer",
                     "description": "The form container id",
@@ -91,6 +380,7 @@
                   }
                 },
                 "required": [
+                  "authenticity_token",
                   "form_container_id",
                   "form_container_type",
                   "form_template_id"
@@ -101,8 +391,8 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
@@ -126,7 +416,7 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "401": {
-            "$ref": "#/components/responses/Unauthorised"
+            "$ref": "#/components/responses/Unauthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -143,19 +433,20 @@
         }
       }
     },
-    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms/{id}": {
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms/{form_id}": {
       "get": {
         "summary": "Get a form",
+        "description": "Get a form",
+        "operationId": "getForm",
+        "tags": [
+          "Trial Container Forms"
+        ],
         "security": [
           {
-            "userSessionKey": []
-          },
-          {
+            "userSessionKey": [],
             "chillipharmSession": []
           }
         ],
-        "operationId": "getForm",
-        "description": "Get a form",
         "parameters": [
           {
             "name": "account_id",
@@ -178,7 +469,7 @@
             "description": "The trial container id"
           },
           {
-            "name": "id",
+            "name": "form_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -188,12 +479,6 @@
             "description": "The form id"
           }
         ],
-        "tags": [
-          "Forms"
-        ],
-        "requestBody": {
-          "content": {}
-        },
         "responses": {
           "200": {
             "description": "OK",
@@ -223,7 +508,7 @@
                       "type": "array",
                       "description": "The form audience",
                       "items": {
-                        "$ref": "#/components/schemas/AudienceMember"
+                        "$ref": "#/components/schemas/User"
                       }
                     },
                     "has_history": {
@@ -336,7 +621,7 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "401": {
-            "$ref": "#/components/responses/Unauthorised"
+            "$ref": "#/components/responses/Unauthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -353,19 +638,20 @@
         }
       }
     },
-    "/accounts/{account_id}/trial_containers/{id}": {
+    "/accounts/{account_id}/trial_containers/{trial_container_id}": {
       "get": {
         "summary": "Get a trial container",
+        "description": "Get a trial container",
+        "operationId": "getTrialContainer",
+        "tags": [
+          "Trial Containers"
+        ],
         "security": [
           {
-            "userSessionKey": []
-          },
-          {
+            "userSessionKey": [],
             "chillipharmSession": []
           }
         ],
-        "operationId": "getTrialContainer",
-        "description": "Get a trial container",
         "parameters": [
           {
             "name": "account_id",
@@ -378,7 +664,7 @@
             "description": "The account id"
           },
           {
-            "name": "id",
+            "name": "trial_container_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -388,12 +674,6 @@
             "description": "The trial container id"
           }
         ],
-        "tags": [
-          "Trial Containers"
-        ],
-        "requestBody": {
-          "content": {}
-        },
         "responses": {
           "200": {
             "description": "OK",
@@ -409,7 +689,7 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "401": {
-            "$ref": "#/components/responses/Unauthorised"
+            "$ref": "#/components/responses/Unauthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -443,42 +723,179 @@
       }
     },
     "schemas": {
-      "AudienceMember": {
+      "AssetWithInfoFields": {
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
-            "description": "The audience id",
+            "description": "The asset id",
             "example": 1
           },
-          "email": {
+          "title": {
             "type": "string",
-            "description": "The audience email",
-            "example": "example@gmail.com",
-            "nullable": true
+            "description": "The asset title",
+            "example": "Asset 1"
           },
-          "uuid": {
+          "filename": {
             "type": "string",
-            "description": "The audience uuid",
-            "example": "uuid"
+            "description": "The asset filename",
+            "example": "asset_1.mp4"
           },
-          "first_name": {
+          "extension": {
             "type": "string",
-            "description": "The audience first name",
-            "example": "First"
+            "description": "The asset extension",
+            "example": "mp4"
           },
-          "last_name": {
+          "created_at": {
             "type": "string",
-            "description": "The audience last name",
-            "example": "Last"
+            "description": "The asset created at date",
+            "example": "2020-01-01T00:00:00.000Z"
+          },
+          "created_by": {
+            "$ref": "#/components/schemas/User"
+          },
+          "media_type": {
+            "type": "string",
+            "description": "The asset media type",
+            "example": "video"
+          },
+          "media": {
+            "oneOf": [
+              {
+                "type": "object",
+                "description": "The links to the asset media",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "description": "The asset media url",
+                    "nullable": true,
+                    "example": "https://eu-west-4-chillipharm-bucket.s3.eu-west-4.amazonaws.com/test_data/Image.png"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "url"
+                ]
+              },
+              {
+                "type": "object",
+                "description": "The links to the asset media",
+                "properties": {
+                  "sd_video": {
+                    "$ref": "#/components/schemas/Video"
+                  },
+                  "hd_video": {
+                    "$ref": "#/components/schemas/Video"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "sd_video",
+                  "hd_video"
+                ]
+              }
+            ]
+          },
+          "asset_infos": {
+            "$ref": "#/components/schemas/InfoFields"
+          },
+          "thumbnails": {
+            "$ref": "#/components/schemas/Thumbnails"
+          },
+          "study_procedure_identifier": {
+            "type": "string",
+            "description": "The asset study procedure identifier",
+            "example": "PROCEDURE"
+          },
+          "study_event_identifier": {
+            "type": "string",
+            "description": "The asset study event identifier",
+            "example": "EVENT"
+          },
+          "subject_number": {
+            "type": "string",
+            "description": "The asset subject number",
+            "example": "123"
+          },
+          "chapters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Chapter"
+            }
+          },
+          "position": {
+            "type": "number",
+            "description": "The position of asset",
+            "example": 1
+          },
+          "processed": {
+            "type": "boolean",
+            "description": "The asset processed status",
+            "example": true
           }
         },
+        "additionalProperties": false,
         "required": [
           "id",
-          "email",
-          "uuid",
-          "first_name",
-          "last_name"
+          "title",
+          "filename",
+          "extension",
+          "created_at",
+          "created_by",
+          "media_type",
+          "media",
+          "asset_infos",
+          "thumbnails",
+          "processed"
+        ]
+      },
+      "AuthenticityToken": {
+        "description": "The authenticity token",
+        "type": "string",
+        "example": "valid_token"
+      },
+      "Chapter": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The id of chapter",
+            "example": "c192a32d-c5cf-483d-8a30-2a0def1290d3"
+          },
+          "chapter_definition_id": {
+            "type": "integer",
+            "description": "The chapter definition id",
+            "example": 1,
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The chapter name",
+            "example": "Chapter 1"
+          },
+          "color": {
+            "type": "string",
+            "description": "The chapter color",
+            "example": "#000000"
+          },
+          "start_time": {
+            "type": "integer",
+            "description": "The chapter start time",
+            "example": 0
+          },
+          "end_time": {
+            "type": "integer",
+            "description": "The chapter end time",
+            "example": 100
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "color",
+          "start_time",
+          "end_time"
         ]
       },
       "Error": {
@@ -530,6 +947,11 @@
             "type": "boolean",
             "description": "Whether other types are enabled",
             "example": false
+          },
+          "other_field": {
+            "type": "string",
+            "description": "The other field label",
+            "example": "Other"
           },
           "value": {
             "oneOf": [
@@ -603,11 +1025,33 @@
           "type",
           "enabled",
           "other_enabled",
+          "other_field",
           "value",
           "validations",
           "options"
         ],
         "additionalProperties": false
+      },
+      "InfoFields": {
+        "type": "object",
+        "description": "Asset infos fields",
+        "properties": {
+          "Title": {
+            "type": "string",
+            "description": "The asset title",
+            "example": "Asset 1"
+          },
+          "Reviewed": {
+            "type": "string",
+            "description": "The asset reviewed state",
+            "example": "false"
+          }
+        },
+        "additionalProperties": true,
+        "required": [
+          "Title",
+          "Reviewed"
+        ]
       },
       "Signature": {
         "type": "object",
@@ -674,6 +1118,29 @@
           "object_uuid",
           "user_uuid",
           "verification_status"
+        ]
+      },
+      "Thumbnails": {
+        "type": "object",
+        "description": "Asset thumbnails",
+        "properties": {
+          "small": {
+            "type": "string",
+            "nullable": true,
+            "description": "The asset small thumbnail url",
+            "example": "http://path-to-small-thumbnail"
+          },
+          "large": {
+            "type": "string",
+            "nullable": true,
+            "description": "The large asset thumbnail url",
+            "example": "http://path-to-large-thumbnail"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "small",
+          "large"
         ]
       },
       "Transition": {
@@ -863,6 +1330,81 @@
           "permissions"
         ],
         "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The user id",
+            "example": 1
+          },
+          "email": {
+            "type": "string",
+            "description": "The users email",
+            "example": "example@email.com"
+          },
+          "uuid": {
+            "type": "string",
+            "description": "The users uuid",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "first_name": {
+            "type": "string",
+            "description": "The users first name",
+            "example": "John"
+          },
+          "last_name": {
+            "type": "string",
+            "description": "The users last name",
+            "example": "Doe"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "email",
+          "uuid",
+          "first_name",
+          "last_name"
+        ]
+      },
+      "Video": {
+        "type": "object",
+        "description": "The video transcode",
+        "properties": {
+          "url": {
+            "type": "string",
+            "nullable": true,
+            "description": "The asset  video url",
+            "example": "http://path-to-video"
+          },
+          "progress": {
+            "type": "string",
+            "nullable": true,
+            "description": "The asset video progress",
+            "example": "100"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true,
+            "description": "The asset video status",
+            "example": "complete"
+          },
+          "frame_rate": {
+            "type": "string",
+            "nullable": true,
+            "description": "The asset video frame rate",
+            "example": "25"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "url",
+          "progress",
+          "status",
+          "frame_rate"
+        ]
       }
     },
     "responses": {
@@ -876,49 +1418,22 @@
           }
         }
       },
-      "Unauthorised": {
-        "description": "Unauthorised. Missing or invalid authentication credentials.",
+      "Unauthorized": {
+        "description": "Unauthorized. Missing or invalid authentication credentials.",
         "content": {
           "application/json": {
             "schema": {
-              "description": "An error",
-              "type": "object",
-              "properties": {
-                "error": {
-                  "type": "string",
-                  "description": "The error message",
-                  "example": "Unauthorised",
-                  "enum": [
-                    "Unauthorised"
-                  ]
-                }
-              },
-              "required": [
-                "error"
-              ],
-              "additionalProperties": false
+              "$ref": "#/components/schemas/Error"
             }
           }
         }
       },
       "Forbidden": {
-        "description": "Forbidden. The request was valid, but the server is refusing action.",
+        "description": "Forbidden. Insufficient permissions to perform the operation.",
         "content": {
           "application/json": {
             "schema": {
-              "type": "object",
-              "properties": {
-                "error": {
-                  "type": "string",
-                  "description": "The error message",
-                  "example": "You do not have sufficient permission to perform this action",
-                  "enum": [
-                    "You do not have sufficient permission to perform this action",
-                    "Forbidden",
-                    "You cannot perform this action because the study procedure is locked"
-                  ]
-                }
-              }
+              "$ref": "#/components/schemas/Error"
             }
           }
         }
@@ -928,22 +1443,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "description": "An error",
-              "type": "object",
-              "properties": {
-                "error": {
-                  "type": "string",
-                  "description": "The error message",
-                  "example": "Not found",
-                  "enum": [
-                    "Not found"
-                  ]
-                }
-              },
-              "required": [
-                "error"
-              ],
-              "additionalProperties": false
+              "$ref": "#/components/schemas/Error"
             }
           }
         }
