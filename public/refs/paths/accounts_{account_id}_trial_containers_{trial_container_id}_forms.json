@@ -1,16 +1,17 @@
 {
   "post": {
-    "summary": "Post trial container forms",
+    "summary": "Create trial container form",
+    "description": "Create a new form for a trial container",
+    "operationId": "createForm",
+    "tags": [
+      "Trial Container Forms"
+    ],
     "security": [
       {
-        "userSessionKey": []
-      },
-      {
+        "userSessionKey": [],
         "chillipharmSession": []
       }
     ],
-    "operationId": "postTrialContainerForms",
-    "description": "Create a new form for a trial container",
     "parameters": [
       {
         "name": "account_id",
@@ -33,15 +34,15 @@
         "description": "The trial container id"
       }
     ],
-    "tags": [
-      "Forms"
-    ],
     "requestBody": {
       "content": {
         "application/json": {
           "schema": {
             "type": "object",
             "properties": {
+              "authenticity_token": {
+                "$ref": "../components/schemas/AuthenticityToken.json"
+              },
               "form_container_id": {
                 "type": "integer",
                 "description": "The form container id",
@@ -59,6 +60,7 @@
               }
             },
             "required": [
+              "authenticity_token",
               "form_container_id",
               "form_container_type",
               "form_template_id"
@@ -94,7 +96,7 @@
         "$ref": "../components/responses/BadRequest.json"
       },
       "401": {
-        "$ref": "../components/responses/Unauthorised.json"
+        "$ref": "../components/responses/Unauthorized.json"
       },
       "403": {
         "$ref": "../components/responses/Forbidden.json"

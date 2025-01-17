@@ -3,31 +3,31 @@
   "properties": {
     "id": {
       "type": "integer",
-      "description": "The audience id",
+      "description": "The user id",
       "example": 1
     },
     "email": {
       "type": "string",
-      "description": "The audience email",
-      "example": "example@gmail.com",
-      "nullable": true
+      "description": "The users email",
+      "example": "example@email.com"
     },
     "uuid": {
       "type": "string",
-      "description": "The audience uuid",
-      "example": "uuid"
+      "description": "The users uuid",
+      "example": "123e4567-e89b-12d3-a456-426614174000"
     },
     "first_name": {
       "type": "string",
-      "description": "The audience first name",
-      "example": "First"
+      "description": "The users first name",
+      "example": "John"
     },
     "last_name": {
       "type": "string",
-      "description": "The audience last name",
-      "example": "Last"
+      "description": "The users last name",
+      "example": "Doe"
     }
   },
+  "additionalProperties": false,
   "required": [
     "id",
     "email",
