@@ -6,10 +6,23 @@
       "type": "string",
       "description": "The error message",
       "example": "Bad request. Missing or invalid input parameters."
+    },
+    "errors": {
+      "type": "object",
+      "description": "The error object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "The error message",
+          "example": "Validation failed."
+        },
+        "fields": {
+          "type": "object",
+          "description": "The validation fields errors"
+        }
+      }
     }
   },
   "additionalProperties": false,
-  "required": [
-    "error"
-  ]
+  "required": []
 }
