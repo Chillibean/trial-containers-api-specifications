@@ -1,4 +1,96 @@
 {
+  "get": {
+    "summary": "Get forms for a form container",
+    "description": "Get chapters for a form container",
+    "operationId": "getForms",
+    "tags": [
+      "Trial Container Forms"
+    ],
+    "security": [
+      {
+        "userSessionKey": [],
+        "chillipharmSession": []
+      }
+    ],
+    "parameters": [
+      {
+        "name": "account_id",
+        "in": "path",
+        "description": "The account id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      },
+      {
+        "name": "trial_container_id",
+        "in": "path",
+        "description": "The trial container id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      },
+      {
+        "name": "form_container_id",
+        "in": "query",
+        "description": "The form container id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      },
+      {
+        "name": "form_container_type",
+        "in": "query",
+        "description": "The form container type",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "enum": [
+            "Asset",
+            "Study::Procedure"
+          ]
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "../components/schemas/WorkflowStateWithForms.json"
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "$ref": "../components/responses/BadRequest.json"
+      },
+      "401": {
+        "$ref": "../components/responses/Unauthorized.json"
+      },
+      "403": {
+        "$ref": "../components/responses/Forbidden.json"
+      },
+      "404": {
+        "$ref": "../components/responses/NotFound.json"
+      },
+      "409": {
+        "$ref": "../components/responses/Conflict.json"
+      },
+      "500": {
+        "$ref": "../components/responses/InternalServerError.json"
+      }
+    }
+  },
   "post": {
     "summary": "Create trial container form",
     "description": "Create a new form for a trial container",

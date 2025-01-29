@@ -121,6 +121,9 @@
       },
       "Video": {
         "$ref": "refs/components/schemas/Video.json"
+      },
+      "WorkflowStateWithForms": {
+        "$ref": "refs/components/schemas/WorkflowStateWithForms.json"
       }
     }
   }

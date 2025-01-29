@@ -319,6 +319,98 @@
       }
     },
     "/accounts/{account_id}/trial_containers/{trial_container_id}/forms": {
+      "get": {
+        "summary": "Get forms for a form container",
+        "description": "Get chapters for a form container",
+        "operationId": "getForms",
+        "tags": [
+          "Trial Container Forms"
+        ],
+        "security": [
+          {
+            "userSessionKey": [],
+            "chillipharmSession": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "description": "The trial container id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "form_container_id",
+            "in": "query",
+            "description": "The form container id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "form_container_type",
+            "in": "query",
+            "description": "The form container type",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Asset",
+                "Study::Procedure"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowStateWithForms"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
       "post": {
         "summary": "Create trial container form",
         "description": "Create a new form for a trial container",
@@ -1417,6 +1509,104 @@
           "progress",
           "status",
           "frame_rate"
+        ]
+      },
+      "WorkflowStateWithForms": {
+        "type": "object",
+        "description": "The workflow state with forms",
+        "properties": {
+          "forms": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "description": "The form",
+              "properties": {
+                "created_at": {
+                  "type": "string",
+                  "description": "The created at date",
+                  "example": "2025-01-15T12:00:00.000Z"
+                },
+                "has_comments": {
+                  "type": "boolean",
+                  "description": "The comments indicator"
+                },
+                "id": {
+                  "type": "integer",
+                  "description": "The form id",
+                  "example": 1
+                },
+                "title": {
+                  "type": "string",
+                  "description": "The form title",
+                  "example": "Patient Review"
+                },
+                "version_number": {
+                  "type": "integer",
+                  "description": "The form version number",
+                  "example": 1
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "created_at",
+                "has_comments",
+                "id",
+                "title",
+                "version_number"
+              ]
+            }
+          },
+          "name": {
+            "type": "string",
+            "description": "The workflow state name",
+            "enum": [
+              "In Draft",
+              "In Review",
+              "Completed",
+              "Rejected"
+            ]
+          },
+          "options": {
+            "type": "object",
+            "description": "The workflow state options",
+            "properties": {
+              "can_add_comments": {
+                "type": "boolean",
+                "description": "Should user be able to add comments to form"
+              },
+              "deletable": {
+                "type": "boolean",
+                "description": "Should user be able to delete a form"
+              },
+              "editable": {
+                "type": "boolean",
+                "description": "Should user be able to edit a form"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "can_add_comments",
+              "deletable",
+              "editable"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "description": "The workflow state type",
+            "enum": [
+              "initial",
+              "in-progress",
+              "final",
+              "rejected"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "forms",
+          "name",
+          "options",
+          "type"
         ]
       }
     },
