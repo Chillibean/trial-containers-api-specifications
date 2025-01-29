@@ -428,22 +428,22 @@
           {
             "name": "account_id",
             "in": "path",
+            "description": "The account id",
             "required": true,
             "schema": {
               "type": "string",
               "example": "1"
-            },
-            "description": "The account id"
+            }
           },
           {
             "name": "trial_container_id",
             "in": "path",
+            "description": "The trial container id",
             "required": true,
             "schema": {
               "type": "string",
               "example": "1"
-            },
-            "description": "The trial container id"
+            }
           }
         ],
         "requestBody": {
@@ -543,32 +543,32 @@
           {
             "name": "account_id",
             "in": "path",
+            "description": "The account id",
             "required": true,
             "schema": {
               "type": "string",
               "example": "1"
-            },
-            "description": "The account id"
+            }
           },
           {
             "name": "trial_container_id",
             "in": "path",
+            "description": "The trial container id",
             "required": true,
             "schema": {
               "type": "string",
               "example": "1"
-            },
-            "description": "The trial container id"
+            }
           },
           {
             "name": "form_id",
             "in": "path",
+            "description": "The form id",
             "required": true,
             "schema": {
               "type": "string",
               "example": "1"
-            },
-            "description": "The form id"
+            }
           }
         ],
         "responses": {
@@ -577,134 +577,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "signatures": {
-                      "type": "array",
-                      "description": "The form signatures",
-                      "items": {
-                        "$ref": "#/components/schemas/Signature"
-                      }
-                    },
-                    "version_number": {
-                      "type": "integer",
-                      "description": "The form version number",
-                      "example": 0
-                    },
-                    "description": {
-                      "type": "string",
-                      "description": "The form description",
-                      "example": "Form description"
-                    },
-                    "audience": {
-                      "type": "array",
-                      "description": "The form audience",
-                      "items": {
-                        "$ref": "#/components/schemas/User"
-                      }
-                    },
-                    "has_history": {
-                      "type": "boolean",
-                      "description": "Whether the form has history",
-                      "example": true
-                    },
-                    "current_transitions": {
-                      "type": "array",
-                      "description": "The form current transitions",
-                      "items": {
-                        "$ref": "#/components/schemas/Transition"
-                      }
-                    },
-                    "created_at": {
-                      "type": "string",
-                      "description": "The form created at",
-                      "example": "2024-04-16T16:35:52.875Z"
-                    },
-                    "id": {
-                      "type": "integer",
-                      "description": "The form id",
-                      "example": 1
-                    },
-                    "fields": {
-                      "type": "array",
-                      "description": "The form fields",
-                      "items": {
-                        "$ref": "#/components/schemas/FormTemplateField"
-                      }
-                    },
-                    "title": {
-                      "type": "string",
-                      "description": "The form title",
-                      "example": "Form title"
-                    },
-                    "current_state": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "integer",
-                          "description": "The state id",
-                          "example": 1
-                        },
-                        "name": {
-                          "type": "string",
-                          "description": "The state name",
-                          "example": "In Draft"
-                        },
-                        "type": {
-                          "type": "string",
-                          "description": "The state type",
-                          "example": "draft"
-                        },
-                        "options": {
-                          "type": "object",
-                          "properties": {
-                            "editable": {
-                              "type": "boolean",
-                              "description": "Whether the state is editable",
-                              "example": false
-                            },
-                            "deletable": {
-                              "type": "boolean",
-                              "description": "Whether the state is deletable",
-                              "example": false
-                            },
-                            "can_add_comments": {
-                              "type": "boolean",
-                              "description": "Whether the state can add comments",
-                              "example": false
-                            }
-                          },
-                          "required": [
-                            "editable",
-                            "deletable",
-                            "can_add_comments"
-                          ],
-                          "additionalProperties": false
-                        }
-                      },
-                      "required": [
-                        "id",
-                        "name",
-                        "type",
-                        "options"
-                      ],
-                      "additionalProperties": false
-                    }
-                  },
-                  "required": [
-                    "signatures",
-                    "version_number",
-                    "description",
-                    "audience",
-                    "has_history",
-                    "current_transitions",
-                    "created_at",
-                    "id",
-                    "fields",
-                    "title",
-                    "current_state"
-                  ],
-                  "additionalProperties": false
+                  "$ref": "#/components/schemas/Form"
                 }
               }
             }
@@ -748,22 +621,22 @@
           {
             "name": "account_id",
             "in": "path",
+            "description": "The account id",
             "required": true,
             "schema": {
               "type": "string",
               "example": "1"
-            },
-            "description": "The account id"
+            }
           },
           {
             "name": "trial_container_id",
             "in": "path",
+            "description": "The trial container id",
             "required": true,
             "schema": {
               "type": "string",
               "example": "1"
-            },
-            "description": "The trial container id"
+            }
           }
         ],
         "responses": {
@@ -1018,35 +891,125 @@
         "additionalProperties": false,
         "required": []
       },
-      "FormTemplateField": {
-        "description": "Form template field",
+      "Form": {
         "type": "object",
+        "description": "The form",
         "properties": {
-          "id": {
+          "audience": {
+            "type": "array",
+            "description": "The form audience",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
+          },
+          "created_at": {
             "type": "string",
-            "description": "The field id",
-            "example": "1"
+            "description": "The form created at",
+            "example": "2025-01-15T12:00:00.000Z"
+          },
+          "current_state": {
+            "$ref": "#/components/schemas/WorkflowState"
+          },
+          "current_transitions": {
+            "type": "array",
+            "description": "The form current transitions",
+            "items": {
+              "$ref": "#/components/schemas/WorkflowTransition"
+            }
+          },
+          "description": {
+            "type": "string",
+            "description": "The form description",
+            "example": "A form utilized during a patient consultation"
+          },
+          "fields": {
+            "type": "array",
+            "description": "The form fields",
+            "items": {
+              "$ref": "#/components/schemas/FormField"
+            }
+          },
+          "has_history": {
+            "type": "boolean",
+            "description": "Whether the form has history",
+            "example": false
+          },
+          "id": {
+            "type": "integer",
+            "description": "The form id",
+            "example": 1
+          },
+          "signatures": {
+            "type": "array",
+            "description": "The form signatures",
+            "items": {
+              "$ref": "#/components/schemas/Signature"
+            }
           },
           "title": {
             "type": "string",
-            "description": "The field title",
-            "example": "Field title"
+            "description": "The form title",
+            "example": "Patient Review"
           },
-          "type": {
-            "type": "string",
-            "description": "The field type",
-            "example": "single_line"
-          },
-          "input_guidance": {
-            "type": "string",
-            "description": "The field input guidance",
-            "example": "guidance",
+          "version_number": {
+            "type": "integer",
+            "description": "The form version number",
+            "example": 0
+          }
+        },
+        "required": [
+          "audience",
+          "created_at",
+          "current_state",
+          "current_transitions",
+          "description",
+          "fields",
+          "has_history",
+          "id",
+          "signatures",
+          "title",
+          "version_number"
+        ],
+        "additionalProperties": false
+      },
+      "FormField": {
+        "type": "object",
+        "description": "The form field",
+        "properties": {
+          "comments": {
+            "type": "array",
+            "description": "The field comments",
+            "items": {
+              "type": "string",
+              "description": "The comment",
+              "example": "This field value is incorrect. Please change value to 10"
+            },
             "nullable": true
           },
           "enabled": {
             "type": "boolean",
             "description": "Whether the field is enabled",
             "example": true
+          },
+          "id": {
+            "type": "string",
+            "description": "The field id",
+            "example": "1"
+          },
+          "input_guidance": {
+            "type": "string",
+            "description": "The field input guidance",
+            "example": "Patient DOB",
+            "nullable": true
+          },
+          "options": {
+            "type": "array",
+            "description": "The field options",
+            "items": {
+              "type": "string",
+              "example": "Male"
+            },
+            "nullable": true
           },
           "other_enabled": {
             "type": "boolean",
@@ -1058,33 +1021,26 @@
             "description": "The other field label",
             "example": "Other"
           },
-          "value": {
-            "oneOf": [
-              {
-                "type": "string",
-                "example": ""
-              },
-              {
-                "type": "array",
-                "description": "The field value",
-                "example": []
-              }
+          "title": {
+            "type": "string",
+            "description": "The field title",
+            "example": "Date of birth"
+          },
+          "type": {
+            "type": "string",
+            "description": "The field type",
+            "enum": [
+              "single_line",
+              "descriptive",
+              "checkbox",
+              "radio",
+              "dropdown",
+              "date"
             ]
           },
           "validations": {
             "type": "object",
             "properties": {
-              "required": {
-                "type": "boolean",
-                "description": "Whether the field is required",
-                "example": true
-              },
-              "input_format": {
-                "type": "string",
-                "description": "regex format for input",
-                "example": "[a-zA-Z]{1}[a-zA-Z]{1}-\\d{1}\\d{1}\\d{1}\\d{1}\\d{1}",
-                "nullable": true
-              },
               "character_limit": {
                 "type": "integer",
                 "description": "The maximum characters",
@@ -1093,47 +1049,57 @@
               },
               "character_restriction": {
                 "type": "string",
-                "description": "restricted character type",
-                "example": "letters_and_numbers",
+                "description": "The restricted character type",
+                "enum": [
+                  "letters_and_numbers",
+                  "letters",
+                  "numbers"
+                ],
                 "nullable": true
+              },
+              "input_format": {
+                "type": "string",
+                "description": "The regex format for input",
+                "example": "[a-zA-Z]{1}[a-zA-Z]{1}-\\d{1}\\d{1}\\d{1}\\d{1}\\d{1}",
+                "nullable": true
+              },
+              "required": {
+                "type": "boolean",
+                "description": "Whether the field is required",
+                "example": false
               }
             },
             "required": [
-              "required",
-              "input_format",
-              "character_limit",
-              "character_restriction"
+              "required"
             ],
             "additionalProperties": false
           },
-          "options": {
-            "type": "array",
-            "description": "The field options",
-            "items": {
-              "type": "string",
-              "example": "option1"
-            }
-          },
-          "comments": {
-            "type": "array",
-            "description": "The field comments",
-            "items": {
-              "type": "string",
-              "example": "comment1"
-            },
-            "nullable": true
+          "value": {
+            "oneOf": [
+              {
+                "type": "string",
+                "description": "The field value"
+              },
+              {
+                "type": "array",
+                "description": "The field values",
+                "items": {
+                  "type": "string",
+                  "description": "The field single value"
+                }
+              }
+            ]
           }
         },
         "required": [
-          "id",
-          "title",
-          "type",
           "enabled",
+          "id",
           "other_enabled",
           "other_field",
-          "value",
+          "title",
+          "type",
           "validations",
-          "options"
+          "value"
         ],
         "additionalProperties": false
       },
@@ -1160,51 +1126,52 @@
       },
       "Signature": {
         "type": "object",
+        "description": "The signature",
         "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The signature id",
-            "example": 1
+          "created_at": {
+            "type": "string",
+            "description": "The signature created at",
+            "example": "2025-01-15T12:00:00.000Z"
           },
           "email": {
             "type": "string",
             "description": "The signature email",
-            "example": "example@gmail.com"
+            "example": "johndoe@chillipharm.com"
           },
           "first_name": {
             "type": "string",
             "description": "The signature first name",
-            "example": "First"
+            "example": "John"
+          },
+          "id": {
+            "type": "string",
+            "description": "The signature uuid",
+            "example": "0bb4fa28-9e55-4d06-8eb4-3c59e0030e7f"
           },
           "last_name": {
             "type": "string",
             "description": "The signature last name",
-            "example": "Last"
+            "example": "Doe"
           },
           "meaning": {
             "type": "string",
             "description": "The signature meaning",
             "example": "Submit"
           },
-          "reason": {
-            "type": "string",
-            "description": "The signature reason",
-            "example": "Reason"
-          },
-          "created_at": {
-            "type": "string",
-            "description": "The signature created at",
-            "example": "2024-04-16T16:35:52.875Z"
-          },
           "object_uuid": {
             "type": "string",
             "description": "The signature object uuid",
-            "example": "uuid"
+            "example": "0bb4fa28-9e55-4d06-8eb4-3c59e0030e7f"
+          },
+          "reason": {
+            "type": "string",
+            "description": "The signature reason",
+            "example": "I am the owner of this document"
           },
           "user_uuid": {
             "type": "string",
             "description": "The signature user uuid",
-            "example": "uuid"
+            "example": "0bb4fa28-9e55-4d06-8eb4-3c59e0030e7f"
           },
           "verification_status": {
             "type": "string",
@@ -1213,17 +1180,18 @@
           }
         },
         "required": [
-          "id",
+          "created_at",
           "email",
           "first_name",
+          "id",
           "last_name",
           "meaning",
-          "reason",
-          "created_at",
           "object_uuid",
+          "reason",
           "user_uuid",
           "verification_status"
-        ]
+        ],
+        "additionalProperties": false
       },
       "Thumbnails": {
         "type": "object",
@@ -1247,86 +1215,6 @@
           "small",
           "large"
         ]
-      },
-      "Transition": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The transition id",
-            "example": "1"
-          },
-          "name": {
-            "type": "string",
-            "description": "The transition name",
-            "example": "Submit"
-          },
-          "requires_signatures": {
-            "type": "array",
-            "description": "The transition requires signatures",
-            "items": {
-              "type": "string",
-              "example": "1"
-            }
-          },
-          "audience": {
-            "type": "array",
-            "description": "The transition audience",
-            "items": {
-              "type": "string",
-              "example": "can_review_forms"
-            }
-          },
-          "options": {
-            "type": "object",
-            "properties": {
-              "skip_validation": {
-                "type": "boolean",
-                "description": "Whether to skip validation",
-                "example": true
-              }
-            },
-            "required": [
-              "skip_validation"
-            ],
-            "additionalProperties": false
-          },
-          "activity_text": {
-            "type": "string",
-            "description": "The transition activity text",
-            "example": "Submitted"
-          },
-          "signature_definitions": {
-            "type": "array",
-            "description": "The transition signature definitions",
-            "items": {
-              "type": "string",
-              "example": "1"
-            }
-          },
-          "requires_reason_for_change": {
-            "type": "boolean",
-            "description": "Whether the transition requires reason for change",
-            "example": true
-          },
-          "requires_review_comments": {
-            "type": "boolean",
-            "description": "Whether the transition requires review comments",
-            "example": true
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "requires_signatures",
-          "audience",
-          "options",
-          "activity_text",
-          "signature_definitions",
-          "requires_reason_for_change",
-          "requires_review_comments"
-        ],
-        "additionalProperties": false
       },
       "TrialContainer": {
         "type": "object",
@@ -1511,6 +1399,80 @@
           "frame_rate"
         ]
       },
+      "WorkflowState": {
+        "type": "object",
+        "description": "The workflow state",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The state id",
+            "example": 1
+          },
+          "name": {
+            "$ref": "#/components/schemas/WorkflowStateName"
+          },
+          "options": {
+            "$ref": "#/components/schemas/WorkflowStateOptions"
+          },
+          "type": {
+            "$ref": "#/components/schemas/WorkflowStateType"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "options",
+          "type"
+        ],
+        "additionalProperties": false
+      },
+      "WorkflowStateName": {
+        "type": "string",
+        "description": "The workflow state name",
+        "enum": [
+          "In Draft",
+          "In Review",
+          "Completed",
+          "Rejected"
+        ]
+      },
+      "WorkflowStateOptions": {
+        "type": "object",
+        "description": "The workflow state options",
+        "properties": {
+          "can_add_comments": {
+            "type": "boolean",
+            "description": "Whether the state can add comments",
+            "example": false
+          },
+          "deletable": {
+            "type": "boolean",
+            "description": "Whether the state is deletable",
+            "example": false
+          },
+          "editable": {
+            "type": "boolean",
+            "description": "Whether the state is editable",
+            "example": false
+          }
+        },
+        "required": [
+          "can_add_comments",
+          "deletable",
+          "editable"
+        ],
+        "additionalProperties": false
+      },
+      "WorkflowStateType": {
+        "type": "string",
+        "description": "The workflow state type",
+        "enum": [
+          "initial",
+          "in-progress",
+          "final",
+          "rejected"
+        ]
+      },
       "WorkflowStateWithForms": {
         "type": "object",
         "description": "The workflow state with forms",
@@ -1543,71 +1505,153 @@
                 "version_number": {
                   "type": "integer",
                   "description": "The form version number",
-                  "example": 1
+                  "example": 0
                 }
               },
-              "additionalProperties": false,
               "required": [
                 "created_at",
                 "has_comments",
                 "id",
                 "title",
                 "version_number"
-              ]
+              ],
+              "additionalProperties": false
             }
           },
           "name": {
-            "type": "string",
-            "description": "The workflow state name",
-            "enum": [
-              "In Draft",
-              "In Review",
-              "Completed",
-              "Rejected"
-            ]
+            "$ref": "#/components/schemas/WorkflowStateName"
           },
           "options": {
-            "type": "object",
-            "description": "The workflow state options",
-            "properties": {
-              "can_add_comments": {
-                "type": "boolean",
-                "description": "Should user be able to add comments to form"
-              },
-              "deletable": {
-                "type": "boolean",
-                "description": "Should user be able to delete a form"
-              },
-              "editable": {
-                "type": "boolean",
-                "description": "Should user be able to edit a form"
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "can_add_comments",
-              "deletable",
-              "editable"
-            ]
+            "$ref": "#/components/schemas/WorkflowStateOptions"
           },
           "type": {
-            "type": "string",
-            "description": "The workflow state type",
-            "enum": [
-              "initial",
-              "in-progress",
-              "final",
-              "rejected"
-            ]
+            "$ref": "#/components/schemas/WorkflowStateType"
           }
         },
-        "additionalProperties": false,
         "required": [
           "forms",
           "name",
           "options",
           "type"
-        ]
+        ],
+        "additionalProperties": false
+      },
+      "WorkflowTransition": {
+        "type": "object",
+        "description": "The workflow transition",
+        "properties": {
+          "activity_text": {
+            "type": "string",
+            "description": "The transition activity text",
+            "example": "Submitted"
+          },
+          "audience": {
+            "type": "array",
+            "description": "The transition audience permissions",
+            "items": {
+              "type": "string",
+              "description": "The user permission",
+              "example": "can_review_forms"
+            }
+          },
+          "id": {
+            "type": "string",
+            "description": "The transition id",
+            "example": "1"
+          },
+          "name": {
+            "type": "string",
+            "description": "The transition name",
+            "example": "Submit"
+          },
+          "options": {
+            "type": "object",
+            "properties": {
+              "skip_validation": {
+                "type": "boolean",
+                "description": "Whether to skip validation",
+                "example": false
+              }
+            },
+            "required": [
+              "skip_validation"
+            ],
+            "additionalProperties": false
+          },
+          "requires_reason_for_change": {
+            "type": "boolean",
+            "description": "Whether the transition requires reason for change",
+            "example": false
+          },
+          "requires_review_comments": {
+            "type": "boolean",
+            "description": "Whether the transition requires review comments",
+            "example": false
+          },
+          "requires_signatures": {
+            "type": "array",
+            "description": "The transition requires signatures",
+            "items": {
+              "type": "object",
+              "description": "The workflow transition signature",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "The signature id",
+                  "example": "0d22ea49-0ed5-4bc5-80df-41d5013a9bb6"
+                },
+                "signature_definition_id": {
+                  "type": "integer",
+                  "description": "The signature definition id",
+                  "example": 1
+                },
+                "required_number": {
+                  "type": "integer",
+                  "description": "The number of required signatures",
+                  "example": 0
+                }
+              },
+              "required": [
+                "id",
+                "signature_definition_id",
+                "required_number"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "signature_definitions": {
+            "type": "array",
+            "description": "The transition signature definitions",
+            "items": {
+              "type": "object",
+              "description": "The signature definition",
+              "properties": {
+                "reason": {
+                  "type": "string",
+                  "description": "The signature definition reason",
+                  "example": "I am the owner of this"
+                },
+                "signature_type": {
+                  "type": "string",
+                  "description": "The signature definition type",
+                  "example": "Authorship"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "activity_text",
+          "audience",
+          "id",
+          "name",
+          "options",
+          "requires_reason_for_change",
+          "requires_review_comments",
+          "requires_signatures",
+          "signature_definitions"
+        ],
+        "additionalProperties": false
       }
     },
     "responses": {

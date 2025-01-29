@@ -30,69 +30,34 @@
           "version_number": {
             "type": "integer",
             "description": "The form version number",
-            "example": 1
+            "example": 0
           }
         },
-        "additionalProperties": false,
         "required": [
           "created_at",
           "has_comments",
           "id",
           "title",
           "version_number"
-        ]
+        ],
+        "additionalProperties": false
       }
     },
     "name": {
-      "type": "string",
-      "description": "The workflow state name",
-      "enum": [
-        "In Draft",
-        "In Review",
-        "Completed",
-        "Rejected"
-      ]
+      "$ref": "./WorkflowStateName.json"
     },
     "options": {
-      "type": "object",
-      "description": "The workflow state options",
-      "properties": {
-        "can_add_comments": {
-          "type": "boolean",
-          "description": "Should user be able to add comments to form"
-        },
-        "deletable": {
-          "type": "boolean",
-          "description": "Should user be able to delete a form"
-        },
-        "editable": {
-          "type": "boolean",
-          "description": "Should user be able to edit a form"
-        }
-      },
-      "additionalProperties": false,
-      "required": [
-        "can_add_comments",
-        "deletable",
-        "editable"
-      ]
+      "$ref": "./WorkflowStateOptions.json"
     },
     "type": {
-      "type": "string",
-      "description": "The workflow state type",
-      "enum": [
-        "initial",
-        "in-progress",
-        "final",
-        "rejected"
-      ]
+      "$ref": "./WorkflowStateType.json"
     }
   },
-  "additionalProperties": false,
   "required": [
     "forms",
     "name",
     "options",
     "type"
-  ]
+  ],
+  "additionalProperties": false
 }

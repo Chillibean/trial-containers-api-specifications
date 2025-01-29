@@ -98,8 +98,11 @@
       "Error": {
         "$ref": "refs/components/schemas/Error.json"
       },
-      "FormTemplateField": {
-        "$ref": "refs/components/schemas/FormTemplateField.json"
+      "Form": {
+        "$ref": "refs/components/schemas/Form.json"
+      },
+      "FormField": {
+        "$ref": "refs/components/schemas/FormField.json"
       },
       "InfoFields": {
         "$ref": "refs/components/schemas/InfoFields.json"
@@ -110,9 +113,6 @@
       "Thumbnails": {
         "$ref": "refs/components/schemas/Thumbnails.json"
       },
-      "Transition": {
-        "$ref": "refs/components/schemas/Transition.json"
-      },
       "TrialContainer": {
         "$ref": "refs/components/schemas/TrialContainer.json"
       },
@@ -122,8 +122,23 @@
       "Video": {
         "$ref": "refs/components/schemas/Video.json"
       },
+      "WorkflowState": {
+        "$ref": "refs/components/schemas/WorkflowState.json"
+      },
+      "WorkflowStateName": {
+        "$ref": "refs/components/schemas/WorkflowStateName.json"
+      },
+      "WorkflowStateOptions": {
+        "$ref": "refs/components/schemas/WorkflowStateOptions.json"
+      },
+      "WorkflowStateType": {
+        "$ref": "refs/components/schemas/WorkflowStateType.json"
+      },
       "WorkflowStateWithForms": {
         "$ref": "refs/components/schemas/WorkflowStateWithForms.json"
+      },
+      "WorkflowTransition": {
+        "$ref": "refs/components/schemas/WorkflowTransition.json"
       }
     }
   }

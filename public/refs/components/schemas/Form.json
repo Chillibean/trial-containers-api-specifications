@@ -1,0 +1,81 @@
+{
+  "type": "object",
+  "description": "The form",
+  "properties": {
+    "audience": {
+      "type": "array",
+      "description": "The form audience",
+      "items": {
+        "$ref": "./User.json"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "description": "The form created at",
+      "example": "2025-01-15T12:00:00.000Z"
+    },
+    "current_state": {
+      "$ref": "./WorkflowState.json"
+    },
+    "current_transitions": {
+      "type": "array",
+      "description": "The form current transitions",
+      "items": {
+        "$ref": "./WorkflowTransition.json"
+      }
+    },
+    "description": {
+      "type": "string",
+      "description": "The form description",
+      "example": "A form utilized during a patient consultation"
+    },
+    "fields": {
+      "type": "array",
+      "description": "The form fields",
+      "items": {
+        "$ref": "./FormField.json"
+      }
+    },
+    "has_history": {
+      "type": "boolean",
+      "description": "Whether the form has history",
+      "example": false
+    },
+    "id": {
+      "type": "integer",
+      "description": "The form id",
+      "example": 1
+    },
+    "signatures": {
+      "type": "array",
+      "description": "The form signatures",
+      "items": {
+        "$ref": "./Signature.json"
+      }
+    },
+    "title": {
+      "type": "string",
+      "description": "The form title",
+      "example": "Patient Review"
+    },
+    "version_number": {
+      "type": "integer",
+      "description": "The form version number",
+      "example": 0
+    }
+  },
+  "required": [
+    "audience",
+    "created_at",
+    "current_state",
+    "current_transitions",
+    "description",
+    "fields",
+    "has_history",
+    "id",
+    "signatures",
+    "title",
+    "version_number"
+  ],
+  "additionalProperties": false
+}

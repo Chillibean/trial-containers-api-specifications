@@ -108,22 +108,22 @@
       {
         "name": "account_id",
         "in": "path",
+        "description": "The account id",
         "required": true,
         "schema": {
           "type": "string",
           "example": "1"
-        },
-        "description": "The account id"
+        }
       },
       {
         "name": "trial_container_id",
         "in": "path",
+        "description": "The trial container id",
         "required": true,
         "schema": {
           "type": "string",
           "example": "1"
-        },
-        "description": "The trial container id"
+        }
       }
     ],
     "requestBody": {
