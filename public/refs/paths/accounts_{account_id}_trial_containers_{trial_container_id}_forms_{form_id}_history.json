@@ -1,0 +1,102 @@
+{
+  "get": {
+    "summary": "Get form history",
+    "description": "Get form history",
+    "operationId": "getFormHistory",
+    "tags": [
+      "Trial Container Forms"
+    ],
+    "security": [
+      {
+        "userSessionKey": [],
+        "chillipharmSession": []
+      }
+    ],
+    "parameters": [
+      {
+        "name": "account_id",
+        "in": "path",
+        "description": "The account id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      },
+      {
+        "name": "trial_container_id",
+        "in": "path",
+        "description": "The trial container id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      },
+      {
+        "name": "form_id",
+        "in": "path",
+        "description": "The form id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "description": "The form with history",
+              "properties": {
+                "created_at": {
+                  "type": "string",
+                  "description": "The form created at date",
+                  "example": "2025-01-15T12:00:00.000Z"
+                },
+                "current_state": {
+                  "$ref": "../components/schemas/WorkflowState.json"
+                },
+                "history": {
+                  "$ref": "../components/schemas/WorkflowInstanceHistoryRecord.json"
+                },
+                "id": {
+                  "type": "integer",
+                  "description": "The form id",
+                  "example": 1
+                },
+                "version_number": {
+                  "type": "integer",
+                  "description": "The form version number",
+                  "example": 0
+                }
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "$ref": "../components/responses/BadRequest.json"
+      },
+      "401": {
+        "$ref": "../components/responses/Unauthorized.json"
+      },
+      "403": {
+        "$ref": "../components/responses/Forbidden.json"
+      },
+      "404": {
+        "$ref": "../components/responses/NotFound.json"
+      },
+      "409": {
+        "$ref": "../components/responses/Conflict.json"
+      },
+      "500": {
+        "$ref": "../components/responses/InternalServerError.json"
+      }
+    }
+  }
+}

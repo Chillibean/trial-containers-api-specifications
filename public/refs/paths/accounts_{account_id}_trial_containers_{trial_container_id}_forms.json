@@ -1,7 +1,7 @@
 {
   "get": {
     "summary": "Get forms for a form container",
-    "description": "Get chapters for a form container",
+    "description": "Get forms for a form container",
     "operationId": "getForms",
     "tags": [
       "Trial Container Forms"
@@ -143,7 +143,10 @@
               "form_container_type": {
                 "type": "string",
                 "description": "The form container type",
-                "example": "Study::Procedure"
+                "enum": [
+                  "Asset",
+                  "Study::Procedure"
+                ]
               },
               "form_template_id": {
                 "type": "integer",

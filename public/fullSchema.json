@@ -318,10 +318,546 @@
         }
       }
     },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms/{form_id}/exports": {
+      "get": {
+        "summary": "Export form as PDF",
+        "description": "Export form as PDF",
+        "operationId": "exportFormPdf",
+        "tags": [
+          "Trial Container Forms"
+        ],
+        "security": [
+          {
+            "userSessionKey": [],
+            "chillipharmSession": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "description": "The trial container id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "form_id",
+            "in": "path",
+            "description": "The form id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms/{form_id}/history": {
+      "get": {
+        "summary": "Get form history",
+        "description": "Get form history",
+        "operationId": "getFormHistory",
+        "tags": [
+          "Trial Container Forms"
+        ],
+        "security": [
+          {
+            "userSessionKey": [],
+            "chillipharmSession": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "description": "The trial container id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "form_id",
+            "in": "path",
+            "description": "The form id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "The form with history",
+                  "properties": {
+                    "created_at": {
+                      "type": "string",
+                      "description": "The form created at date",
+                      "example": "2025-01-15T12:00:00.000Z"
+                    },
+                    "current_state": {
+                      "$ref": "#/components/schemas/WorkflowState"
+                    },
+                    "history": {
+                      "$ref": "#/components/schemas/WorkflowInstanceHistoryRecord"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "The form id",
+                      "example": 1
+                    },
+                    "version_number": {
+                      "type": "integer",
+                      "description": "The form version number",
+                      "example": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms/{form_id}/transitions/{transition_id}": {
+      "post": {
+        "summary": "Complete form transition",
+        "description": "Complete form transition",
+        "operationId": "completeFormTransition",
+        "tags": [
+          "Trial Container Forms"
+        ],
+        "security": [
+          {
+            "userSessionKey": [],
+            "chillipharmSession": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "description": "The trial container id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "form_id",
+            "in": "path",
+            "description": "The form id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "transition_id",
+            "in": "path",
+            "description": "The transition id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Form"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms/{form_id}/versions": {
+      "get": {
+        "summary": "Get form versions",
+        "description": "Get form versions",
+        "operationId": "getFormVersions",
+        "tags": [
+          "Trial Container Forms"
+        ],
+        "security": [
+          {
+            "userSessionKey": [],
+            "chillipharmSession": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "description": "The trial container id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "form_id",
+            "in": "path",
+            "description": "The form id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "The form with versions",
+                  "properties": {
+                    "created_at": {
+                      "type": "string",
+                      "description": "The form created at date",
+                      "example": "2025-01-15T12:00:00.000Z"
+                    },
+                    "current_state": {
+                      "$ref": "#/components/schemas/WorkflowState"
+                    },
+                    "has_history": {
+                      "type": "boolean",
+                      "description": "Whether form has history",
+                      "example": false
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "The form id",
+                      "example": 1
+                    },
+                    "version_number": {
+                      "type": "integer",
+                      "description": "The form version number",
+                      "example": 0
+                    },
+                    "versions": {
+                      "type": "array",
+                      "description": "The form versions",
+                      "items": {
+                        "type": "object",
+                        "description": "The form version",
+                        "properties": {
+                          "created_at": {
+                            "type": "string",
+                            "description": "The form version created at date",
+                            "example": "2025-01-15T12:00:00.000Z"
+                          },
+                          "id": {
+                            "type": "integer",
+                            "description": "The form id",
+                            "example": 1
+                          },
+                          "title": {
+                            "type": "string",
+                            "description": "The current form template version title",
+                            "example": "Patient Review"
+                          },
+                          "version_number": {
+                            "type": "integer",
+                            "description": "The form version number",
+                            "example": 0
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms/{form_id}/versions/{version_number}": {
+      "get": {
+        "summary": "Get form version",
+        "description": "Get form version",
+        "operationId": "getFormVersion",
+        "tags": [
+          "Trial Container Forms"
+        ],
+        "security": [
+          {
+            "userSessionKey": [],
+            "chillipharmSession": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "description": "The trial container id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "form_id",
+            "in": "path",
+            "description": "The form id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "version_number",
+            "in": "path",
+            "description": "The form version number",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "The form version",
+                  "properties": {
+                    "created_at": {
+                      "type": "string",
+                      "description": "The form created at date",
+                      "example": "2025-01-15T12:00:00.000Z"
+                    },
+                    "current_state": {
+                      "$ref": "#/components/schemas/WorkflowState"
+                    },
+                    "fields": {
+                      "type": "array",
+                      "description": "The form fields",
+                      "items": {
+                        "$ref": "#/components/schemas/FormField"
+                      }
+                    },
+                    "has_history": {
+                      "type": "boolean",
+                      "description": "Whether form has history",
+                      "example": false
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "The form id",
+                      "example": 1
+                    },
+                    "signatures": {
+                      "type": "array",
+                      "description": "The form signatures",
+                      "items": {
+                        "$ref": "#/components/schemas/Signature"
+                      }
+                    },
+                    "version_number": {
+                      "type": "integer",
+                      "description": "The form version number",
+                      "example": 0
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "The current form template version title",
+                      "example": "Patient Review"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
     "/accounts/{account_id}/trial_containers/{trial_container_id}/forms": {
       "get": {
         "summary": "Get forms for a form container",
-        "description": "Get chapters for a form container",
+        "description": "Get forms for a form container",
         "operationId": "getForms",
         "tags": [
           "Trial Container Forms"
@@ -463,7 +999,10 @@
                   "form_container_type": {
                     "type": "string",
                     "description": "The form container type",
-                    "example": "Study::Procedure"
+                    "enum": [
+                      "Asset",
+                      "Study::Procedure"
+                    ]
                   },
                   "form_template_id": {
                     "type": "integer",
@@ -904,7 +1443,7 @@
           },
           "created_at": {
             "type": "string",
-            "description": "The form created at",
+            "description": "The form created at date",
             "example": "2025-01-15T12:00:00.000Z"
           },
           "current_state": {
@@ -1398,6 +1937,51 @@
           "status",
           "frame_rate"
         ]
+      },
+      "WorkflowInstanceHistoryRecord": {
+        "type": "object",
+        "description": "The workflow instance history record",
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "description": "The history record created at date",
+            "example": "2025-01-15T12:00:00.000Z"
+          },
+          "id": {
+            "type": "integer",
+            "description": "The history record id",
+            "example": 1
+          },
+          "object_version_number": {
+            "type": "integer",
+            "description": "The object version number",
+            "example": 0
+          },
+          "reason_for_change": {
+            "type": "string",
+            "description": "The reason for change",
+            "example": "Changes needed"
+          },
+          "transition_activity_text": {
+            "type": "string",
+            "description": "The transition activity text",
+            "example": "Rejected"
+          },
+          "user_email": {
+            "type": "string",
+            "description": "The user email",
+            "example": "johndoe@chillipharm.com"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "object_version_number",
+          "reason_for_change",
+          "transition_activity_text",
+          "user_email"
+        ],
+        "additionalProperties": false
       },
       "WorkflowState": {
         "type": "object",
