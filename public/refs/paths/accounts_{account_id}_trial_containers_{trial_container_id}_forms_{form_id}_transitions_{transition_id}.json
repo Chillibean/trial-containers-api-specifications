@@ -1,10 +1,10 @@
 {
-  "get": {
-    "summary": "Get a trial container",
-    "description": "Get a trial container",
-    "operationId": "getTrialContainer",
+  "post": {
+    "summary": "Complete form transition",
+    "description": "Complete form transition",
+    "operationId": "completeFormTransition",
     "tags": [
-      "Trial Containers"
+      "Trial Container Forms"
     ],
     "security": [
       {
@@ -32,6 +32,26 @@
           "type": "string",
           "example": "1"
         }
+      },
+      {
+        "name": "form_id",
+        "in": "path",
+        "description": "The form id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      },
+      {
+        "name": "transition_id",
+        "in": "path",
+        "description": "The transition id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
       }
     ],
     "responses": {
@@ -40,7 +60,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "../components/schemas/TrialContainer.json"
+              "$ref": "../components/schemas/Form.json"
             }
           }
         }

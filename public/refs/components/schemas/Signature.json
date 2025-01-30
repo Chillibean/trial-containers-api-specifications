@@ -1,50 +1,51 @@
 {
   "type": "object",
+  "description": "The signature",
   "properties": {
-    "id": {
-      "type": "integer",
-      "description": "The signature id",
-      "example": 1
+    "created_at": {
+      "type": "string",
+      "description": "The signature created at",
+      "example": "2025-01-15T12:00:00.000Z"
     },
     "email": {
       "type": "string",
       "description": "The signature email",
-      "example": "example@gmail.com"
+      "example": "johndoe@chillipharm.com"
     },
     "first_name": {
       "type": "string",
       "description": "The signature first name",
-      "example": "First"
+      "example": "John"
+    },
+    "id": {
+      "type": "string",
+      "description": "The signature uuid",
+      "example": "0bb4fa28-9e55-4d06-8eb4-3c59e0030e7f"
     },
     "last_name": {
       "type": "string",
       "description": "The signature last name",
-      "example": "Last"
+      "example": "Doe"
     },
     "meaning": {
       "type": "string",
       "description": "The signature meaning",
       "example": "Submit"
     },
-    "reason": {
-      "type": "string",
-      "description": "The signature reason",
-      "example": "Reason"
-    },
-    "created_at": {
-      "type": "string",
-      "description": "The signature created at",
-      "example": "2024-04-16T16:35:52.875Z"
-    },
     "object_uuid": {
       "type": "string",
       "description": "The signature object uuid",
-      "example": "uuid"
+      "example": "0bb4fa28-9e55-4d06-8eb4-3c59e0030e7f"
+    },
+    "reason": {
+      "type": "string",
+      "description": "The signature reason",
+      "example": "I am the owner of this document"
     },
     "user_uuid": {
       "type": "string",
       "description": "The signature user uuid",
-      "example": "uuid"
+      "example": "0bb4fa28-9e55-4d06-8eb4-3c59e0030e7f"
     },
     "verification_status": {
       "type": "string",
@@ -53,15 +54,16 @@
     }
   },
   "required": [
-    "id",
+    "created_at",
     "email",
     "first_name",
+    "id",
     "last_name",
     "meaning",
-    "reason",
-    "created_at",
     "object_uuid",
+    "reason",
     "user_uuid",
     "verification_status"
-  ]
+  ],
+  "additionalProperties": false
 }

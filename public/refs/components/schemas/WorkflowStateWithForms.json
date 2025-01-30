@@ -1,0 +1,63 @@
+{
+  "type": "object",
+  "description": "The workflow state with forms",
+  "properties": {
+    "forms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "The form",
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "description": "The created at date",
+            "example": "2025-01-15T12:00:00.000Z"
+          },
+          "has_comments": {
+            "type": "boolean",
+            "description": "The comments indicator"
+          },
+          "id": {
+            "type": "integer",
+            "description": "The form id",
+            "example": 1
+          },
+          "title": {
+            "type": "string",
+            "description": "The form title",
+            "example": "Patient Review"
+          },
+          "version_number": {
+            "type": "integer",
+            "description": "The form version number",
+            "example": 0
+          }
+        },
+        "required": [
+          "created_at",
+          "has_comments",
+          "id",
+          "title",
+          "version_number"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "name": {
+      "$ref": "./WorkflowStateName.json"
+    },
+    "options": {
+      "$ref": "./WorkflowStateOptions.json"
+    },
+    "type": {
+      "$ref": "./WorkflowStateType.json"
+    }
+  },
+  "required": [
+    "forms",
+    "name",
+    "options",
+    "type"
+  ],
+  "additionalProperties": false
+}
