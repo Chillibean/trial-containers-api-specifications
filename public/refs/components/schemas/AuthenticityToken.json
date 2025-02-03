@@ -1,0 +1,5 @@
+{
+  "description": "The authenticity token",
+  "type": "string",
+  "example": "valid_token"
+}

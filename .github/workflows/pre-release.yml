@@ -1,0 +1,101 @@
+name: Pre-Release
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+
+jobs:
+  create-pre-release:
+    name: Create Pre-Release
+    runs-on: ubuntu-latest
+    if: ${{ !github.event.pull_request.draft }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Retrieve Version
+        id: version
+        run: echo "value=$(node -pe 'require("./package.json").version')-dev.${{ github.run_number }}" >> $GITHUB_OUTPUT
+      - name: Create Release
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const fs = require('fs').promises;
+
+            const { repo: { owner, repo }, sha } = context;
+
+            try {
+              const release = await github.rest.repos.createRelease({
+                owner: owner,
+                repo: repo,
+                tag_name: '${{ steps.version.outputs.value }}',
+                target_commitish: sha,
+                name: '${{ steps.version.outputs.value }}',
+                body: 'This is a pre-release for development purposes only. Do not use it for production.',
+                draft: true,
+                prerelease: true,
+              });
+
+              await github.rest.repos.uploadReleaseAsset({
+                owner: owner,
+                repo: repo,
+                release_id: release.data.id,
+                name: 'schema.json',
+                data: await fs.readFile('./public/fullSchema.json'),
+              });
+
+              await github.rest.repos.updateRelease({
+                owner: owner,
+                repo: repo,
+                release_id: release.data.id,
+                draft: false,
+              });
+            } catch (error) {
+              console.error(error);
+
+              await github.rest.repos.deleteRelease({
+                owner: owner,
+                repo: repo,
+                release_id: release.data.id,
+              });
+
+              core.setFailed('Failed to create a pre-release');
+            }
+    outputs:
+      version: ${{ steps.version.outputs.value }}
+
+  trigger-client-sdk-package-generation:
+    name: Trigger client SDK package generation
+    runs-on: ubuntu-latest
+    needs: create-pre-release
+    if: ${{ !github.event.pull_request.draft }}
+    steps:
+      - name: Trigger Workflow
+        run: |
+          set -e
+          curl -X POST https://api.github.com/repos/Chillibean/trial-containers-api-client-sdk/dispatches \
+          -H 'Accept: application/vnd.github.everest-preview+json' \
+          -u ${{ secrets.API_SPEC_PAT_TOKEN }} \
+          --data '{"event_type": "trigger-pre-release", "client_payload": { "version": "${{ needs.create-pre-release.outputs.version }}" }}' \
+          --fail
+      - name: Pull Request Comment
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const { repo: { owner, repo } } = context;
+
+            try {
+              await github.rest.issues.createComment({
+                owner: owner,
+                repo: repo,
+                issue_number: ${{ github.event.number }},
+                body: 'Version: ${{ needs.create-pre-release.outputs.version }}',
+              });
+            } catch (error) {
+              console.error(error);
+            }
