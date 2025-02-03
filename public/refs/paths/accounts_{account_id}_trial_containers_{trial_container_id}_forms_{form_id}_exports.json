@@ -1,10 +1,10 @@
 {
   "get": {
-    "summary": "Get a trial container",
-    "description": "Get a trial container",
-    "operationId": "getTrialContainer",
+    "summary": "Export form as PDF",
+    "description": "Export form as PDF",
+    "operationId": "exportFormPdf",
     "tags": [
-      "Trial Containers"
+      "Trial Container Forms"
     ],
     "security": [
       {
@@ -32,15 +32,26 @@
           "type": "string",
           "example": "1"
         }
+      },
+      {
+        "name": "form_id",
+        "in": "path",
+        "description": "The form id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
       }
     ],
     "responses": {
       "200": {
         "description": "OK",
         "content": {
-          "application/json": {
+          "application/pdf": {
             "schema": {
-              "$ref": "../components/schemas/TrialContainer.json"
+              "type": "string",
+              "format": "binary"
             }
           }
         }

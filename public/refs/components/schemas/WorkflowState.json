@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "description": "The workflow state",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The state id",
+      "example": 1
+    },
+    "name": {
+      "$ref": "./WorkflowStateName.json"
+    },
+    "options": {
+      "$ref": "./WorkflowStateOptions.json"
+    },
+    "type": {
+      "$ref": "./WorkflowStateType.json"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "options",
+    "type"
+  ],
+  "additionalProperties": false
+}

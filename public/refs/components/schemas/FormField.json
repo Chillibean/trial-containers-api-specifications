@@ -1,0 +1,131 @@
+{
+  "type": "object",
+  "description": "The form field",
+  "properties": {
+    "comments": {
+      "type": "array",
+      "description": "The field comments",
+      "items": {
+        "type": "string",
+        "description": "The comment",
+        "example": "This field value is incorrect. Please change value to 10"
+      },
+      "nullable": true
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the field is enabled",
+      "example": true
+    },
+    "id": {
+      "type": "string",
+      "description": "The field id",
+      "example": "1"
+    },
+    "input_guidance": {
+      "type": "string",
+      "description": "The field input guidance",
+      "example": "Patient DOB",
+      "nullable": true
+    },
+    "options": {
+      "type": "array",
+      "description": "The field options",
+      "items": {
+        "type": "string",
+        "example": "Male"
+      },
+      "nullable": true
+    },
+    "other_enabled": {
+      "type": "boolean",
+      "description": "Whether other types are enabled",
+      "example": false
+    },
+    "other_field": {
+      "type": "string",
+      "description": "The other field label",
+      "example": "Other"
+    },
+    "title": {
+      "type": "string",
+      "description": "The field title",
+      "example": "Date of birth"
+    },
+    "type": {
+      "type": "string",
+      "description": "The field type",
+      "enum": [
+        "single_line",
+        "descriptive",
+        "checkbox",
+        "radio",
+        "dropdown",
+        "date"
+      ]
+    },
+    "validations": {
+      "type": "object",
+      "properties": {
+        "character_limit": {
+          "type": "integer",
+          "description": "The maximum characters",
+          "example": 10,
+          "nullable": true
+        },
+        "character_restriction": {
+          "type": "string",
+          "description": "The restricted character type",
+          "enum": [
+            "letters_and_numbers",
+            "letters",
+            "numbers"
+          ],
+          "nullable": true
+        },
+        "input_format": {
+          "type": "string",
+          "description": "The regex format for input",
+          "example": "[a-zA-Z]{1}[a-zA-Z]{1}-\\d{1}\\d{1}\\d{1}\\d{1}\\d{1}",
+          "nullable": true
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Whether the field is required",
+          "example": false
+        }
+      },
+      "required": [
+        "required"
+      ],
+      "additionalProperties": false
+    },
+    "value": {
+      "oneOf": [
+        {
+          "type": "string",
+          "description": "The field value"
+        },
+        {
+          "type": "array",
+          "description": "The field values",
+          "items": {
+            "type": "string",
+            "description": "The field single value"
+          }
+        }
+      ]
+    }
+  },
+  "required": [
+    "enabled",
+    "id",
+    "other_enabled",
+    "other_field",
+    "title",
+    "type",
+    "validations",
+    "value"
+  ],
+  "additionalProperties": false
+}

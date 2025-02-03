@@ -60,6 +60,21 @@
     "/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}/chapters": {
       "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_assets_{asset_id}_chapters.json"
     },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms/{form_id}/exports": {
+      "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_forms_{form_id}_exports.json"
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms/{form_id}/history": {
+      "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_forms_{form_id}_history.json"
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms/{form_id}/transitions/{transition_id}": {
+      "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_forms_{form_id}_transitions_{transition_id}.json"
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms/{form_id}/versions": {
+      "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_forms_{form_id}_versions.json"
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms/{form_id}/versions/{version_number}": {
+      "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_forms_{form_id}_versions_{version_number}.json"
+    },
     "/accounts/{account_id}/trial_containers/{trial_container_id}/forms": {
       "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_forms.json"
     },
@@ -98,8 +113,11 @@
       "Error": {
         "$ref": "refs/components/schemas/Error.json"
       },
-      "FormTemplateField": {
-        "$ref": "refs/components/schemas/FormTemplateField.json"
+      "Form": {
+        "$ref": "refs/components/schemas/Form.json"
+      },
+      "FormField": {
+        "$ref": "refs/components/schemas/FormField.json"
       },
       "InfoFields": {
         "$ref": "refs/components/schemas/InfoFields.json"
@@ -110,9 +128,6 @@
       "Thumbnails": {
         "$ref": "refs/components/schemas/Thumbnails.json"
       },
-      "Transition": {
-        "$ref": "refs/components/schemas/Transition.json"
-      },
       "TrialContainer": {
         "$ref": "refs/components/schemas/TrialContainer.json"
       },
@@ -121,6 +136,27 @@
       },
       "Video": {
         "$ref": "refs/components/schemas/Video.json"
+      },
+      "WorkflowInstanceHistoryRecord": {
+        "$ref": "refs/components/schemas/WorkflowInstanceHistoryRecord.json"
+      },
+      "WorkflowState": {
+        "$ref": "refs/components/schemas/WorkflowState.json"
+      },
+      "WorkflowStateName": {
+        "$ref": "refs/components/schemas/WorkflowStateName.json"
+      },
+      "WorkflowStateOptions": {
+        "$ref": "refs/components/schemas/WorkflowStateOptions.json"
+      },
+      "WorkflowStateType": {
+        "$ref": "refs/components/schemas/WorkflowStateType.json"
+      },
+      "WorkflowStateWithForms": {
+        "$ref": "refs/components/schemas/WorkflowStateWithForms.json"
+      },
+      "WorkflowTransition": {
+        "$ref": "refs/components/schemas/WorkflowTransition.json"
       }
     }
   }

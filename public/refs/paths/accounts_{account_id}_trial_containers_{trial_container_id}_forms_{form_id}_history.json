@@ -1,10 +1,10 @@
 {
   "get": {
-    "summary": "Get a trial container",
-    "description": "Get a trial container",
-    "operationId": "getTrialContainer",
+    "summary": "Get form history",
+    "description": "Get form history",
+    "operationId": "getFormHistory",
     "tags": [
-      "Trial Containers"
+      "Trial Container Forms"
     ],
     "security": [
       {
@@ -32,6 +32,16 @@
           "type": "string",
           "example": "1"
         }
+      },
+      {
+        "name": "form_id",
+        "in": "path",
+        "description": "The form id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
       }
     ],
     "responses": {
@@ -40,7 +50,31 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "../components/schemas/TrialContainer.json"
+              "type": "object",
+              "description": "The form with history",
+              "properties": {
+                "created_at": {
+                  "type": "string",
+                  "description": "The form created at date",
+                  "example": "2025-01-15T12:00:00.000Z"
+                },
+                "current_state": {
+                  "$ref": "../components/schemas/WorkflowState.json"
+                },
+                "history": {
+                  "$ref": "../components/schemas/WorkflowInstanceHistoryRecord.json"
+                },
+                "id": {
+                  "type": "integer",
+                  "description": "The form id",
+                  "example": 1
+                },
+                "version_number": {
+                  "type": "integer",
+                  "description": "The form version number",
+                  "example": 0
+                }
+              }
             }
           }
         }
