@@ -99,9 +99,9 @@ Key elements within the JSON file:
 
 ## **GitHub Pages**
 
-You can access the documentation at [\*\*https://chillibean.github.io/trial-containers-api](https://chillibean.github.io/%7B%7BapiPackageName%7D)}/\*\*.
+You can access the documentation at [https://chillibean.github.io/trial-containers-api-specifications](https://chillibean.github.io/trial-containers-api-specifications).
 
-The OpenAPI JSON file is available at [\*\*https://chillibean.github.io/trial-containers-api](https://chillibean.github.io/%7B%7BapiPackageName%7D)}/fullSchema.json\*\*.
+The OpenAPI JSON file is available at [https://chillibean.github.io/trial-containers-api-specifications/fullSchema.json](https://chillibean.github.io/trial-containers-api-specifications/fullSchema.json).
 
 ## **GitHub Workflows**
 

@@ -78,11 +78,12 @@ jobs:
             const { repo: { owner, repo }, sha } = context;
 
             try {
-              const releases = await github.rest.repos.listReleases({
+              const releases = await github.paginate(github.rest.repos.listReleases, {
                 owner: owner,
                 repo: repo,
+                per_page: 100,
               });
-              const preReleases = releases.data.filter((release) => release.name && release.name.includes('${{ needs.create-release.outputs.version }}' && release.prerelease));
+              const preReleases = releases.filter((release) => release.name && release.name.includes('${{ needs.create-release.outputs.version }}') && release.prerelease);
 
               console.log('Releases found:', preReleases.map((release) => release.name));
 
