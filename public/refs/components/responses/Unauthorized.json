@@ -1,5 +1,5 @@
 {
-  "description": "Not found. The requested resource was not found.",
+  "description": "Unauthorized. Missing or invalid authentication credentials.",
   "content": {
     "application/json": {
       "schema": {

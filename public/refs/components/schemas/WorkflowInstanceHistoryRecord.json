@@ -1,0 +1,45 @@
+{
+  "type": "object",
+  "description": "The workflow instance history record",
+  "properties": {
+    "created_at": {
+      "type": "string",
+      "description": "The history record created at date",
+      "example": "2025-01-15T12:00:00.000Z"
+    },
+    "id": {
+      "type": "integer",
+      "description": "The history record id",
+      "example": 1
+    },
+    "object_version_number": {
+      "type": "integer",
+      "description": "The object version number",
+      "example": 0
+    },
+    "reason_for_change": {
+      "type": "string",
+      "description": "The reason for change",
+      "example": "Changes needed"
+    },
+    "transition_activity_text": {
+      "type": "string",
+      "description": "The transition activity text",
+      "example": "Rejected"
+    },
+    "user_email": {
+      "type": "string",
+      "description": "The user email",
+      "example": "johndoe@chillipharm.com"
+    }
+  },
+  "required": [
+    "created_at",
+    "id",
+    "object_version_number",
+    "reason_for_change",
+    "transition_activity_text",
+    "user_email"
+  ],
+  "additionalProperties": false
+}

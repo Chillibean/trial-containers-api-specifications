@@ -1,51 +1,66 @@
 {
-  "get": {
-    "summary": "Get a trial container",
+  "post": {
+    "summary": "Complete form transition",
+    "description": "Complete form transition",
+    "operationId": "completeFormTransition",
+    "tags": [
+      "Trial Container Forms"
+    ],
     "security": [
       {
-        "userSessionKey": []
-      },
-      {
+        "userSessionKey": [],
         "chillipharmSession": []
       }
     ],
-    "operationId": "getTrialContainer",
-    "description": "Get a trial container",
     "parameters": [
       {
         "name": "account_id",
         "in": "path",
+        "description": "The account id",
         "required": true,
         "schema": {
           "type": "string",
           "example": "1"
-        },
-        "description": "The account id"
+        }
       },
       {
-        "name": "id",
+        "name": "trial_container_id",
         "in": "path",
+        "description": "The trial container id",
         "required": true,
         "schema": {
           "type": "string",
           "example": "1"
-        },
-        "description": "The trial container id"
+        }
+      },
+      {
+        "name": "form_id",
+        "in": "path",
+        "description": "The form id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      },
+      {
+        "name": "transition_id",
+        "in": "path",
+        "description": "The transition id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
       }
     ],
-    "tags": [
-      "Trial Containers"
-    ],
-    "requestBody": {
-      "content": {}
-    },
     "responses": {
       "200": {
         "description": "OK",
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "../components/schemas/TrialContainer.json"
+              "$ref": "../components/schemas/Form.json"
             }
           }
         }
@@ -54,7 +69,7 @@
         "$ref": "../components/responses/BadRequest.json"
       },
       "401": {
-        "$ref": "../components/responses/Unauthorised.json"
+        "$ref": "../components/responses/Unauthorized.json"
       },
       "403": {
         "$ref": "../components/responses/Forbidden.json"

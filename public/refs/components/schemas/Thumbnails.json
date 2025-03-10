@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "description": "Asset thumbnails",
+  "properties": {
+    "small": {
+      "type": "string",
+      "nullable": true,
+      "description": "The asset small thumbnail url",
+      "example": "http://path-to-small-thumbnail"
+    },
+    "large": {
+      "type": "string",
+      "nullable": true,
+      "description": "The large asset thumbnail url",
+      "example": "http://path-to-large-thumbnail"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "small",
+    "large"
+  ]
+}
