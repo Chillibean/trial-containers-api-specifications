@@ -1,0 +1,117 @@
+{
+  "type": "object",
+  "description": "The workflow transition",
+  "properties": {
+    "activity_text": {
+      "type": "string",
+      "description": "The transition activity text",
+      "example": "Submitted"
+    },
+    "audience": {
+      "type": "array",
+      "description": "The transition audience permissions",
+      "items": {
+        "type": "string",
+        "description": "The user permission",
+        "example": "can_review_forms"
+      }
+    },
+    "id": {
+      "type": "string",
+      "description": "The transition id",
+      "example": "1"
+    },
+    "name": {
+      "type": "string",
+      "description": "The transition name",
+      "example": "Submit"
+    },
+    "options": {
+      "type": "object",
+      "properties": {
+        "skip_validation": {
+          "type": "boolean",
+          "description": "Whether to skip validation",
+          "example": false
+        }
+      },
+      "required": [
+        "skip_validation"
+      ],
+      "additionalProperties": false
+    },
+    "requires_reason_for_change": {
+      "type": "boolean",
+      "description": "Whether the transition requires reason for change",
+      "example": false
+    },
+    "requires_review_comments": {
+      "type": "boolean",
+      "description": "Whether the transition requires review comments",
+      "example": false
+    },
+    "requires_signatures": {
+      "type": "array",
+      "description": "The transition requires signatures",
+      "items": {
+        "type": "object",
+        "description": "The workflow transition signature",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The signature id",
+            "example": "0d22ea49-0ed5-4bc5-80df-41d5013a9bb6"
+          },
+          "signature_definition_id": {
+            "type": "integer",
+            "description": "The signature definition id",
+            "example": 1
+          },
+          "required_number": {
+            "type": "integer",
+            "description": "The number of required signatures",
+            "example": 0
+          }
+        },
+        "required": [
+          "id",
+          "signature_definition_id",
+          "required_number"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "signature_definitions": {
+      "type": "array",
+      "description": "The transition signature definitions",
+      "items": {
+        "type": "object",
+        "description": "The signature definition",
+        "properties": {
+          "reason": {
+            "type": "string",
+            "description": "The signature definition reason",
+            "example": "I am the owner of this"
+          },
+          "signature_type": {
+            "type": "string",
+            "description": "The signature definition type",
+            "example": "Authorship"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "activity_text",
+    "audience",
+    "id",
+    "name",
+    "options",
+    "requires_reason_for_change",
+    "requires_review_comments",
+    "requires_signatures",
+    "signature_definitions"
+  ],
+  "additionalProperties": false
+}
