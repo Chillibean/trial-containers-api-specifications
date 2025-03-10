@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "description": "The workflow state options",
+  "properties": {
+    "can_add_comments": {
+      "type": "boolean",
+      "description": "Whether the state can add comments",
+      "example": false
+    },
+    "deletable": {
+      "type": "boolean",
+      "description": "Whether the state is deletable",
+      "example": false
+    },
+    "editable": {
+      "type": "boolean",
+      "description": "Whether the state is editable",
+      "example": false
+    }
+  },
+  "required": [
+    "can_add_comments",
+    "deletable",
+    "editable"
+  ],
+  "additionalProperties": false
+}

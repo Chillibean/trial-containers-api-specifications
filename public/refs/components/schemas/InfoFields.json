@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "description": "Asset infos fields",
+  "properties": {
+    "Title": {
+      "type": "string",
+      "description": "The asset title",
+      "example": "Asset 1"
+    },
+    "Reviewed": {
+      "type": "string",
+      "description": "The asset reviewed state",
+      "example": "false"
+    }
+  },
+  "additionalProperties": true,
+  "required": [
+    "Title",
+    "Reviewed"
+  ]
+}

@@ -1,10 +1,10 @@
 {
   "get": {
-    "summary": "Get forms for a form container",
-    "description": "Get forms for a form container",
-    "operationId": "getForms",
+    "summary": "Get chapters for an asset",
+    "description": "Get chapters for an asset",
+    "operationId": "getAssetChapters",
     "tags": [
-      "Trial Container Forms"
+      "Trial Container Asset Chapters"
     ],
     "security": [
       {
@@ -34,26 +34,13 @@
         }
       },
       {
-        "name": "form_container_id",
-        "in": "query",
-        "description": "The form container id",
+        "name": "asset_id",
+        "in": "path",
+        "description": "The asset id",
         "required": true,
         "schema": {
           "type": "string",
           "example": "1"
-        }
-      },
-      {
-        "name": "form_container_type",
-        "in": "query",
-        "description": "The form container type",
-        "required": true,
-        "schema": {
-          "type": "string",
-          "enum": [
-            "Asset",
-            "Study::Procedure"
-          ]
         }
       }
     ],
@@ -65,7 +52,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "../components/schemas/WorkflowStateWithForms.json"
+                "$ref": "../components/schemas/Chapter.json"
               }
             }
           }
@@ -92,11 +79,11 @@
     }
   },
   "post": {
-    "summary": "Create trial container form",
-    "description": "Create a new form for a trial container",
-    "operationId": "createForm",
+    "summary": "Update chapters for an asset",
+    "description": "Update chapters for an asset",
+    "operationId": "updateAssetChapters",
     "tags": [
-      "Trial Container Forms"
+      "Trial Container Asset Chapters"
     ],
     "security": [
       {
@@ -124,9 +111,20 @@
           "type": "string",
           "example": "1"
         }
+      },
+      {
+        "name": "asset_id",
+        "in": "path",
+        "description": "The asset id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
       }
     ],
     "requestBody": {
+      "required": true,
       "content": {
         "application/json": {
           "schema": {
@@ -135,30 +133,16 @@
               "authenticity_token": {
                 "$ref": "../components/schemas/AuthenticityToken.json"
               },
-              "form_container_id": {
-                "type": "integer",
-                "description": "The form container id",
-                "example": 5
-              },
-              "form_container_type": {
-                "type": "string",
-                "description": "The form container type",
-                "enum": [
-                  "Asset",
-                  "Study::Procedure"
-                ]
-              },
-              "form_template_id": {
-                "type": "integer",
-                "description": "The form template id",
-                "example": 1
+              "chapters": {
+                "type": "array",
+                "items": {
+                  "$ref": "../components/schemas/Chapter.json"
+                }
               }
             },
             "required": [
               "authenticity_token",
-              "form_container_id",
-              "form_container_type",
-              "form_template_id"
+              "chapters"
             ],
             "additionalProperties": false
           }
@@ -166,23 +150,15 @@
       }
     },
     "responses": {
-      "201": {
-        "description": "Created",
+      "200": {
+        "description": "OK",
         "content": {
           "application/json": {
             "schema": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "integer",
-                  "description": "The form id",
-                  "example": 1
-                }
-              },
-              "required": [
-                "id"
-              ],
-              "additionalProperties": false
+              "type": "array",
+              "items": {
+                "$ref": "../components/schemas/Chapter.json"
+              }
             }
           }
         }

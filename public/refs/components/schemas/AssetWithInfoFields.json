@@ -1,0 +1,126 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The asset id",
+      "example": 1
+    },
+    "title": {
+      "type": "string",
+      "description": "The asset title",
+      "example": "Asset 1"
+    },
+    "filename": {
+      "type": "string",
+      "description": "The asset filename",
+      "example": "asset_1.mp4"
+    },
+    "extension": {
+      "type": "string",
+      "description": "The asset extension",
+      "example": "mp4"
+    },
+    "created_at": {
+      "type": "string",
+      "description": "The asset created at date",
+      "example": "2020-01-01T00:00:00.000Z"
+    },
+    "created_by": {
+      "$ref": "./User.json"
+    },
+    "media_type": {
+      "type": "string",
+      "description": "The asset media type",
+      "example": "video"
+    },
+    "media": {
+      "oneOf": [
+        {
+          "type": "object",
+          "description": "The links to the asset media",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "The asset media url",
+              "nullable": true,
+              "example": "https://eu-west-4-chillipharm-bucket.s3.eu-west-4.amazonaws.com/test_data/Image.png"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "url"
+          ]
+        },
+        {
+          "type": "object",
+          "description": "The links to the asset media",
+          "properties": {
+            "sd_video": {
+              "$ref": "./Video.json"
+            },
+            "hd_video": {
+              "$ref": "./Video.json"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "sd_video",
+            "hd_video"
+          ]
+        }
+      ]
+    },
+    "asset_infos": {
+      "$ref": "./InfoFields.json"
+    },
+    "thumbnails": {
+      "$ref": "./Thumbnails.json"
+    },
+    "study_procedure_identifier": {
+      "type": "string",
+      "description": "The asset study procedure identifier",
+      "example": "PROCEDURE"
+    },
+    "study_event_identifier": {
+      "type": "string",
+      "description": "The asset study event identifier",
+      "example": "EVENT"
+    },
+    "subject_number": {
+      "type": "string",
+      "description": "The asset subject number",
+      "example": "123"
+    },
+    "chapters": {
+      "type": "array",
+      "items": {
+        "$ref": "./Chapter.json"
+      }
+    },
+    "position": {
+      "type": "number",
+      "description": "The position of asset",
+      "example": 1
+    },
+    "processed": {
+      "type": "boolean",
+      "description": "The asset processed status",
+      "example": true
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "title",
+    "filename",
+    "extension",
+    "created_at",
+    "created_by",
+    "media_type",
+    "media",
+    "asset_infos",
+    "thumbnails",
+    "processed"
+  ]
+}

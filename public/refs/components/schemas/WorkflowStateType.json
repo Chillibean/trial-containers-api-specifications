@@ -1,0 +1,10 @@
+{
+  "type": "string",
+  "description": "The workflow state type",
+  "enum": [
+    "initial",
+    "in-progress",
+    "final",
+    "rejected"
+  ]
+}
