@@ -1,7 +1,7 @@
 {
   "type": "string",
   "description": "The workflow state name",
-  "enum": [
+  "example": [
     "In Draft",
     "In Review",
     "Completed",

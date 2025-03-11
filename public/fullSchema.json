@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "4.0.0",
+    "version": "4.0.1",
     "title": "Trial Container API",
     "description": "This is api specs for trial container endpoints",
     "contact": {
@@ -2013,7 +2013,7 @@
       "WorkflowStateName": {
         "type": "string",
         "description": "The workflow state name",
-        "enum": [
+        "example": [
           "In Draft",
           "In Review",
           "Completed",
