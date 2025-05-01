@@ -16,6 +16,11 @@
       "description": "The trial container name",
       "example": "Vitality Medical Center with subject"
     },
+    "number": {
+      "type": "string",
+      "description": "The trial container number",
+      "example": "VMC-001"
+    },
     "country": {
       "type": "string",
       "description": "The trial container country",
@@ -61,10 +66,7 @@
               "example": "visit"
             }
           },
-          "required": [
-            "plural",
-            "singular"
-          ],
+          "required": ["plural", "singular"],
           "additionalProperties": false
         },
         "study_procedure_display_name": {
@@ -81,10 +83,7 @@
               "example": "assessment"
             }
           },
-          "required": [
-            "plural",
-            "singular"
-          ],
+          "required": ["plural", "singular"],
           "additionalProperties": false
         }
       },
@@ -97,12 +96,6 @@
       "additionalProperties": false
     }
   },
-  "required": [
-    "id",
-    "name",
-    "country",
-    "type",
-    "permissions"
-  ],
+  "required": ["id", "name", "country", "type", "permissions", "number"],
   "additionalProperties": false
 }
