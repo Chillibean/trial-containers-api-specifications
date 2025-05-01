@@ -1773,6 +1773,11 @@
             "description": "The trial container name",
             "example": "Vitality Medical Center with subject"
           },
+          "number": {
+            "type": "string",
+            "description": "The trial container number",
+            "example": "VMC-001"
+          },
           "country": {
             "type": "string",
             "description": "The trial container country",
