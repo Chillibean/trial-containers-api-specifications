@@ -96,6 +96,6 @@
       "additionalProperties": false
     }
   },
-  "required": ["id", "name", "country", "type", "permissions", "number"],
+  "required": ["id", "name", "country", "type", "permissions"],
   "additionalProperties": false
 }
