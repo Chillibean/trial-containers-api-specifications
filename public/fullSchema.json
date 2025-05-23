@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "4.0.1",
+    "version": "4.1.0",
     "title": "Trial Container API",
     "description": "This is api specs for trial container endpoints",
     "contact": {
@@ -1772,6 +1772,11 @@
             "type": "string",
             "description": "The trial container name",
             "example": "Vitality Medical Center with subject"
+          },
+          "number": {
+            "type": "string",
+            "description": "The trial container number",
+            "example": "VMC-001"
           },
           "country": {
             "type": "string",
