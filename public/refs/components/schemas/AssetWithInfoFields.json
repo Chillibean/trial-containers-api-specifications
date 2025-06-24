@@ -1,6 +1,11 @@
 {
   "type": "object",
   "properties": {
+    "contains_pii": {
+      "type": "boolean",
+      "description": "Is the asset contains PII",
+      "example": false
+    },
     "id": {
       "type": "integer",
       "description": "The asset id",
@@ -111,6 +116,7 @@
   },
   "additionalProperties": false,
   "required": [
+    "contains_pii",
     "id",
     "title",
     "filename",
