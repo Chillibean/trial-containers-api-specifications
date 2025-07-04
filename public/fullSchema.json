@@ -1230,6 +1230,12 @@
       "AssetWithInfoFields": {
         "type": "object",
         "properties": {
+          "contains_pii": {
+            "type": "boolean",
+            "description": "Does the asset contains PII",
+            "example": false,
+            "nullable": true
+          },
           "id": {
             "type": "integer",
             "description": "The asset id",
@@ -1340,6 +1346,7 @@
         },
         "additionalProperties": false,
         "required": [
+          "contains_pii",
           "id",
           "title",
           "filename",
