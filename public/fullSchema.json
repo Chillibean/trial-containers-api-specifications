@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "4.1.0",
+    "version": "4.2.0",
     "title": "Trial Container API",
     "description": "This is api specs for trial container endpoints",
     "contact": {
@@ -1230,6 +1230,12 @@
       "AssetWithInfoFields": {
         "type": "object",
         "properties": {
+          "contains_pii": {
+            "type": "boolean",
+            "description": "Does the asset contains PII",
+            "example": false,
+            "nullable": true
+          },
           "id": {
             "type": "integer",
             "description": "The asset id",
@@ -1340,6 +1346,7 @@
         },
         "additionalProperties": false,
         "required": [
+          "contains_pii",
           "id",
           "title",
           "filename",
