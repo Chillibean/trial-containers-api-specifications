@@ -126,6 +126,9 @@
       "FormField": {
         "$ref": "refs/components/schemas/FormField.json"
       },
+      "FormTemplate": {
+        "$ref": "refs/components/schemas/FormTemplate.json"
+      },
       "InfoFields": {
         "$ref": "refs/components/schemas/InfoFields.json"
       },
