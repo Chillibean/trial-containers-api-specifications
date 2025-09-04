@@ -29,6 +29,10 @@
     {
       "name": "Trial Containers",
       "description": "Trial Container endpoints"
+    },
+    {
+      "name": "Trial Container Forms Templates",
+      "description": "Endpoints for Trial Container Forms Templates"
     }
   ],
   "servers": [

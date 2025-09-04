@@ -2,6 +2,9 @@
   "get": {
     "summary": "Get Form Templates",
     "description": "Retrieves a list of form templates for the specified trial container.",
+    "tags": [
+      "Trial Container Forms Templates"
+    ],
     "parameters": [
       {
         "name": "account_id",
