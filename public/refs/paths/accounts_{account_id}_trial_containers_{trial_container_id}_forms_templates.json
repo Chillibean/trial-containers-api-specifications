@@ -5,6 +5,13 @@
     "tags": [
       "Trial Container Forms Templates"
     ],
+    "operationId": "getFormTemplates",
+    "security": [
+      {
+        "userSessionKey": [],
+        "chillipharmSession": []
+      }
+    ],
     "parameters": [
       {
         "name": "account_id",
@@ -56,6 +63,24 @@
             }
           }
         }
+      },
+      "400": {
+        "$ref": "../components/responses/BadRequest.json"
+      },
+      "401": {
+        "$ref": "../components/responses/Unauthorized.json"
+      },
+      "403": {
+        "$ref": "../components/responses/Forbidden.json"
+      },
+      "404": {
+        "$ref": "../components/responses/NotFound.json"
+      },
+      "409": {
+        "$ref": "../components/responses/Conflict.json"
+      },
+      "500": {
+        "$ref": "../components/responses/InternalServerError.json"
       }
     }
   }
