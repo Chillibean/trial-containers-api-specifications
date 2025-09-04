@@ -1,0 +1,58 @@
+{
+  "type": "object",
+  "description": "The form template",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The form template id",
+      "example": 2
+    },
+    "title": {
+      "type": "string",
+      "description": "The form template title",
+      "example": "Video Quality Control Form Template"
+    },
+    "description": {
+      "type": "string",
+      "description": "The form template description",
+      "example": ""
+    },
+    "active": {
+      "type": "boolean",
+      "description": "The form template active state",
+      "example": true
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The form template creation date time",
+      "example": "2025-09-02T00:00:00.000Z"
+    },
+    "workflow_definition_id": {
+      "type": "integer",
+      "description": "The workflow definition id associated to the form template",
+      "example": 1
+    },
+    "version_number": {
+      "type": "integer",
+      "description": "The form template version number",
+      "example": 1
+    },
+    "workflow_definition_name": {
+      "type": "string",
+      "description": "The workflow definition name associated to the form template",
+      "example": "Standard Workflow"
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "description",
+    "active",
+    "created_at",
+    "workflow_definition_id",
+    "version_number",
+    "workflow_definition_name"
+  ],
+  "additionalProperties": false
+}
