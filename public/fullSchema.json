@@ -322,7 +322,7 @@
         }
       }
     },
-    "/accounts/{account_id}/trial_containers/{trial_container_id}/forms_templates": {
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/form_templates": {
       "get": {
         "summary": "Get Form Templates",
         "description": "Retrieves a list of form templates for the specified trial container.",
