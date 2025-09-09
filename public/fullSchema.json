@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "4.2.0",
+    "version": "4.3.0",
     "title": "Trial Container API",
     "description": "This is api specs for trial container endpoints",
     "contact": {
@@ -51,6 +51,10 @@
     {
       "name": "Trial Containers",
       "description": "Trial Container endpoints"
+    },
+    {
+      "name": "Trial Container Forms Templates",
+      "description": "Endpoints for Trial Container Forms Templates"
     }
   ],
   "paths": {
@@ -292,6 +296,93 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/Chapter"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/form_templates": {
+      "get": {
+        "summary": "Get Form Templates",
+        "description": "Retrieves a list of form templates for the specified trial container.",
+        "tags": [
+          "Trial Container Forms Templates"
+        ],
+        "operationId": "getFormTemplates",
+        "security": [
+          {
+            "userSessionKey": [],
+            "chillipharmSession": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the account.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the trial container.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "form_container_id",
+            "in": "query",
+            "required": false,
+            "description": "The ID of the form container used to filter templates.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "form_container_type",
+            "in": "query",
+            "required": false,
+            "description": "The type of form container used to filter templates.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of form templates.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FormTemplate"
                   }
                 }
               }
@@ -1646,6 +1737,64 @@
           "type",
           "validations",
           "value"
+        ],
+        "additionalProperties": false
+      },
+      "FormTemplate": {
+        "type": "object",
+        "description": "The form template",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The form template id",
+            "example": 2
+          },
+          "title": {
+            "type": "string",
+            "description": "The form template title",
+            "example": "Video Quality Control Form Template"
+          },
+          "description": {
+            "type": "string",
+            "description": "The form template description",
+            "example": ""
+          },
+          "active": {
+            "type": "boolean",
+            "description": "The form template active state",
+            "example": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The form template creation date time",
+            "example": "2025-09-02T00:00:00.000Z"
+          },
+          "workflow_definition_id": {
+            "type": "integer",
+            "description": "The workflow definition id associated to the form template",
+            "example": 1
+          },
+          "version_number": {
+            "type": "integer",
+            "description": "The form template version number",
+            "example": 1
+          },
+          "workflow_definition_name": {
+            "type": "string",
+            "description": "The workflow definition name associated to the form template",
+            "example": "Standard Workflow"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "description",
+          "active",
+          "created_at",
+          "workflow_definition_id",
+          "version_number",
+          "workflow_definition_name"
         ],
         "additionalProperties": false
       },
