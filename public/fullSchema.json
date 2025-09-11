@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "4.2.0",
+    "version": "4.3.0",
     "title": "Trial Container API",
     "description": "This is api specs for trial container endpoints",
     "contact": {
@@ -51,6 +51,10 @@
     {
       "name": "Trial Containers",
       "description": "Trial Container endpoints"
+    },
+    {
+      "name": "Trial Container Forms Templates",
+      "description": "Endpoints for Trial Container Forms Templates"
     }
   ],
   "paths": {
@@ -318,6 +322,93 @@
         }
       }
     },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/form_templates": {
+      "get": {
+        "summary": "Get Form Templates",
+        "description": "Retrieves a list of form templates for the specified trial container.",
+        "tags": [
+          "Trial Container Forms Templates"
+        ],
+        "operationId": "getFormTemplates",
+        "security": [
+          {
+            "userSessionKey": [],
+            "chillipharmSession": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the account.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the trial container.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "form_container_id",
+            "in": "query",
+            "required": false,
+            "description": "The ID of the form container used to filter templates.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "form_container_type",
+            "in": "query",
+            "required": false,
+            "description": "The type of form container used to filter templates.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of form templates.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FormTemplate"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
     "/accounts/{account_id}/trial_containers/{trial_container_id}/forms/{form_id}/exports": {
       "get": {
         "summary": "Export form as PDF",
@@ -555,6 +646,106 @@
             }
           }
         ],
+        "requestBody": {
+          "description": "Form transition data",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "authenticity_token": {
+                    "$ref": "#/components/schemas/AuthenticityToken"
+                  },
+                  "audience": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "formData": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "field_id": {
+                          "type": "string",
+                          "example": "20fca8e0-2a3f-4473-8bb2-88041d6f25ec"
+                        },
+                        "value": {
+                          "oneOf": [
+                            {
+                              "type": "string",
+                              "example": "aa-22222"
+                            },
+                            {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              },
+                              "example": [
+                                "1.BSID GM #4:Child holds head erect for at least 3 seconds without support.",
+                                "3.BSID GM #7: Child stands in upright position on both feet, holding on stable object (eg. Furniture) with 1 or both hands. One leg moves forward while the other supports part of the body weight. Child takes at least 5 steps in in this manner. (Walking with assistance -WHO)."
+                              ]
+                            }
+                          ]
+                        }
+                      },
+                      "required": [
+                        "fieldId",
+                        "value"
+                      ]
+                    }
+                  },
+                  "signature": {
+                    "type": "object",
+                    "properties": {
+                      "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "chillitest53+monadmin1@gmail.com"
+                      },
+                      "password": {
+                        "type": "string",
+                        "example": "Za159*ds"
+                      },
+                      "signature_type": {
+                        "type": "string",
+                        "enum": [
+                          "Authorship",
+                          "Approval",
+                          "Acknowledgement"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "email",
+                      "password",
+                      "signatureType"
+                    ]
+                  },
+                  "review_data": {
+                    "type": "object",
+                    "properties": {
+                      "comment": {
+                        "type": "string",
+                        "example": "This is a review comment"
+                      },
+                      "field_id": {
+                        "type": "string",
+                        "example": "20fca8e0-2a3f-4473-8bb2-88041d6f25ec"
+                      }
+                    }
+                  },
+                  "reason_for_change": {
+                    "type": "string",
+                    "example": "Correcting data entry error"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -1646,6 +1837,64 @@
           "type",
           "validations",
           "value"
+        ],
+        "additionalProperties": false
+      },
+      "FormTemplate": {
+        "type": "object",
+        "description": "The form template",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The form template id",
+            "example": 2
+          },
+          "title": {
+            "type": "string",
+            "description": "The form template title",
+            "example": "Video Quality Control Form Template"
+          },
+          "description": {
+            "type": "string",
+            "description": "The form template description",
+            "example": ""
+          },
+          "active": {
+            "type": "boolean",
+            "description": "The form template active state",
+            "example": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The form template creation date time",
+            "example": "2025-09-02T00:00:00.000Z"
+          },
+          "workflow_definition_id": {
+            "type": "integer",
+            "description": "The workflow definition id associated to the form template",
+            "example": 1
+          },
+          "version_number": {
+            "type": "integer",
+            "description": "The form template version number",
+            "example": 1
+          },
+          "workflow_definition_name": {
+            "type": "string",
+            "description": "The workflow definition name associated to the form template",
+            "example": "Standard Workflow"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "description",
+          "active",
+          "created_at",
+          "workflow_definition_id",
+          "version_number",
+          "workflow_definition_name"
         ],
         "additionalProperties": false
       },

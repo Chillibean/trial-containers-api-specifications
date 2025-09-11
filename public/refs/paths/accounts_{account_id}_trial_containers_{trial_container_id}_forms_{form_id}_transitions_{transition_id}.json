@@ -3,9 +3,7 @@
     "summary": "Complete form transition",
     "description": "Complete form transition",
     "operationId": "completeFormTransition",
-    "tags": [
-      "Trial Container Forms"
-    ],
+    "tags": ["Trial Container Forms"],
     "security": [
       {
         "userSessionKey": [],
@@ -54,6 +52,95 @@
         }
       }
     ],
+    "requestBody": {
+      "description": "Form transition data",
+      "required": true,
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "authenticity_token": {
+                "$ref": "../components/schemas/AuthenticityToken.json"
+              },
+              "audience": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "formData": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "field_id": {
+                      "type": "string",
+                      "example": "20fca8e0-2a3f-4473-8bb2-88041d6f25ec"
+                    },
+                    "value": {
+                      "oneOf": [
+                        {
+                          "type": "string",
+                          "example": "aa-22222"
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "example": [
+                            "1.BSID GM #4:Child holds head erect for at least 3 seconds without support.",
+                            "3.BSID GM #7: Child stands in upright position on both feet, holding on stable object (eg. Furniture) with 1 or both hands. One leg moves forward while the other supports part of the body weight. Child takes at least 5 steps in in this manner. (Walking with assistance -WHO)."
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "required": ["fieldId", "value"]
+                }
+              },
+              "signature": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "example": "chillitest53+monadmin1@gmail.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "Za159*ds"
+                  },
+                  "signature_type": {
+                    "type": "string",
+                    "enum": ["Authorship", "Approval", "Acknowledgement"]
+                  }
+                },
+                "required": ["email", "password", "signatureType"]
+              },
+              "review_data": {
+                "type": "object",
+                "properties": {
+                  "comment": {
+                    "type": "string",
+                    "example": "This is a review comment"
+                  },
+                  "field_id": {
+                    "type": "string",
+                    "example": "20fca8e0-2a3f-4473-8bb2-88041d6f25ec"
+                  }
+                }
+              },
+              "reason_for_change": {
+                "type": "string",
+                "example": "Correcting data entry error"
+              }
+            }
+          }
+        }
+      }
+    },
     "responses": {
       "200": {
         "description": "OK",
