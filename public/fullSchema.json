@@ -2052,18 +2052,18 @@
               "example": "read"
             }
           },
-          "study_protocol": {
+          "trial_configuration": {
             "type": "object",
             "properties": {
               "id": {
                 "type": "integer",
-                "description": "The study protocol id",
+                "description": "The trial configuration id",
                 "example": 1
               },
               "name": {
                 "type": "string",
-                "description": "The study protocol name",
-                "example": "Ghost Protocol"
+                "description": "The trial configuration name",
+                "example": "Ghost Trial Configuration"
               },
               "study_event_display_name": {
                 "type": "object",
