@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "4.2.0",
+    "version": "4.3.0",
     "title": "Trial Container API",
     "description": "This is api specs for trial container endpoints",
     "contact": {
@@ -29,6 +29,10 @@
     {
       "name": "Trial Containers",
       "description": "Trial Container endpoints"
+    },
+    {
+      "name": "Trial Container Forms Templates",
+      "description": "Endpoints for Trial Container Forms Templates"
     }
   ],
   "servers": [
@@ -59,6 +63,9 @@
     },
     "/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}/chapters": {
       "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_assets_{asset_id}_chapters.json"
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/form_templates": {
+      "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_form_templates.json"
     },
     "/accounts/{account_id}/trial_containers/{trial_container_id}/forms/{form_id}/exports": {
       "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_forms_{form_id}_exports.json"
@@ -118,6 +125,9 @@
       },
       "FormField": {
         "$ref": "refs/components/schemas/FormField.json"
+      },
+      "FormTemplate": {
+        "$ref": "refs/components/schemas/FormTemplate.json"
       },
       "InfoFields": {
         "$ref": "refs/components/schemas/InfoFields.json"
