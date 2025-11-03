@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD033 -->
 
-## 📝 Description
+## 📝 Description/Version
 
 <!-- Brief summary of changes and what problem this solves -->
 
@@ -8,25 +8,21 @@
 
 ---
 
-## Type of Change
+## ✅ Type of Change
 
-- [ ] Bug fix
-- [ ] New feature
-- [ ] Breaking change
-- [ ] Refactor
-- [ ] Documentation
-- [ ] Tooling/Scripts
-- [ ] CI/CD/Workflow update
+- [ ] Bug fix 🐞
+- [ ] New feature ✨
+- [ ] Breaking change 💥
+- [ ] Refactor ♻️
+- [ ] Tooling/Scripts 🛠️
+- [ ] Test update 🧪
+- [ ] Other (please describe):
 
 ---
 
-## Changes
+## 🔍 Changes Made
 
-**What changed:**
-<!-- List key changes - files, features, behavior, etc. -->
--
--
--
+> Briefly list the key changes:
 
 ---
 
@@ -37,16 +33,17 @@
 - [ ] ✅ No breaking changes
 - [ ] ⚠️ Yes - breaking changes (explain below)
 
-<!-- If breaking, describe the impact -->
+> If breaking change, describe the impact
 
 ---
 
-## Testing
+## 🧩 Checklist
 
-- [ ] Tested locally
-- [ ] Existing tests pass
-- [ ] New tests added (if applicable)
-- [ ] Documentation updated
+> Make sure you've done these:
+
+- [ ] Updated `package.json` & `schema.json` versions - they need to be the same
+- [ ] Verify there are no issues with the schema.json by running `npm run verify`
+- [ ] All objects have a properites list, `required` array and `additionalProperties` set to `false`
 
 ---
 
@@ -59,6 +56,6 @@
 
 ---
 
-## Notes
+## 🙋‍♂️ Notes for Reviewers
 
-<!-- Additional context, dependencies, or areas for reviewers to focus on -->
+> Anything specific to watch out for, tricky parts, assumptions made, or questions to raise?
