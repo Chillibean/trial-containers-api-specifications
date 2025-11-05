@@ -2065,6 +2065,11 @@
                 "description": "The trial configuration name",
                 "example": "Ghost Trial Configuration"
               },
+              "published": {
+                "type": "boolean",
+                "description": "The published status of trial configuration",
+                "example": true
+              },
               "study_event_display_name": {
                 "type": "object",
                 "properties": {
@@ -2109,6 +2114,7 @@
             "required": [
               "id",
               "name",
+              "published",
               "study_event_display_name",
               "study_procedure_display_name"
             ],
