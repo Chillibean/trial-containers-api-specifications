@@ -1,20 +1,21 @@
-## 📝 Description
+<!-- markdownlint-disable MD033 -->
 
-> Please include a summary of the change and the related issue(s).
-> What is the motivation behind this PR?
+## 📝 Description/Version
+
+<!-- Brief summary of changes and what problem this solves -->
+
+**Resolves:** #issue-number
 
 ---
 
 ## ✅ Type of Change
 
-> Check all that apply:
-
 - [ ] Bug fix 🐞
 - [ ] New feature ✨
+- [ ] Breaking change 💥
 - [ ] Refactor ♻️
-- [ ] Documentation update 📚
+- [ ] Tooling/Scripts 🛠️
 - [ ] Test update 🧪
-- [ ] CI/CD update ⚙️
 - [ ] Other (please describe):
 
 ---
@@ -25,13 +26,33 @@
 
 ---
 
+## Impact
+
+**Breaking changes:**
+
+- [ ] ✅ No breaking changes
+- [ ] ⚠️ Yes - breaking changes (explain below)
+
+> If breaking change, describe the impact
+
+---
+
 ## 🧩 Checklist
 
-> Make sure you’ve done these:
+> Make sure you've done these:
 
-- [ ] I have updated `package.json` & `schema.json` versions - they need to be the same
-- [ ] I have verified there are no issues with the `schema.json` by running `npm run lint`
-- [ ] I have verified that all objects have a properties list, `required` array and `additionalProperties` set to `false`
+- [ ] Updated `package.json` & `schema.json` versions - they need to be the same
+- [ ] Verify there are no issues with the schema.json by running `npm run verify`
+- [ ] All objects have a properites list, `required` array and `additionalProperties` set to `false`
+
+---
+
+## Post-Merge Steps
+
+<!-- Any manual steps needed after merge -->
+
+-
+-
 
 ---
 
