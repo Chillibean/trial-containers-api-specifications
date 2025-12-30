@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "4.4.0",
+    "version": "4.5.0",
     "title": "Trial Container API",
     "description": "This is api specs for trial container endpoints",
     "contact": {
@@ -2065,6 +2065,11 @@
                 "description": "The trial configuration name",
                 "example": "Ghost Trial Configuration"
               },
+              "published": {
+                "type": "boolean",
+                "description": "The published status of trial configuration",
+                "example": true
+              },
               "study_event_display_name": {
                 "type": "object",
                 "properties": {
@@ -2109,6 +2114,7 @@
             "required": [
               "id",
               "name",
+              "published",
               "study_event_display_name",
               "study_procedure_display_name"
             ],
