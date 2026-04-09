@@ -14,13 +14,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Generate GitHub App Token
-        id: app-token
-        uses: actions/create-github-app-token@v2
-        with:
-          app-id: 2786925
-          private-key: ${{ secrets.API_SPEC_APP_PRIVATE_KEY }}
-          owner: ${{ github.repository_owner }}
       - name: Retrieve Version
         id: version
         run: echo "value=$(node -pe 'require("./package.json").version')" >> $GITHUB_OUTPUT
