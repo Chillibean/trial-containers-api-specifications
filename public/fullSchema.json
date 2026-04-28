@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "4.5.0",
+    "version": "4.6.0",
     "title": "Trial Container API",
     "description": "This is api specs for trial container endpoints",
     "contact": {
@@ -700,14 +700,9 @@
                   "signature": {
                     "type": "object",
                     "properties": {
-                      "email": {
+                      "reauthentication_grant_uuid": {
                         "type": "string",
-                        "format": "email",
-                        "example": "chillitest53+monadmin1@gmail.com"
-                      },
-                      "password": {
-                        "type": "string",
-                        "example": "Za159*ds"
+                        "example": "b56477d9-a9c5-4117-81e2-3c012621c4dd"
                       },
                       "signature_type": {
                         "type": "string",
