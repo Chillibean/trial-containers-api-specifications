@@ -663,6 +663,12 @@
                       "type": "string"
                     }
                   },
+                  "acknowledgers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
                   "form_data": {
                     "type": "array",
                     "items": {
@@ -1692,6 +1698,13 @@
             "type": "integer",
             "description": "The form version number",
             "example": 0
+          },
+          "acknowledgers": {
+            "type": "array",
+            "description": "The form acknowledgers",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
           }
         },
         "required": [
