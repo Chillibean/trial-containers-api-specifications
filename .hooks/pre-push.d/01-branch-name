@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -a
+source ../.env
+set +a
+
+branch=$(git branch --show-current)
+
+if ! docker exec $SERVICE_NAME npm run branch-name "$branch"; then
+  printf "\nRename your branch\nIt should follow rules defined in .github/workflows/test.yml\n\n"
+  exit 1
+fi
