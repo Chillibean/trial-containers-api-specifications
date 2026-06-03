@@ -1,13 +1,9 @@
 #!/bin/sh
 
-set -a
-source ../.env
-set +a
-
 printf "Checking commit message\n\n"
 commit_msg=$(cat "../../$1")
 
-if ! echo "$commit_msg" | docker exec -i $SERVICE_NAME npx commitlint; then
+if ! echo "$commit_msg" | npx commitlint; then
   printf "You can prepare commit message via https://github.com/commitizen/cz-cli.\n"
   printf "List of rules can be seen here: https://github.com/conventional-changelog/commitlint/blob/master/docs/reference-rules.md \n\n"
   exit 1
