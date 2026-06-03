@@ -1,0 +1,15 @@
+#!/bin/bash
+
+hook_name="$(basename -- "$0")"
+cd "$(dirname "$0")/$hook_name.d"
+
+for hook in *; do
+  bash $hook "$1"
+  RESULT=$?
+  if [ $RESULT != 0 ]; then
+    echo "Git Hooks: $hook_name.d/$hook hook exited with code $RESULT - commit message refused."
+    exit $RESULT
+  fi
+done
+
+exit 0

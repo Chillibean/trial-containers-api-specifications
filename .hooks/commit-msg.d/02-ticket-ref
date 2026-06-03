@@ -1,0 +1,19 @@
+#!/bin/sh
+
+COMMIT_MSG_FILE="$(git rev-parse --show-toplevel)/$1"
+
+# Get branch name; exit silently in detached HEAD
+BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null)
+[ -z "$BRANCH" ] && exit 0
+
+# Extract ADO ticket number from branch (pattern: <type>/<number>-<description>)
+TICKET=$(echo "$BRANCH" | sed -n 's|^[^/]*/\([0-9][0-9]*\)-.*|\1|p')
+[ -z "$TICKET" ] && exit 0
+
+# Skip if the ticket ref is already in the commit message
+grep -qF "$TICKET" "$COMMIT_MSG_FILE" && exit 0
+
+# Append ticket ref to the commit message
+TMPFILE=$(mktemp)
+printf '%s | AB#%s' "$(cat "$COMMIT_MSG_FILE")" "$TICKET" > "$TMPFILE"
+mv "$TMPFILE" "$COMMIT_MSG_FILE"
