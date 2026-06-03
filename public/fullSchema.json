@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "4.5.0",
+    "version": "4.6.0",
     "title": "Trial Container API",
     "description": "This is api specs for trial container endpoints",
     "contact": {
@@ -658,6 +658,12 @@
                     "$ref": "#/components/schemas/AuthenticityToken"
                   },
                   "audience": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "acknowledgers": {
                     "type": "array",
                     "items": {
                       "type": "string"
@@ -1692,6 +1698,13 @@
             "type": "integer",
             "description": "The form version number",
             "example": 0
+          },
+          "acknowledgers": {
+            "type": "array",
+            "description": "The form acknowledgers",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
           }
         },
         "required": [
