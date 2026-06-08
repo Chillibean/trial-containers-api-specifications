@@ -1,0 +1,29 @@
+name: Test
+run-name: Test
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+  workflow_dispatch:
+
+jobs:
+  branch-name:
+    name: Branch Name
+    uses: Chillibean/github-workflows/.github/workflows/branch-name.yml@main
+    with:
+      allowed-prefixes: feature, fix, prototype, spike, task
+      ignored-branch-names: main
+      issue-tracking-type: ado
+    secrets: inherit
+
+  pull-request-title:
+    name: Pull Request Title
+    uses: Chillibean/github-workflows/.github/workflows/pull-request-title.yml@main
+    with:
+      allowed-prefixes: feature, fix, prototype, spike, task
+      ignored-branch-names: main
+      issue-tracking-type: ado
