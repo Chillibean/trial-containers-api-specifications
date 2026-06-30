@@ -1,5 +1,6 @@
 {
   "type": "object",
+  "description": "A User",
   "properties": {
     "id": {
       "type": "integer",
@@ -9,7 +10,8 @@
     "email": {
       "type": "string",
       "description": "The users email",
-      "example": "example@email.com"
+      "example": "example@email.com",
+      "format": "email"
     },
     "uuid": {
       "type": "string",
@@ -27,12 +29,13 @@
       "example": "Doe"
     }
   },
-  "additionalProperties": false,
   "required": [
     "id",
     "email",
     "uuid",
     "first_name",
     "last_name"
-  ]
+  ],
+  "additionalProperties": false,
+  "nullable": true
 }

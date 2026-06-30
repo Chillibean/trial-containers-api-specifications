@@ -1,0 +1,147 @@
+{
+  "post": {
+    "summary": "Complete a multipart upload",
+    "description": "Complete a multipart upload",
+    "operationId": "completeUploadToLibrary",
+    "tags": [
+      "Library Uploads"
+    ],
+    "security": [
+      {
+        "userSessionKey": [],
+        "chillipharmSession": []
+      }
+    ],
+    "parameters": [
+      {
+        "$ref": "../components/parameters/XDeviceAuthHeader.json"
+      },
+      {
+        "name": "account_id",
+        "in": "path",
+        "description": "The account id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      },
+      {
+        "name": "trial_container_id",
+        "in": "path",
+        "description": "The trial container id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      }
+    ],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "authenticity_token": {
+                "$ref": "../components/schemas/AuthenticityToken.json"
+              },
+              "parts": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "etag": {
+                      "type": "string",
+                      "description": "The etag",
+                      "example": "\"1234567890\""
+                    },
+                    "part_number": {
+                      "type": "integer",
+                      "description": "The part number",
+                      "example": 1
+                    }
+                  }
+                }
+              },
+              "upload_id": {
+                "type": "integer",
+                "description": "The upload id",
+                "example": 1
+              },
+              "asset_params": {
+                "type": "object",
+                "properties": {
+                  "asset_infos_attributes": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "info_field_id": {
+                          "type": "string",
+                          "description": "The info field id",
+                          "example": "1"
+                        },
+                        "value": {
+                          "type": "string",
+                          "description": "The info field value",
+                          "example": "Some value"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "required": [
+              "authenticity_token",
+              "parts",
+              "upload_id"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "asset": {
+                  "$ref": "../components/schemas/Asset.json"
+                },
+                "status": {
+                  "type": "string",
+                  "description": "The status",
+                  "example": "success"
+                }
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "$ref": "../components/responses/BadRequest.json"
+      },
+      "401": {
+        "$ref": "../components/responses/Unauthorized.json"
+      },
+      "403": {
+        "$ref": "../components/responses/Forbidden.json"
+      },
+      "404": {
+        "$ref": "../components/responses/NotFound.json"
+      },
+      "409": {
+        "$ref": "../components/responses/Conflict.json"
+      },
+      "500": {
+        "$ref": "../components/responses/InternalServerError.json"
+      }
+    }
+  }
+}
