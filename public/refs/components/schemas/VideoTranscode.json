@@ -1,0 +1,37 @@
+{
+  "type": "object",
+  "description": "The video transcode",
+  "properties": {
+    "frame_rate": {
+      "type": "string",
+      "nullable": true,
+      "description": "The video frame rate",
+      "example": "25"
+    },
+    "progress": {
+      "type": "string",
+      "nullable": true,
+      "description": "The video transcoding progress",
+      "example": "100"
+    },
+    "status": {
+      "type": "string",
+      "nullable": true,
+      "description": "The video transcoding status",
+      "example": "complete"
+    },
+    "url": {
+      "type": "string",
+      "nullable": true,
+      "description": "The video url",
+      "example": "https://eu-west-4-chillipharm-bucket.s3.eu-west-4.amazonaws.com/assets/video.mp4"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "frame_rate",
+    "progress",
+    "status",
+    "url"
+  ]
+}

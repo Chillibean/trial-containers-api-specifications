@@ -1,0 +1,11 @@
+{
+  "name": "X-Device-Auth",
+  "in": "header",
+  "description": "The device authentication header in format <unix_timestamp>:<hmac_sha256_hex>",
+  "required": false,
+  "schema": {
+    "type": "string",
+    "pattern": "^[0-9]{10}:[a-f0-9]{64}$",
+    "example": "1768985802:807b42ac2a5679f7db340e711d14119c05e989ddf06e45fd1992cb6c0a1bf12e"
+  }
+}

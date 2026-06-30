@@ -1,0 +1,115 @@
+{
+  "post": {
+    "summary": "Upload a part of a multipart upload",
+    "description": "Upload a part of a multipart upload",
+    "operationId": "uploadPartToLibrary",
+    "tags": [
+      "Library Uploads"
+    ],
+    "security": [
+      {
+        "userSessionKey": [],
+        "chillipharmSession": []
+      }
+    ],
+    "parameters": [
+      {
+        "$ref": "../components/parameters/XDeviceAuthHeader.json"
+      },
+      {
+        "name": "account_id",
+        "in": "path",
+        "description": "The account id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      },
+      {
+        "name": "trial_container_id",
+        "in": "path",
+        "description": "The trial container id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      }
+    ],
+    "requestBody": {
+      "content": {
+        "multipart/form-data": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "authenticity_token": {
+                "$ref": "../components/schemas/AuthenticityToken.json"
+              },
+              "data": {
+                "type": "string",
+                "format": "binary",
+                "description": "The data to upload",
+                "example": "data"
+              },
+              "part_number": {
+                "type": "integer",
+                "description": "The part number",
+                "example": 1
+              },
+              "upload_id": {
+                "type": "integer",
+                "description": "The upload id",
+                "example": 1
+              }
+            },
+            "required": [
+              "authenticity_token",
+              "data",
+              "part_number",
+              "upload_id"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "etag": {
+                  "type": "string",
+                  "description": "The etag",
+                  "example": "\"1234567890\""
+                }
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "$ref": "../components/responses/BadRequest.json"
+      },
+      "401": {
+        "$ref": "../components/responses/Unauthorized.json"
+      },
+      "403": {
+        "$ref": "../components/responses/Forbidden.json"
+      },
+      "404": {
+        "$ref": "../components/responses/NotFound.json"
+      },
+      "409": {
+        "$ref": "../components/responses/Conflict.json"
+      },
+      "500": {
+        "$ref": "../components/responses/InternalServerError.json"
+      }
+    }
+  }
+}
