@@ -22,7 +22,6 @@
     },
     "url": {
       "type": "string",
-      "nullable": true,
       "description": "The video url",
       "example": "https://eu-west-4-chillipharm-bucket.s3.eu-west-4.amazonaws.com/assets/video.mp4"
     }

@@ -64,7 +64,6 @@
               }
             },
             "required": [
-              "authenticity_token",
               "data",
               "part_number",
               "upload_id"

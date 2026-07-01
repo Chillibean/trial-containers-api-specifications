@@ -156,9 +156,6 @@
       "User": {
         "$ref": "refs/components/schemas/User.json"
       },
-      "Video": {
-        "$ref": "refs/components/schemas/Video.json"
-      },
       "WorkflowInstanceHistoryRecord": {
         "$ref": "refs/components/schemas/WorkflowInstanceHistoryRecord.json"
       },

@@ -32,41 +32,7 @@
       "example": 1
     },
     "media": {
-      "oneOf": [
-        {
-          "type": "object",
-          "description": "The links to the asset media",
-          "properties": {
-            "url": {
-              "type": "string",
-              "description": "The asset media url",
-              "nullable": true,
-              "example": "https://eu-west-4-chillipharm-bucket.s3.eu-west-4.amazonaws.com/assets/image.png"
-            }
-          },
-          "additionalProperties": false,
-          "required": [
-            "url"
-          ]
-        },
-        {
-          "type": "object",
-          "description": "The links to the asset media",
-          "properties": {
-            "sd_video": {
-              "$ref": "./VideoTranscode.json"
-            },
-            "hd_video": {
-              "$ref": "./VideoTranscode.json"
-            }
-          },
-          "additionalProperties": false,
-          "required": [
-            "sd_video",
-            "hd_video"
-          ]
-        }
-      ]
+      "$ref": "./AssetMedia.json"
     },
     "media_type": {
       "type": "string",

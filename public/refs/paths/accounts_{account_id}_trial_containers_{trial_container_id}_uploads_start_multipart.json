@@ -58,7 +58,6 @@
               }
             },
             "required": [
-              "authenticity_token",
               "filename",
               "filesize"
             ],

@@ -94,9 +94,9 @@
               }
             },
             "required": [
-              "authenticity_token",
               "parts",
-              "upload_id"
+              "upload_id",
+              "asset_params"
             ],
             "additionalProperties": false
           }
