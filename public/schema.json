@@ -88,6 +88,9 @@
     "/accounts/{account_id}/trial_containers/{trial_container_id}/forms/{form_id}": {
       "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_forms_{form_id}.json"
     },
+    "/accounts/{account_id}/trial_containers": {
+      "$ref": "refs/paths/accounts_{account_id}_trial_containers.json"
+    },
     "/accounts/{account_id}/trial_containers/{trial_container_id}": {
       "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}.json"
     },
