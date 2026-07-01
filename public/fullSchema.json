@@ -1328,6 +1328,67 @@
         }
       }
     },
+    "/accounts/{account_id}/trial_containers": {
+      "get": {
+        "summary": "Get trial containers for account",
+        "description": "Get trial containesr",
+        "operationId": "getTrialContainers",
+        "tags": [
+          "Trial Containers"
+        ],
+        "security": [
+          {
+            "userSessionKey": [],
+            "chillipharmSession": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TrialContainerBasic"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
     "/accounts/{account_id}/trial_containers/{trial_container_id}": {
       "get": {
         "summary": "Get a trial container",
@@ -1371,6 +1432,435 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TrialContainer"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/info_fields": {
+      "get": {
+        "summary": "Get account info fields",
+        "description": "Get account info fields",
+        "operationId": "getInfoFields",
+        "tags": [
+          "Info Fields"
+        ],
+        "security": [
+          {
+            "userSessionKey": [],
+            "chillipharmSession": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InfoField"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/uploads/start_multipart": {
+      "post": {
+        "summary": "Start a multipart upload",
+        "description": "Start a multipart upload",
+        "operationId": "startUploadToLibrary",
+        "tags": [
+          "Library Uploads"
+        ],
+        "security": [
+          {
+            "userSessionKey": [],
+            "chillipharmSession": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/XDeviceAuthHeader"
+          },
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "description": "The trial container id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "authenticity_token": {
+                    "$ref": "#/components/schemas/AuthenticityToken"
+                  },
+                  "filename": {
+                    "type": "string",
+                    "description": "The filename",
+                    "example": "file.txt"
+                  },
+                  "filesize": {
+                    "type": "integer",
+                    "description": "The filesize",
+                    "example": 123456
+                  }
+                },
+                "required": [
+                  "filename",
+                  "filesize"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "upload_id": {
+                      "type": "integer",
+                      "description": "The upload id",
+                      "example": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/uploads/upload_part": {
+      "post": {
+        "summary": "Upload a part of a multipart upload",
+        "description": "Upload a part of a multipart upload",
+        "operationId": "uploadPartToLibrary",
+        "tags": [
+          "Library Uploads"
+        ],
+        "security": [
+          {
+            "userSessionKey": [],
+            "chillipharmSession": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/XDeviceAuthHeader"
+          },
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "description": "The trial container id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "authenticity_token": {
+                    "$ref": "#/components/schemas/AuthenticityToken"
+                  },
+                  "data": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "The data to upload",
+                    "example": "data"
+                  },
+                  "part_number": {
+                    "type": "integer",
+                    "description": "The part number",
+                    "example": 1
+                  },
+                  "upload_id": {
+                    "type": "integer",
+                    "description": "The upload id",
+                    "example": 1
+                  }
+                },
+                "required": [
+                  "data",
+                  "part_number",
+                  "upload_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "etag": {
+                      "type": "string",
+                      "description": "The etag",
+                      "example": "\"1234567890\""
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/uploads/complete_multipart": {
+      "post": {
+        "summary": "Complete a multipart upload",
+        "description": "Complete a multipart upload",
+        "operationId": "completeUploadToLibrary",
+        "tags": [
+          "Library Uploads"
+        ],
+        "security": [
+          {
+            "userSessionKey": [],
+            "chillipharmSession": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/XDeviceAuthHeader"
+          },
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "description": "The trial container id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "authenticity_token": {
+                    "$ref": "#/components/schemas/AuthenticityToken"
+                  },
+                  "parts": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "etag": {
+                          "type": "string",
+                          "description": "The etag",
+                          "example": "\"1234567890\""
+                        },
+                        "part_number": {
+                          "type": "integer",
+                          "description": "The part number",
+                          "example": 1
+                        }
+                      }
+                    }
+                  },
+                  "upload_id": {
+                    "type": "integer",
+                    "description": "The upload id",
+                    "example": 1
+                  },
+                  "asset_params": {
+                    "type": "object",
+                    "properties": {
+                      "asset_infos_attributes": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "info_field_id": {
+                              "type": "string",
+                              "description": "The info field id",
+                              "example": "1"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "The info field value",
+                              "example": "Some value"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "parts",
+                  "upload_id",
+                  "asset_params"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "asset": {
+                      "$ref": "#/components/schemas/Asset"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "The status",
+                      "example": "success"
+                    }
+                  }
                 }
               }
             }
@@ -1456,41 +1946,7 @@
             "example": "video"
           },
           "media": {
-            "oneOf": [
-              {
-                "type": "object",
-                "description": "The links to the asset media",
-                "properties": {
-                  "url": {
-                    "type": "string",
-                    "description": "The asset media url",
-                    "nullable": true,
-                    "example": "https://eu-west-4-chillipharm-bucket.s3.eu-west-4.amazonaws.com/test_data/Image.png"
-                  }
-                },
-                "additionalProperties": false,
-                "required": [
-                  "url"
-                ]
-              },
-              {
-                "type": "object",
-                "description": "The links to the asset media",
-                "properties": {
-                  "sd_video": {
-                    "$ref": "#/components/schemas/Video"
-                  },
-                  "hd_video": {
-                    "$ref": "#/components/schemas/Video"
-                  }
-                },
-                "additionalProperties": false,
-                "required": [
-                  "sd_video",
-                  "hd_video"
-                ]
-              }
-            ]
+            "$ref": "#/components/schemas/AssetMedia"
           },
           "asset_infos": {
             "$ref": "#/components/schemas/InfoFields"
@@ -2127,6 +2583,7 @@
       },
       "User": {
         "type": "object",
+        "description": "A User",
         "properties": {
           "id": {
             "type": "integer",
@@ -2136,7 +2593,8 @@
           "email": {
             "type": "string",
             "description": "The users email",
-            "example": "example@email.com"
+            "example": "example@email.com",
+            "format": "email"
           },
           "uuid": {
             "type": "string",
@@ -2154,51 +2612,15 @@
             "example": "Doe"
           }
         },
-        "additionalProperties": false,
         "required": [
           "id",
           "email",
           "uuid",
           "first_name",
           "last_name"
-        ]
-      },
-      "Video": {
-        "type": "object",
-        "description": "The video transcode",
-        "properties": {
-          "url": {
-            "type": "string",
-            "nullable": true,
-            "description": "The asset  video url",
-            "example": "http://path-to-video"
-          },
-          "progress": {
-            "type": "string",
-            "nullable": true,
-            "description": "The asset video progress",
-            "example": "100"
-          },
-          "status": {
-            "type": "string",
-            "nullable": true,
-            "description": "The asset video status",
-            "example": "complete"
-          },
-          "frame_rate": {
-            "type": "string",
-            "nullable": true,
-            "description": "The asset video frame rate",
-            "example": "25"
-          }
-        },
+        ],
         "additionalProperties": false,
-        "required": [
-          "url",
-          "progress",
-          "status",
-          "frame_rate"
-        ]
+        "nullable": true
       },
       "WorkflowInstanceHistoryRecord": {
         "type": "object",
@@ -2498,6 +2920,246 @@
           "signature_definitions"
         ],
         "additionalProperties": false
+      },
+      "VideoTranscode": {
+        "type": "object",
+        "description": "The video transcode",
+        "properties": {
+          "frame_rate": {
+            "type": "string",
+            "nullable": true,
+            "description": "The video frame rate",
+            "example": "25"
+          },
+          "progress": {
+            "type": "string",
+            "nullable": true,
+            "description": "The video transcoding progress",
+            "example": "100"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true,
+            "description": "The video transcoding status",
+            "example": "complete"
+          },
+          "url": {
+            "type": "string",
+            "description": "The video url",
+            "example": "https://eu-west-4-chillipharm-bucket.s3.eu-west-4.amazonaws.com/assets/video.mp4"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "frame_rate",
+          "progress",
+          "status",
+          "url"
+        ]
+      },
+      "AssetMedia": {
+        "oneOf": [
+          {
+            "type": "object",
+            "description": "The links to the asset media",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "The asset media url",
+                "nullable": true,
+                "example": "https://eu-west-4-chillipharm-bucket.s3.eu-west-4.amazonaws.com/assets/image.png"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "url"
+            ]
+          },
+          {
+            "type": "object",
+            "description": "The links to the asset media",
+            "properties": {
+              "sd_video": {
+                "$ref": "#/components/schemas/VideoTranscode"
+              },
+              "hd_video": {
+                "$ref": "#/components/schemas/VideoTranscode"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "sd_video",
+              "hd_video"
+            ]
+          }
+        ]
+      },
+      "TrialContainerBasic": {
+        "description": "A basic trial container",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "The id of trial container",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of trial container",
+            "example": "pre"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of trial container",
+            "example": "Library"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "type"
+        ],
+        "additionalProperties": false
+      },
+      "InfoField": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "The info field id",
+            "example": 1
+          },
+          "field_type": {
+            "type": "string",
+            "description": "The info field type",
+            "enum": [
+              "string",
+              "text",
+              "checkbox",
+              "date",
+              "dropdown"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "description": "The info field name",
+            "example": "Title"
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Is info field required"
+          },
+          "position": {
+            "type": "integer",
+            "description": "Position of the info field"
+          },
+          "placeholder": {
+            "type": "string",
+            "description": "The info field placeholder text"
+          },
+          "dropdown_options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The info field dropdown options",
+            "example": [
+              "Yes",
+              "No"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "field_type",
+          "name",
+          "required"
+        ]
+      },
+      "Asset": {
+        "description": "An asset",
+        "type": "object",
+        "properties": {
+          "contains_pii": {
+            "type": "boolean",
+            "description": "The asset contain PII value",
+            "example": false,
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "description": "The asset created at date",
+            "example": "2024-03-27T15:46:56.845Z"
+          },
+          "created_by": {
+            "$ref": "#/components/schemas/User"
+          },
+          "extension": {
+            "type": "string",
+            "description": "The asset extension",
+            "example": "png"
+          },
+          "filename": {
+            "type": "string",
+            "description": "The asset filename",
+            "example": "image.png"
+          },
+          "id": {
+            "type": "number",
+            "description": "The asset id",
+            "example": 1
+          },
+          "media": {
+            "$ref": "#/components/schemas/AssetMedia"
+          },
+          "media_type": {
+            "type": "string",
+            "description": "The asset media type",
+            "example": "image"
+          },
+          "position": {
+            "type": "number",
+            "description": "The asset position",
+            "example": 16
+          },
+          "processed": {
+            "type": "boolean",
+            "description": "Is the asset processed",
+            "example": true
+          },
+          "thumbnails": {
+            "type": "object",
+            "properties": {
+              "small": {
+                "type": "string",
+                "description": "The asset small thumbnail",
+                "example": "https://eu-west-4-chillipharm-bucket.s3.eu-west-4.amazonaws.com/thumbnails-small/image.png",
+                "nullable": true
+              },
+              "large": {
+                "type": "string",
+                "description": "The asset large thumbnail",
+                "example": "https://eu-west-4-chillipharm-bucket.s3.eu-west-4.amazonaws.com/thumbnails-large/image.png",
+                "nullable": true
+              }
+            }
+          }
+        },
+        "required": [
+          "contains_pii",
+          "created_at",
+          "created_by",
+          "extension",
+          "filename",
+          "id",
+          "media",
+          "media_type",
+          "position",
+          "processed",
+          "thumbnails"
+        ],
+        "additionalProperties": false
       }
     },
     "responses": {
@@ -2559,6 +3221,19 @@
               "$ref": "#/components/schemas/Error"
             }
           }
+        }
+      }
+    },
+    "parameters": {
+      "XDeviceAuthHeader": {
+        "name": "X-Device-Auth",
+        "in": "header",
+        "description": "The device authentication header in format <unix_timestamp>:<hmac_sha256_hex>",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "pattern": "^[0-9]{10}:[a-f0-9]{64}$",
+          "example": "1768985802:807b42ac2a5679f7db340e711d14119c05e989ddf06e45fd1992cb6c0a1bf12e"
         }
       }
     }
