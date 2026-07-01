@@ -90,6 +90,18 @@
     },
     "/accounts/{account_id}/trial_containers/{trial_container_id}": {
       "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}.json"
+    },
+    "/accounts/{account_id}/info_fields": {
+      "$ref": "refs/paths/accounts_{account_id}_info_fields.json"
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/uploads/start_multipart": {
+      "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_uploads_start_multipart.json"
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/uploads/upload_part": {
+      "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_uploads_upload_part.json"
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/uploads/complete_multipart": {
+      "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_uploads_complete_multipart.json"
     }
   },
   "components": {
@@ -143,9 +155,6 @@
       },
       "User": {
         "$ref": "refs/components/schemas/User.json"
-      },
-      "Video": {
-        "$ref": "refs/components/schemas/Video.json"
       },
       "WorkflowInstanceHistoryRecord": {
         "$ref": "refs/components/schemas/WorkflowInstanceHistoryRecord.json"
