@@ -109,14 +109,9 @@
               "signature": {
                 "type": "object",
                 "properties": {
-                  "email": {
+                  "reauthentication_grant_uuid": {
                     "type": "string",
-                    "format": "email",
-                    "example": "chillitest53+monadmin1@gmail.com"
-                  },
-                  "password": {
-                    "type": "string",
-                    "example": "Za159*ds"
+                    "example": "b56477d9-a9c5-4117-81e2-3c012621c4dd"
                   },
                   "signature_type": {
                     "type": "string",
