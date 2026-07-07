@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "4.4.0",
+    "version": "4.7.0",
     "title": "Trial Container API",
     "description": "This is api specs for trial container endpoints",
     "contact": {
@@ -663,6 +663,12 @@
                       "type": "string"
                     }
                   },
+                  "acknowledgers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
                   "form_data": {
                     "type": "array",
                     "items": {
@@ -700,14 +706,9 @@
                   "signature": {
                     "type": "object",
                     "properties": {
-                      "email": {
+                      "reauthentication_grant_uuid": {
                         "type": "string",
-                        "format": "email",
-                        "example": "chillitest53+monadmin1@gmail.com"
-                      },
-                      "password": {
-                        "type": "string",
-                        "example": "Za159*ds"
+                        "example": "b56477d9-a9c5-4117-81e2-3c012621c4dd"
                       },
                       "signature_type": {
                         "type": "string",
@@ -1692,6 +1693,13 @@
             "type": "integer",
             "description": "The form version number",
             "example": 0
+          },
+          "acknowledgers": {
+            "type": "array",
+            "description": "The form acknowledgers",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
           }
         },
         "required": [
@@ -2065,6 +2073,11 @@
                 "description": "The trial configuration name",
                 "example": "Ghost Trial Configuration"
               },
+              "published": {
+                "type": "boolean",
+                "description": "The published status of trial configuration",
+                "example": true
+              },
               "study_event_display_name": {
                 "type": "object",
                 "properties": {
@@ -2109,6 +2122,7 @@
             "required": [
               "id",
               "name",
+              "published",
               "study_event_display_name",
               "study_procedure_display_name"
             ],
