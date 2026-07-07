@@ -1,0 +1,56 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "number",
+      "description": "The info field id",
+      "example": 1
+    },
+    "field_type": {
+      "type": "string",
+      "description": "The info field type",
+      "enum": [
+        "string",
+        "text",
+        "checkbox",
+        "date",
+        "dropdown"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "description": "The info field name",
+      "example": "Title"
+    },
+    "required": {
+      "type": "boolean",
+      "description": "Is info field required"
+    },
+    "position": {
+      "type": "integer",
+      "description": "Position of the info field"
+    },
+    "placeholder": {
+      "type": "string",
+      "description": "The info field placeholder text"
+    },
+    "dropdown_options": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The info field dropdown options",
+      "example": [
+        "Yes",
+        "No"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "field_type",
+    "name",
+    "required"
+  ]
+}

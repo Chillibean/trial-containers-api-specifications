@@ -1,0 +1,27 @@
+{
+  "description": "A basic trial container",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "number",
+      "description": "The id of trial container",
+      "example": 1
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of trial container",
+      "example": "pre"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of trial container",
+      "example": "Library"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "type"
+  ],
+  "additionalProperties": false
+}
