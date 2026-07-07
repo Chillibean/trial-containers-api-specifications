@@ -62,6 +62,13 @@
       "type": "integer",
       "description": "The form version number",
       "example": 0
+    },
+    "acknowledgers": {
+      "type": "array",
+      "description": "The form acknowledgers",
+      "items": {
+        "$ref": "./User.json"
+      }
     }
   },
   "required": [
