@@ -1,0 +1,84 @@
+{
+  "description": "An asset",
+  "type": "object",
+  "properties": {
+    "contains_pii": {
+      "type": "boolean",
+      "description": "The asset contain PII value",
+      "example": false,
+      "nullable": true
+    },
+    "created_at": {
+      "type": "string",
+      "description": "The asset created at date",
+      "example": "2024-03-27T15:46:56.845Z"
+    },
+    "created_by": {
+      "$ref": "./User.json"
+    },
+    "extension": {
+      "type": "string",
+      "description": "The asset extension",
+      "example": "png"
+    },
+    "filename": {
+      "type": "string",
+      "description": "The asset filename",
+      "example": "image.png"
+    },
+    "id": {
+      "type": "number",
+      "description": "The asset id",
+      "example": 1
+    },
+    "media": {
+      "$ref": "./AssetMedia.json"
+    },
+    "media_type": {
+      "type": "string",
+      "description": "The asset media type",
+      "example": "image"
+    },
+    "position": {
+      "type": "number",
+      "description": "The asset position",
+      "example": 16
+    },
+    "processed": {
+      "type": "boolean",
+      "description": "Is the asset processed",
+      "example": true
+    },
+    "thumbnails": {
+      "type": "object",
+      "properties": {
+        "small": {
+          "type": "string",
+          "description": "The asset small thumbnail",
+          "example": "https://eu-west-4-chillipharm-bucket.s3.eu-west-4.amazonaws.com/thumbnails-small/image.png",
+          "nullable": true
+        },
+        "large": {
+          "type": "string",
+          "description": "The asset large thumbnail",
+          "example": "https://eu-west-4-chillipharm-bucket.s3.eu-west-4.amazonaws.com/thumbnails-large/image.png",
+          "nullable": true
+        }
+      }
+    }
+  },
+  "required": [
+    "contains_pii",
+    "created_at",
+    "created_by",
+    "extension",
+    "filename",
+    "id",
+    "media",
+    "media_type",
+    "position",
+    "processed",
+    "thumbnails"
+  ],
+  "additionalProperties": false
+}
